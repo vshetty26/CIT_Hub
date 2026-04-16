@@ -1,0 +1,193 @@
+'use client';
+
+import { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
+export default function HeroSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const title1Ref = useRef<HTMLDivElement>(null);
+  const title2Ref = useRef<HTMLDivElement>(null);
+  const subtextRef = useRef<HTMLParagraphElement>(null);
+  const ctaRef = useRef<HTMLAnchorElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Sequence perfectly aligns right as the loader dissolves (2.75s sequence length)
+    const tl = gsap.timeline({ delay: 2.7 });
+
+    tl.fromTo(
+      title1Ref.current,
+      { opacity: 0, y: 30, filter: 'blur(10px)' },
+      { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.2, ease: 'power3.out' }
+    )
+      .fromTo(
+        title2Ref.current,
+        { opacity: 0, y: 30, filter: 'blur(10px)' },
+        { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.2, ease: 'power3.out' },
+        '-=0.8'
+      )
+      .fromTo(
+        subtextRef.current,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 1, ease: 'power2.out' },
+        '-=0.6'
+      )
+      .fromTo(
+        ctaRef.current,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 1, ease: 'power2.out' },
+        '-=0.8'
+      );
+
+    // Scroll-triggered upward fade
+    gsap.to(contentRef.current, {
+      y: -150,
+      opacity: 0,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true,
+      },
+    });
+  }, []);
+
+  return (
+    <section
+      ref={sectionRef}
+      style={{
+        position: 'relative',
+        width: '100%',
+        height: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#000000',
+        overflow: 'hidden',
+        textAlign: 'center',
+        padding: '0 24px',
+      }}
+    >
+      {/* Background Gradient & Glow */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'none',
+          pointerEvents: 'none',
+        }}
+      />
+
+      {/* Content */}
+      <div ref={contentRef} style={{ position: 'relative', zIndex: 10, display: 'flex', flexDirection: 'column', gap: '24px', alignItems: 'center' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          <h1
+            ref={title1Ref}
+            style={{
+              fontFamily: "'Syne', sans-serif",
+              fontSize: 'clamp(40px, 6vw, 84px)',
+              fontWeight: 800,
+              letterSpacing: '-0.02em',
+              lineHeight: 1.1,
+              color: '#ffffff',
+              opacity: 0,
+            }}
+          >
+            We Don’t Just Design.
+          </h1>
+          <h1
+            ref={title2Ref}
+            style={{
+              fontFamily: "'Syne', sans-serif",
+              fontSize: 'clamp(40px, 6vw, 84px)',
+              fontWeight: 800,
+              letterSpacing: '-0.02em',
+              lineHeight: 1.1,
+              color: '#ffffff',
+              opacity: 0,
+            }}
+          >
+            We Build{' '}
+            <span
+              style={{
+                background: 'linear-gradient(135deg, #4f46e5, #3b82f6)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}
+            >
+              Identities
+            </span>{' '}
+            That{' '}
+            <span
+              style={{
+                background: 'linear-gradient(135deg, #4f46e5, #3b82f6)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}
+            >
+              Stay.
+            </span>
+          </h1>
+        </div>
+
+        <p
+          ref={subtextRef}
+          style={{
+            fontFamily: "'Space Grotesk', sans-serif",
+            fontSize: 'clamp(14px, 1.5vw, 18px)',
+            fontWeight: 400,
+            letterSpacing: '0.15em',
+            textTransform: 'uppercase',
+            color: '#a1a1aa',
+            opacity: 0,
+          }}
+        >
+          Branding. Digital. Security.
+        </p>
+
+        <a
+          ref={ctaRef}
+          href="#explore"
+          style={{
+            marginTop: '16px',
+            fontFamily: "'Space Grotesk', sans-serif",
+            fontSize: '14px',
+            fontWeight: 500,
+            letterSpacing: '0.05em',
+            color: '#ffffff',
+            backgroundColor: '#09090b',
+            border: '1px solid rgba(59, 130, 246, 0.3)',
+            padding: '16px 40px',
+            borderRadius: '100px',
+            textDecoration: 'none',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px',
+            opacity: 0,
+            transition: 'all 0.3s ease',
+            boxShadow: '0 0 0px rgba(0, 0, 0, 0)',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-2px)';
+            e.currentTarget.style.borderColor = '#3b82f6';
+            e.currentTarget.style.boxShadow = '0 0 15px rgba(59, 130, 246, 0.2)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.3)';
+            e.currentTarget.style.boxShadow = '0 0 0px rgba(0, 0, 0, 0)';
+          }}
+        >
+          Explore →
+        </a>
+      </div>
+    </section>
+  );
+}
