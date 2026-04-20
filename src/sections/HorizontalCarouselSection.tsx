@@ -115,7 +115,7 @@ export default function HorizontalCarouselSection() {
       style={{
         width: '100%',
         height: '100vh', // Pinned, GSAP extends virtual height
-        backgroundColor: '#000000',
+        backgroundColor: 'var(--bg)',
         overflow: 'hidden',
         position: 'relative'
       }}
@@ -145,7 +145,7 @@ export default function HorizontalCarouselSection() {
           border: 1px solid rgba(255, 255, 255, 0.08);
           position: relative;
           overflow: hidden;
-          background-color: #09090b;
+          background-color: var(--surface);
           cursor: pointer;
           
           /* starting states for GSAP overrides */

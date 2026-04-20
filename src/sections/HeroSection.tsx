@@ -67,7 +67,7 @@ export default function HeroSection() {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#000000',
+        backgroundColor: 'var(--bg)',
         overflow: 'hidden',
         textAlign: 'center',
         padding: '0 24px',
@@ -94,7 +94,7 @@ export default function HeroSection() {
               fontWeight: 800,
               letterSpacing: '-0.02em',
               lineHeight: 1.1,
-              color: '#ffffff',
+              color: 'var(--text)',
               opacity: 0,
             }}
           >
@@ -108,7 +108,7 @@ export default function HeroSection() {
               fontWeight: 800,
               letterSpacing: '-0.02em',
               lineHeight: 1.1,
-              color: '#ffffff',
+              color: 'var(--text)',
               opacity: 0,
             }}
           >
@@ -145,7 +145,7 @@ export default function HeroSection() {
             fontWeight: 400,
             letterSpacing: '0.15em',
             textTransform: 'uppercase',
-            color: '#a1a1aa',
+            color: 'var(--secondary)',
             opacity: 0,
           }}
         >
@@ -161,8 +161,8 @@ export default function HeroSection() {
             fontSize: '14px',
             fontWeight: 500,
             letterSpacing: '0.05em',
-            color: '#ffffff',
-            backgroundColor: '#09090b',
+            color: 'var(--text)',
+            backgroundColor: 'var(--surface)',
             border: '1px solid rgba(59, 130, 246, 0.3)',
             padding: '16px 40px',
             borderRadius: '100px',

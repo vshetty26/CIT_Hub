@@ -103,10 +103,11 @@ export default function GallerySection() {
 
   return (
     <section
+      id="work"
       ref={sectionRef}
       style={{
         width: '100%',
-        backgroundColor: '#000000',
+        backgroundColor: 'var(--bg)',
         padding: '160px 48px',
         position: 'relative'
       }}
@@ -135,7 +136,7 @@ export default function GallerySection() {
         .gallery-item {
           position: relative;
           overflow: hidden;
-          background-color: #09090b;
+          background-color: var(--surface);
           border: 1px solid rgba(255, 255, 255, 0.06);
           cursor: pointer;
           width: 100%;
@@ -230,7 +231,7 @@ export default function GallerySection() {
             fontSize: '11px',
             fontWeight: 600,
             letterSpacing: '0.24em',
-            color: '#6b7280',
+            color: 'var(--secondary)',
             textTransform: 'uppercase',
             marginBottom: '24px',
             display: 'flex',
@@ -246,7 +247,7 @@ export default function GallerySection() {
             fontSize: 'clamp(40px, 6vw, 72px)',
             fontWeight: 700,
             lineHeight: 1.1,
-            color: '#ffffff',
+            color: 'var(--text)',
             letterSpacing: '-0.02em',
             marginBottom: '24px'
           }}>
@@ -256,7 +257,7 @@ export default function GallerySection() {
           <p style={{
             fontFamily: "'Space Grotesk', sans-serif",
             fontSize: '18px',
-            color: '#9ca3af',
+            color: 'var(--secondary)',
             lineHeight: 1.6,
             maxWidth: '600px'
           }}>

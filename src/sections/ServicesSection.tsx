@@ -143,12 +143,13 @@ export default function ServicesSection() {
 
   return (
     <section
+      id="capabilities"
       ref={sectionRef}
       onMouseMove={handleMouseMove}
       style={{
         width: '100%',
         height: '100vh',
-        backgroundColor: '#000000',
+        backgroundColor: 'var(--bg)',
         position: 'relative',
         overflow: 'hidden',
         perspective: '1200px', // Crucial for establishing 3D tilt effects
@@ -166,7 +167,7 @@ export default function ServicesSection() {
           fontFamily: "'Syne', sans-serif",
           fontSize: 'clamp(24px, 3vw, 40px)',
           fontWeight: 700,
-          color: '#ffffff',
+          color: 'var(--text)',
           letterSpacing: '0.2em',
           opacity: 0.15,
           textTransform: 'uppercase'
@@ -191,8 +192,8 @@ export default function ServicesSection() {
                 style={{
                   width: 'clamp(320px, 60vw, 750px)',
                   height: 'clamp(380px, 55vh, 550px)',
-                  backgroundColor: '#0b0b0c',
-                  border: '1px solid rgba(255, 255, 255, 0.05)',
+                  backgroundColor: 'var(--surface)',
+                  border: '1px solid var(--border-color)',
                   borderRadius: '32px',
                   display: 'flex',
                   flexDirection: 'column',
@@ -217,7 +218,7 @@ export default function ServicesSection() {
                       fontSize: '11px',
                       fontWeight: 600,
                       letterSpacing: '0.24em',
-                      color: '#6b7280',
+                      color: 'var(--secondary)',
                       textTransform: 'uppercase',
                     }}>
                       {tag}
@@ -231,7 +232,7 @@ export default function ServicesSection() {
                     fontFamily: "'Syne', sans-serif",
                     fontSize: 'clamp(40px, 6vw, 85px)',
                     fontWeight: 700,
-                    color: '#ffffff',
+                    color: 'var(--text)',
                     letterSpacing: '-0.02em',
                     textAlign: 'center',
                     marginBottom: '32px',
@@ -246,7 +247,7 @@ export default function ServicesSection() {
                   <p style={{
                     fontFamily: "'Space Grotesk', sans-serif",
                     fontSize: 'clamp(16px, 2vw, 20px)',
-                    color: '#a1a1aa',
+                    color: 'var(--secondary)',
                     maxWidth: '500px',
                     textAlign: 'center',
                     lineHeight: 1.6

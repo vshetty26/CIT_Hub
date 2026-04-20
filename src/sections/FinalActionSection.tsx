@@ -84,12 +84,13 @@ export default function FinalActionSection() {
 
   return (
     <section
+      id="contact"
       ref={sectionRef}
       onMouseMove={handleMouseMove}
       style={{
         width: '100%',
         height: '100vh',
-        backgroundColor: '#000000',
+        backgroundColor: 'var(--bg)',
         position: 'relative',
         overflow: 'hidden',
         display: 'flex',
@@ -106,7 +107,7 @@ export default function FinalActionSection() {
           left: 0,
           width: '800px',
           height: '800px',
-          background: 'radial-gradient(circle, rgba(255,255,255,0.06) 0%, rgba(0,0,0,0) 60%)',
+          background: 'var(--highlight-gradient)',
           borderRadius: '50%',
           pointerEvents: 'none', // Prevents interfering with hover hits on buttons
           opacity: 0,
@@ -130,7 +131,7 @@ export default function FinalActionSection() {
           fontFamily: "'Syne', sans-serif",
           fontSize: 'clamp(28px, 4.5vw, 56px)',
           fontWeight: 600,
-          color: '#ffffff',
+          color: 'var(--text)',
           lineHeight: 1.3,
           letterSpacing: '-0.02em',
           marginBottom: '40px'
@@ -141,7 +142,7 @@ export default function FinalActionSection() {
           <span style={{
             fontFamily: "'Space Grotesk', sans-serif",
             fontSize: '18px',
-            color: '#d4d4d8',
+            color: 'var(--secondary)',
             fontWeight: 500,
             letterSpacing: '0.04em'
           }}>
@@ -150,7 +151,7 @@ export default function FinalActionSection() {
           <span style={{
             fontFamily: "'Space Grotesk', sans-serif",
             fontSize: '14px',
-            color: '#71717a', // Subtle gray
+            color: 'var(--secondary)', // Subtle gray
             fontWeight: 500,
             letterSpacing: '0.08em',
             textTransform: 'uppercase'
@@ -178,7 +179,7 @@ export default function FinalActionSection() {
           fontFamily: "'Syne', sans-serif",
           fontSize: 'clamp(48px, 8vw, 120px)',
           fontWeight: 800,
-          color: '#ffffff',
+          color: 'var(--text)',
           letterSpacing: '-0.04em',
           textAlign: 'center',
           lineHeight: 1.1,
@@ -194,8 +195,8 @@ export default function FinalActionSection() {
             fontWeight: 600,
             letterSpacing: '0.12em',
             textTransform: 'uppercase',
-            color: '#000000',
-            backgroundColor: '#ffffff',
+            color: 'var(--bg)',
+            backgroundColor: 'var(--text)',
             padding: '24px 56px',
             borderRadius: '100px',
             textDecoration: 'none',
@@ -203,12 +204,12 @@ export default function FinalActionSection() {
           }}
             onMouseEnter={e => {
               e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.backgroundColor = '#f4f4f5';
+              e.currentTarget.style.backgroundColor = 'var(--secondary)';
               e.currentTarget.style.boxShadow = '0 10px 30px rgba(255,255,255,0.15)';
             }}
             onMouseLeave={e => {
               e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.backgroundColor = '#ffffff';
+              e.currentTarget.style.backgroundColor = 'var(--text)';
               e.currentTarget.style.boxShadow = 'none';
             }}
           >
@@ -221,9 +222,9 @@ export default function FinalActionSection() {
             fontWeight: 600,
             letterSpacing: '0.12em',
             textTransform: 'uppercase',
-            color: '#ffffff',
+            color: 'var(--text)',
             backgroundColor: 'transparent',
-            border: '1px solid rgba(255,255,255,0.15)',
+            border: '1px solid var(--border-dark-color)',
             padding: '24px 56px',
             borderRadius: '100px',
             textDecoration: 'none',

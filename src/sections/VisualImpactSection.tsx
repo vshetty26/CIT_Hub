@@ -61,7 +61,7 @@ export default function VisualImpactSection() {
       style={{
         width: '100%',
         minHeight: '250vh', // Forces a massive section height to ensure plenty of scrolling
-        backgroundColor: '#000000',
+        backgroundColor: 'var(--bg)',
         padding: '160px 48px',
       }}
     >
@@ -91,7 +91,7 @@ export default function VisualImpactSection() {
               fontSize: '11px',
               fontWeight: 600,
               letterSpacing: '0.24em',
-              color: '#6b7280',
+              color: 'var(--secondary)',
               textTransform: 'uppercase',
               marginBottom: '24px',
               display: 'flex',
@@ -106,7 +106,7 @@ export default function VisualImpactSection() {
               fontSize: 'clamp(32px, 4vw, 56px)',
               fontWeight: 700,
               lineHeight: 1.2,
-              color: '#ffffff',
+              color: 'var(--text)',
               letterSpacing: '-0.02em',
               maxWidth: '100%'
             }}>
@@ -134,8 +134,8 @@ export default function VisualImpactSection() {
               <div style={{
                 width: '100%',
                 height: '85vh', // High 85vh scale as requested
-                backgroundColor: '#09090b',
-                border: '1px solid rgba(255,255,255,0.06)',
+                backgroundColor: 'var(--surface)',
+                border: '1px solid var(--border-color)',
                 overflow: 'hidden',
                 position: 'relative'
               }}>
@@ -155,7 +155,7 @@ export default function VisualImpactSection() {
                 fontSize: '11px',
                 fontWeight: 600,
                 letterSpacing: '0.15em',
-                color: '#6b7280',
+                color: 'var(--secondary)',
                 textTransform: 'uppercase',
               }}>
                 {item.label}

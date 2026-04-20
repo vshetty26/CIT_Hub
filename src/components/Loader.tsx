@@ -66,7 +66,7 @@ export default function Loader({ onComplete }: LoaderProps) {
     fontFamily: "'Syne', sans-serif",
     fontSize: 'clamp(32px, 6vw, 96px)',
     fontWeight: 800,
-    color: '#ffffff',
+    color: 'var(--text)',
     textAlign: 'center',
     opacity: 0,
     margin: 0,
@@ -79,7 +79,7 @@ export default function Loader({ onComplete }: LoaderProps) {
       style={{ 
         position: 'fixed', 
         inset: 0, 
-        backgroundColor: '#000000', 
+        backgroundColor: 'var(--bg)', 
         zIndex: 9999, 
         display: 'flex', 
         flexDirection: 'column', 

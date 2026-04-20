@@ -9,10 +9,13 @@ import Loader from '@/components/Loader';
 import HeroSection from '@/sections/HeroSection';
 import IntroductionSection from '@/sections/IntroductionSection';
 import VisualImpactSection from '@/sections/VisualImpactSection';
+import PortfolioSection from '@/sections/PortfolioSection';
 import GallerySection from '@/sections/GallerySection';
 import HorizontalCarouselSection from '@/sections/HorizontalCarouselSection';
 import ServicesSection from '@/sections/ServicesSection';
 import FinalActionSection from '@/sections/FinalActionSection';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 
 export default function Home() {
   const [loaderDone, setLoaderDone] = useState(false);
@@ -57,14 +60,17 @@ export default function Home() {
       {!loaderDone && <Loader onComplete={() => setLoaderDone(true)} />}
 
       <div style={{ position: 'relative', zIndex: 1 }}>
+        <Navbar />
         <HeroSection />
         <IntroductionSection />
         <VisualImpactSection />
+        <PortfolioSection />
         <GallerySection />
         <HorizontalCarouselSection />
         <ServicesSection />
         <FinalActionSection />
         {/* sections will be added here one by one */}
+        <Footer />
       </div>
     </>
   );

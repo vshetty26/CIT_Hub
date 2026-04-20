@@ -7,9 +7,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const contentLines = [
-  { text: "We are a design studio focused on clarity, craft, and real-world execution.", color: '#ffffff' },
-  { text: "Our work spans brand systems, digital experiences, and physical products —", color: '#a1a1aa' },
-  { text: "all shaped through thoughtful design decisions and precise 3D.", color: '#a1a1aa' }
+  { text: "We are a design studio focused on clarity, craft, and real-world execution.", color: 'var(--text)' },
+  { text: "Our work spans brand systems, digital experiences, and physical products —", color: 'var(--secondary)' },
+  { text: "all shaped through thoughtful design decisions and precise 3D.", color: 'var(--secondary)' }
 ];
 
 export default function IntroductionSection() {
@@ -55,11 +55,12 @@ export default function IntroductionSection() {
 
   return (
     <section
+      id="about"
       ref={sectionRef}
       style={{
         width: '100%',
         minHeight: '100vh',
-        backgroundColor: '#000000',
+        backgroundColor: 'var(--bg)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -72,7 +73,7 @@ export default function IntroductionSection() {
           fontSize: 'clamp(28px, 4vw, 56px)',
           fontWeight: 600,
           lineHeight: 1.35,
-          color: '#ffffff',
+          color: 'var(--text)',
           textAlign: 'center',
           maxWidth: '1200px',
           letterSpacing: '-0.01em',
