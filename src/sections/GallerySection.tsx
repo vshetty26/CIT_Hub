@@ -9,48 +9,48 @@ gsap.registerPlugin(ScrollTrigger);
 const galleryCols = [
   [
     {
-      title: 'THE RECEIVER',
-      category: 'AUDIO / 01',
-      src: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&q=80&w=1200', // Valid headphones
+      title: '',
+      category: '',
+      src: '/halloffame/image.png',
       aspectRatio: '4/5',
       marginTop: '0px'
     },
     {
-      title: 'TACTILE BASE',
-      category: 'INTERFACE / 04',
-      src: '/interface.png', // Local
+      title: '',
+      category: '',
+      src: '/halloffame/image copy.png',
       aspectRatio: '1/1',
       marginTop: '0px'
     }
   ],
   [
     {
-      title: 'ANALOG LENS',
-      category: 'OPTICS / 02',
-      src: '/camera.png', // Local
+      title: '',
+      category: '',
+      src: '/halloffame/image copy 2.png',
       aspectRatio: '3/4',
       marginTop: '120px'
     },
     {
-      title: 'MACHINED DIALS',
-      category: 'HARDWARE / 03',
-      src: '/knobs.png', // Local
+      title: '',
+      category: '',
+      src: '/halloffame/image copy 3.png',
       aspectRatio: '4/5',
       marginTop: '0px'
     }
   ],
   [
     {
-      title: 'STUDIO DECK',
-      category: 'MIXING / 05',
-      src: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&q=80&w=1200', // Valid audio mixer
+      title: '',
+      category: '',
+      src: '/halloffame/image copy 4.png',
       aspectRatio: '1/1',
       marginTop: '40px'
     },
     {
-      title: 'STUDIO MIC',
-      category: 'RECORDING / 06',
-      src: 'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&q=80&w=1200', // Valid microphone, seen in screenshot
+      title: '',
+      category: '',
+      src: '/halloffame/image copy 5.png',
       aspectRatio: '3/4',
       marginTop: '0px'
     }
@@ -251,7 +251,7 @@ export default function GallerySection() {
             letterSpacing: '-0.02em',
             marginBottom: '24px'
           }}>
-            PHYSICAL PRODUCTS
+            HALL OF FAME
           </h2>
 
           <p style={{
@@ -261,7 +261,7 @@ export default function GallerySection() {
             lineHeight: 1.6,
             maxWidth: '600px'
           }}>
-            Discover industrial elegance and precision engineering, curated for those who appreciate raw materiality.
+            Trusted by leading brands
           </p>
         </div>
 

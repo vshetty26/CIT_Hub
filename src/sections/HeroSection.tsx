@@ -149,7 +149,7 @@ export default function HeroSection() {
             opacity: 0,
           }}
         >
-          Branding. Digital. Security.
+          Branding. Marketing. Web.
         </p>
 
         <a

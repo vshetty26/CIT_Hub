@@ -8,34 +8,22 @@ gsap.registerPlugin(ScrollTrigger);
 
 const carouselItems = [
   {
-    title: 'THE RECEIVER',
-    label: 'PRODUCT / AUDIO',
-    src: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&q=80&w=1200',
+    title: 'MANRAJ MARHALA',
+    label: 'Director — CIT HUB',
+    src: '/team/manraj.jpg',
+    subtext: '9+ Years in Branding & Marketing'
   },
   {
-    title: 'TACTILE BASE',
-    label: 'EXPERIENCE / INTERFACE',
-    src: '/interface.png',
+    title: 'RAJIV SINGH',
+    label: 'Software & Solutions',
+    src: '/team/rajiv.jpg',
+    subtext: 'Software Development & Architecture'
   },
   {
-    title: 'ANALOG LENS',
-    label: 'PRODUCT / OPTICS',
-    src: '/camera.png',
-  },
-  {
-    title: 'MACHINED DIALS',
-    label: 'UI / HARDWARE',
-    src: '/knobs.png',
-  },
-  {
-    title: 'STUDIO DECK',
-    label: 'EXPERIENCE / MIXING',
-    src: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&q=80&w=1200',
-  },
-  {
-    title: 'STUDIO MIC',
-    label: 'PRODUCT / RECORDING',
-    src: 'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&q=80&w=1200',
+    title: 'SOURABH ARORA',
+    label: 'Creative Designer',
+    src: '/team/sourabh.jpg',
+    subtext: 'Design, VFX & Visual Systems'
   }
 ];
 
@@ -238,7 +226,53 @@ export default function HorizontalCarouselSection() {
           .carousel-card-wrap { width: 85vw; height: 60vh; padding: 0 12px; }
           .carousel-track { padding: 0 7.5vw; }
         }
+
+        .arrow-btn {
+          background: transparent;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          color: var(--text);
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+        .arrow-btn:hover {
+          background: var(--text);
+          color: var(--bg);
+        }
       ` }} />
+
+      <div style={{ position: 'absolute', top: '32px', left: '48px', zIndex: 20 }}>
+        <div style={{
+          fontFamily: "'Space Grotesk', sans-serif",
+          fontSize: '11px',
+          fontWeight: 600,
+          color: 'var(--secondary)',
+          letterSpacing: '0.24em',
+          textTransform: 'uppercase',
+          marginBottom: '16px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '12px'
+        }}>
+          <span style={{ width: '24px', height: '1px', backgroundColor: '#6b7280' }} />
+          THE PEOPLE BEHIND THE WORK
+        </div>
+        <h2 style={{
+          fontFamily: "'Syne', sans-serif",
+          fontSize: 'clamp(32px, 4vw, 56px)',
+          fontWeight: 700,
+          color: 'var(--text)',
+          letterSpacing: '-0.02em',
+          lineHeight: 1
+        }}>
+          ABOUT US
+        </h2>
+      </div>
 
       <div className="carousel-track" ref={trackRef}>
         {carouselItems.map((item, idx) => (
@@ -253,11 +287,27 @@ export default function HorizontalCarouselSection() {
                   <span className="card-label-line" />
                   {item.label}
                 </div>
-                <h3 className="card-title">{item.title}</h3>
+                {/* Wrap both in the card-title class so they transform consistently on hover */}
+                <div className="card-title" style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                  <span>{item.title}</span>
+                  <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: '13px', color: '#a1a1aa', fontWeight: 400, letterSpacing: '0.05em' }}>
+                    {item.subtext}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
         ))}
+      </div>
+
+      {/* ARROWS FOR MANUAL OR VISUAL QUEUE */}
+      <div style={{ position: 'absolute', bottom: '10vh', right: '10vw', zIndex: 20, display: 'flex', gap: '16px' }}>
+        <button className="arrow-btn" onClick={() => window.scrollBy({ top: -window.innerWidth * 0.5, behavior: 'smooth' })} aria-label="Previous">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button className="arrow-btn" onClick={() => window.scrollBy({ top: window.innerWidth * 0.5, behavior: 'smooth' })} aria-label="Next">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
       </div>
 
     </section>

@@ -11,9 +11,9 @@ import IntroductionSection from '@/sections/IntroductionSection';
 import VisualImpactSection from '@/sections/VisualImpactSection';
 import PortfolioSection from '@/sections/PortfolioSection';
 import GallerySection from '@/sections/GallerySection';
-import HorizontalCarouselSection from '@/sections/HorizontalCarouselSection';
 import ServicesSection from '@/sections/ServicesSection';
 import FinalActionSection from '@/sections/FinalActionSection';
+import AboutSection from '@/sections/AboutSection';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
@@ -66,10 +66,9 @@ export default function Home() {
         <VisualImpactSection />
         <PortfolioSection />
         <GallerySection />
-        <HorizontalCarouselSection />
         <ServicesSection />
+        <AboutSection />
         <FinalActionSection />
-        {/* sections will be added here one by one */}
         <Footer />
       </div>
     </>
