@@ -14,9 +14,12 @@ const IMAGE_EXTS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.avif', '.gif']);
 
 export async function GET(
   _req: Request,
-  { params }: { params: { category: string } }
+  { params }: { params: Promise<{ category: string }> }
 ) {
-  const folder = FOLDER_MAP[params.category];
+  // Next.js 15: params is a Promise — must be awaited
+  const { category } = await params;
+
+  const folder = FOLDER_MAP[category];
   if (!folder) {
     return NextResponse.json({ error: 'Unknown category' }, { status: 404 });
   }
@@ -27,14 +30,15 @@ export async function GET(
     return NextResponse.json({ images: [] });
   }
 
-  const files = fs.readdirSync(dir).filter((f) =>
-    IMAGE_EXTS.has(path.extname(f).toLowerCase())
-  );
+  const files = fs
+    .readdirSync(dir)
+    .filter((f) => IMAGE_EXTS.has(path.extname(f).toLowerCase()))
+    .sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }));
 
   // Return public-relative URLs
-  const images = files.map((f) => `/${folder}/${f}`);
+  const images = files.map((f) => `/${folder}/${encodeURIComponent(f)}`);
 
   return NextResponse.json({ images }, {
-    headers: { 'Cache-Control': 'public, max-age=3600' }
+    headers: { 'Cache-Control': 'public, max-age=3600' },
   });
 }

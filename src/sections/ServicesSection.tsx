@@ -174,6 +174,18 @@ export default function ServicesSection() {
         }}>
           Capabilities
         </h2>
+        <p style={{
+          fontFamily: "'Space Grotesk', sans-serif",
+          fontSize: '12px',
+          fontWeight: 500,
+          letterSpacing: '0.18em',
+          textTransform: 'uppercase',
+          color: 'var(--secondary)',
+          opacity: 0.4,
+          marginTop: '10px',
+        }}>
+          Scroll slowly to explore each service
+        </p>
       </div>
 
       <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>

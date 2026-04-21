@@ -398,6 +398,26 @@ export default function PortfolioSection() {
           </div>
         </div>
 
+        {/* Swipe hint */}
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+          <span style={{
+            fontFamily: "'Space Grotesk', sans-serif",
+            fontSize: '11px',
+            fontWeight: 500,
+            letterSpacing: '0.18em',
+            textTransform: 'uppercase',
+            color: 'var(--secondary)',
+            opacity: 0.45,
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+          }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+            Drag or use arrows to browse projects
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+
       </div>
 
       {/* ─── BRANDING ─────────────────────────────────────────────────────── */}
@@ -435,12 +455,13 @@ export default function PortfolioSection() {
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
           gap: '24px',
+          alignItems: 'stretch',
         }}>
           {[
-            { label: 'Logo Design',    icon: '◈', desc: 'Marks that define identity',       slug: 'logo' },
-            { label: 'Business Cards', icon: '▭', desc: 'First impressions, perfected',      slug: 'businesscard' },
-            { label: 'Brochures',      icon: '⊞', desc: 'Stories told in print',             slug: 'brochures' },
-            { label: 'Signages',       icon: '⬡', desc: 'Your brand in the real world',      slug: 'signages' },
+            { label: 'Logo Design',    icon: '◈', desc: 'Marks that define identity',       slug: 'logo',         preview: '/logo/image.png' },
+            { label: 'Business Cards', icon: '▭', desc: 'First impressions, perfected',      slug: 'businesscard', preview: '/businesscard/amp.png' },
+            { label: 'Brochures',      icon: '⊞', desc: 'Stories told in print',             slug: 'brochures',    preview: '/brochures/ALA.png' },
+            { label: 'Signages',       icon: '⬡', desc: 'Your brand in the real world',      slug: 'signages',     preview: '/signages/image.png' },
           ].map((item) => (
             <div
               key={item.label}
@@ -448,13 +469,13 @@ export default function PortfolioSection() {
               style={{
                 border: '1px solid var(--border-color)',
                 borderRadius: '20px',
-                padding: '40px 32px',
+                overflow: 'hidden',
                 backgroundColor: 'var(--surface)',
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '16px',
                 transition: 'border-color 0.3s ease, transform 0.3s ease',
                 cursor: 'pointer',
+                height: '100%',
               }}
               onMouseEnter={e => {
                 (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(59,130,246,0.4)';
@@ -465,14 +486,25 @@ export default function PortfolioSection() {
                 (e.currentTarget as HTMLDivElement).style.transform = 'translateY(0)';
               }}
             >
-              <span style={{ fontSize: '28px', color: 'var(--text)' }}>{item.icon}</span>
-              <div>
+              {/* Preview image */}
+              <div style={{ width: '100%', aspectRatio: '16/9', overflow: 'hidden', flexShrink: 0 }}>
+                <img
+                  src={item.preview}
+                  alt={item.label}
+                  loading="lazy"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.4s ease' }}
+                  onMouseEnter={e => (e.currentTarget as HTMLImageElement).style.transform = 'scale(1.05)'}
+                  onMouseLeave={e => (e.currentTarget as HTMLImageElement).style.transform = 'scale(1)'}
+                />
+              </div>
+              {/* Text content */}
+              <div style={{ padding: '28px 28px 32px', display: 'flex', flexDirection: 'column', gap: '10px', flex: 1 }}>
+                <span style={{ fontSize: '22px', color: 'var(--text)' }}>{item.icon}</span>
                 <div style={{
                   fontFamily: "'Syne', sans-serif",
                   fontSize: '18px',
                   fontWeight: 700,
                   color: 'var(--text)',
-                  marginBottom: '8px',
                 }}>
                   {item.label}
                 </div>
@@ -483,6 +515,23 @@ export default function PortfolioSection() {
                   lineHeight: 1.5,
                 }}>
                   {item.desc}
+                </div>
+                {/* CTA hint */}
+                <div style={{
+                  marginTop: 'auto',
+                  paddingTop: '16px',
+                  fontFamily: "'Space Grotesk', sans-serif",
+                  fontSize: '12px',
+                  fontWeight: 600,
+                  letterSpacing: '0.1em',
+                  color: 'rgba(59,130,246,0.7)',
+                  textTransform: 'uppercase',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                }}>
+                  <span>Click to explore our work</span>
+                  <span style={{ fontSize: '14px' }}>→</span>
                 </div>
               </div>
             </div>
@@ -523,6 +572,7 @@ export default function PortfolioSection() {
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
           gap: '24px',
+          alignItems: 'stretch',
         }}>
           {[
             { label: 'Social Media Creatives', icon: '⬡', desc: 'Thumb-stopping content for every platform' },
@@ -535,7 +585,7 @@ export default function PortfolioSection() {
               href="https://www.instagram.com/creativeit.melbourne/"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ textDecoration: 'none', display: 'block' }}
+              style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', height: '100%' }}
             >
               <div style={{
                 border: '1px solid var(--border-color)',
@@ -547,6 +597,7 @@ export default function PortfolioSection() {
                 gap: '16px',
                 transition: 'border-color 0.3s ease, transform 0.3s ease',
                 cursor: 'pointer',
+                flex: 1,
               }}
                 onMouseEnter={e => {
                   (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(59,130,246,0.4)';
@@ -586,11 +637,14 @@ export default function PortfolioSection() {
       {brandingModal && (
         <div
           onClick={closeBrandingGallery}
+          data-lenis-prevent
           style={{
             position: 'fixed', inset: 0, zIndex: 9998,
             backgroundColor: 'rgba(0,0,0,0.92)',
             backdropFilter: 'blur(16px)',
-            display: 'flex', flexDirection: 'column',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
             animation: 'fadeIn 0.25s ease',
             overflowY: 'auto',
           }}

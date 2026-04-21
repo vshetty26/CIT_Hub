@@ -132,6 +132,13 @@ export default function AboutSection() {
           top: '48px',
           left: '50%',
           transform: 'translateX(-50%)',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '6px',
+        }}
+      >
+        <span style={{
           fontFamily: "'Space Grotesk', sans-serif",
           fontSize: '11px',
           fontWeight: 600,
@@ -140,9 +147,21 @@ export default function AboutSection() {
           color: 'var(--secondary)',
           opacity: 0.5,
           whiteSpace: 'nowrap',
-        }}
-      >
-        Our Team
+        }}>
+          Our Team
+        </span>
+        <span style={{
+          fontFamily: "'Space Grotesk', sans-serif",
+          fontSize: '10px',
+          fontWeight: 400,
+          letterSpacing: '0.15em',
+          textTransform: 'uppercase',
+          color: 'var(--secondary)',
+          opacity: 0.3,
+          whiteSpace: 'nowrap',
+        }}>
+          Click dots or use ↑ ↓ arrow keys to navigate
+        </span>
       </div>
 
       {/* ── Main panel ──────────────────────────────────────────────────── */}

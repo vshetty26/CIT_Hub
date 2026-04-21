@@ -188,6 +188,41 @@ export default function HeroSection() {
           Explore →
         </a>
       </div>
+
+      {/* ── Scroll indicator ── */}
+      <div style={{
+        position: 'absolute',
+        bottom: '40px',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: '8px',
+        zIndex: 10,
+      }}>
+        <span style={{
+          fontFamily: "'Space Grotesk', sans-serif",
+          fontSize: '11px',
+          fontWeight: 600,
+          letterSpacing: '0.2em',
+          textTransform: 'uppercase',
+          color: 'var(--secondary)',
+          opacity: 0.6,
+        }}>Scroll to explore</span>
+        <style dangerouslySetInnerHTML={{ __html: `
+          @keyframes hero-bounce {
+            0%, 100% { transform: translateY(0); opacity: 0.5; }
+            50% { transform: translateY(6px); opacity: 1; }
+          }
+          .hero-scroll-arrow { animation: hero-bounce 1.6s ease-in-out infinite; }
+        `}} />
+        <div className="hero-scroll-arrow">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--secondary)" strokeWidth="2" strokeLinecap="round">
+            <path d="M12 5v14M5 12l7 7 7-7"/>
+          </svg>
+        </div>
+      </div>
     </section>
   );
 }
