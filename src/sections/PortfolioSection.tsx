@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import gsap from 'gsap';
 
 import { projectsData } from '@/data/projects';
@@ -111,17 +111,16 @@ export default function PortfolioSection() {
     document.body.style.overflow = '';
   }, []);
 
-  // ESC key handler for all modals
+  // ESC key handler for branding modals
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key !== 'Escape') return;
       if (lightboxSrc) { setLightboxSrc(null); return; }
-      if (brandingModal) { closeBrandingGallery(); return; }
-      if (modalOpen) { closeModal(); }
+      if (brandingModal) { closeBrandingGallery(); }
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [lightboxSrc, brandingModal, modalOpen, closeBrandingGallery, closeModal]);
+  }, [lightboxSrc, brandingModal, closeBrandingGallery]);
 
   return (
     <section
