@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect, useCallback } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 
 import { projectsData } from '@/data/projects';
@@ -350,7 +351,15 @@ export default function PortfolioSection() {
               ref={(el) => { cardsRef.current[i] = el; }}
             >
               <div className="port-img-wrap">
-                <img src={project.thumbnail} alt={project.title} className="port-img" loading="lazy" />
+                <Image
+                  src={project.thumbnail}
+                  alt={project.title}
+                  fill
+                  sizes="(max-width: 768px) 85vw, 600px"
+                  quality={75}
+                  style={{ objectFit: 'cover', transition: 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)' }}
+                  className="port-img"
+                />
                 <div className="port-overlay">
                   {/* Hard reload if they click anchor, but using Next Link natively is better. It uses native tags per your setup. */}
                   <a href={`/work/${project.slug}`} className="port-btn" style={{ textDecoration: 'none' }}>
@@ -487,14 +496,14 @@ export default function PortfolioSection() {
               }}
             >
               {/* Preview image */}
-              <div style={{ width: '100%', aspectRatio: '16/9', overflow: 'hidden', flexShrink: 0 }}>
-                <img
+              <div style={{ width: '100%', aspectRatio: '16/9', overflow: 'hidden', flexShrink: 0, position: 'relative' }}>
+                <Image
                   src={item.preview}
                   alt={item.label}
-                  loading="lazy"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.4s ease' }}
-                  onMouseEnter={e => (e.currentTarget as HTMLImageElement).style.transform = 'scale(1.05)'}
-                  onMouseLeave={e => (e.currentTarget as HTMLImageElement).style.transform = 'scale(1)'}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 300px"
+                  quality={75}
+                  style={{ objectFit: 'cover', transition: 'transform 0.4s ease' }}
                 />
               </div>
               {/* Text content */}
@@ -714,8 +723,16 @@ export default function PortfolioSection() {
                     key={i}
                     className="brand-img-wrap"
                     onClick={() => setLightboxSrc(src)}
+                    style={{ position: 'relative' }}
                   >
-                    <img src={src} alt={`${brandingModal.title} ${i + 1}`} loading="lazy" />
+                    <Image
+                      src={src}
+                      alt={`${brandingModal.title} ${i + 1}`}
+                      fill
+                      sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
+                      quality={75}
+                      style={{ objectFit: 'cover' }}
+                    />
                   </div>
                 ))}
               </div>
@@ -736,18 +753,28 @@ export default function PortfolioSection() {
             animation: 'fadeIn 0.2s ease',
           }}
         >
-          <img
-            src={lightboxSrc}
-            alt="Preview"
+          {/* Lightbox uses a sized container so next/image fill works */}
+          <div
+            onClick={e => e.stopPropagation()}
             style={{
-              maxWidth: '92vw', maxHeight: '92vh',
-              objectFit: 'contain',
+              position: 'relative',
+              width: 'min(92vw, 1200px)',
+              height: 'min(92vh, 900px)',
               borderRadius: '12px',
+              overflow: 'hidden',
               boxShadow: '0 40px 120px rgba(0,0,0,0.8)',
               animation: 'slideUp 0.3s cubic-bezier(0.25,1,0.3,1)',
             }}
-            onClick={e => e.stopPropagation()}
-          />
+          >
+            <Image
+              src={lightboxSrc}
+              alt="Preview"
+              fill
+              sizes="92vw"
+              quality={85}
+              style={{ objectFit: 'contain' }}
+            />
+          </div>
           <button
             onClick={() => setLightboxSrc(null)}
             style={{

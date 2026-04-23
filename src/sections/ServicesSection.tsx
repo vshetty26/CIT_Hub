@@ -8,29 +8,24 @@ gsap.registerPlugin(ScrollTrigger);
 
 const services = [
   {
-    title: 'Web Design',
-    description: 'Engineering high-performance, visually immersive digital platforms.',
-    tags: ['REACT', 'THREE.JS', 'WEBGL']
+    title: 'Branding',
+    description: 'We craft distinctive brand identities that communicate clearly and stand out — from logos to complete visual systems built for long-term impact.',
+    tags: ['Strategy', 'Identity', 'Systems']
   },
   {
-    title: 'UI/UX Design',
-    description: 'Crafting intuitive structures, user journeys, and clean component systems.',
-    tags: ['WIREFRAMING', 'SYSTEMS', 'PROTOTYPING']
+    title: 'Marketing',
+    description: 'We design high-performing marketing creatives and campaigns that capture attention, increase engagement, and drive measurable growth.',
+    tags: ['Social', 'Campaigns', 'Performance']
   },
   {
-    title: 'App Development',
-    description: 'Building robust, scalable premium applications for iOS and Android ecosystems.',
-    tags: ['IOS', 'ANDROID', 'REACT NATIVE']
+    title: 'Web',
+    description: 'We build modern, fast, and conversion-focused websites that deliver seamless user experiences and elevate your digital presence.',
+    tags: ['UI/UX', 'Development', 'Performance']
   },
   {
-    title: 'Motion Design',
-    description: 'Driving engagement through dynamic, calculated transitions and kinetics.',
-    tags: ['ANIMATION', 'GSAP', '3D MODELING']
-  },
-  {
-    title: 'Digital Strategy',
-    description: 'Aligning high-end aesthetic precision with measurable scaling objectives.',
-    tags: ['GROWTH', 'METRICS', 'ALIGNMENT']
+    title: 'Application Security',
+    description: 'We ensure your platforms are secure, scalable, and built with reliability at every layer.',
+    tags: ['Security', 'Systems', 'Scalability']
   }
 ];
 
@@ -184,7 +179,7 @@ export default function ServicesSection() {
           opacity: 0.4,
           marginTop: '10px',
         }}>
-          Scroll slowly to explore each service
+          Explore our core capabilities
         </p>
       </div>
 

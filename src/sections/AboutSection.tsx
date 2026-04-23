@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
+import Image from 'next/image';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // TEAM DATA
@@ -196,15 +197,14 @@ export default function AboutSection() {
         >
           {/* Outgoing image fade */}
           {prev !== null && (
-            <img
+            <Image
               key={`prev-${prev}`}
               src={TEAM[prev].image}
               alt={TEAM[prev].name}
+              fill
+              sizes="(max-width: 860px) 100vw, 40vw"
+              quality={75}
               style={{
-                position: 'absolute',
-                inset: 0,
-                width: '100%',
-                height: '100%',
                 objectFit: 'cover',
                 objectPosition: 'top center',
                 animation: 'about-fade-out 0.52s ease forwards',
@@ -213,20 +213,20 @@ export default function AboutSection() {
             />
           )}
           {/* Incoming image */}
-          <img
+          <Image
             key={`active-${active}`}
             src={member.image}
             alt={member.name}
+            fill
+            sizes="(max-width: 860px) 100vw, 40vw"
+            quality={85}
             style={{
-              position: 'absolute',
-              inset: 0,
-              width: '100%',
-              height: '100%',
               objectFit: 'cover',
               objectPosition: 'top center',
               animation: 'about-fade-in 0.52s ease forwards',
               zIndex: 1,
             }}
+            priority
           />
 
           {/* Fallback placeholder (shown while no image exists) */}

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -146,6 +147,7 @@ export default function GallerySection() {
           width: 100%;
           height: 100%;
           overflow: hidden;
+          position: relative;
         }
 
         .gallery-image {
@@ -283,7 +285,15 @@ export default function GallerySection() {
                     }}
                   >
                     <div className="gallery-img-wrapper">
-                      <img src={item.src} alt={item.title} className="gallery-image" />
+                      <Image
+                        src={item.src}
+                        alt={item.title || 'Gallery image'}
+                        fill
+                        sizes="(max-width: 900px) 100vw, 33vw"
+                        quality={75}
+                        className="gallery-image"
+                        style={{ objectFit: 'cover' }}
+                      />
                     </div>
 
                     <div className="gallery-overlay" />

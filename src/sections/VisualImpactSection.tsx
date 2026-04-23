@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -139,14 +140,18 @@ export default function VisualImpactSection() {
                 overflow: 'hidden',
                 position: 'relative'
               }}>
-                <div style={{
-                  width: '100%',
-                  height: '100%',
-                  backgroundImage: `url(${item.src})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  filter: 'contrast(1.05) brightness(0.95)' // Cinematic grading
-                }} />
+                <Image
+                  src={item.src}
+                  alt={item.label}
+                  fill
+                  sizes="(max-width: 900px) 100vw, 60vw"
+                  quality={75}
+                  style={{
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                    filter: 'contrast(1.05) brightness(0.95)' // Cinematic grading
+                  }}
+                />
               </div>
 
               <div style={{

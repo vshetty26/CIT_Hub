@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -279,7 +280,15 @@ export default function HorizontalCarouselSection() {
           <div key={idx} className="carousel-card-wrap">
             <div className="carousel-card">
               <div className="hover-zoom-wrapper">
-                <img className="carousel-parallax-bg" src={item.src} alt={item.title} />
+                <Image
+                  className="carousel-parallax-bg"
+                  src={item.src}
+                  alt={item.title}
+                  fill
+                  sizes="(max-width: 768px) 85vw, (max-width: 1024px) 65vw, 50vw"
+                  quality={75}
+                  style={{ objectFit: 'cover' }}
+                />
               </div>
 
               <div className="carousel-content">

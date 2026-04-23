@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, use } from 'react';
+import { useEffect, use, useState } from 'react';
+import Image from 'next/image';
 import { projectsData } from '@/data/projects';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -67,10 +68,14 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
               borderRadius: '8px',
               overflow: 'hidden'
             }}>
-              {/* Fallback pattern to show styled missing boxes if they havent added local files yet */}
-              <img 
+              {/* Using next/image with width and height auto for proportional scaling */}
+              <Image 
                 src={imgSrc} 
                 alt={`${project.title} - Image ${i + 1}`} 
+                width={1200}
+                height={800}
+                quality={85}
+                sizes="(max-width: 900px) 100vw, 60vw"
                 style={{ width: '100%', height: 'auto', display: 'block' }}
                 onError={(e) => {
                   (e.target as HTMLImageElement).src = 'https://via.placeholder.com/800x600?text=Please+Place+File+in+/public/projects/';
