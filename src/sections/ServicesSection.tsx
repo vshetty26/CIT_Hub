@@ -40,21 +40,23 @@ export default function ServicesSection() {
     const totalItems = wrappers.length;
     if (!totalItems) return;
 
+    // Depth slot helpers — slot 0 = active/front, slot 1 = mid, slot 2+ = back
+    const slotScale   = (slot: number) => slot === 0 ? 1 : Math.max(0.7, 0.88 - slot * 0.06);
+    const slotOpacity = (slot: number) => slot === 0 ? 1 : Math.max(0, 1 - slot * 0.28);
+    const slotY       = (slot: number) => slot === 0 ? 0 : slot * 28;   // stack slightly downward (behind)
+    const slotBlur    = (slot: number) => slot === 0 ? 0 : slot * 4;
+
     let ctx = gsap.context(() => {
 
       // 1. Setup Stack Distribution
       wrappers.forEach((item, i) => {
-        if (i === 0) {
-          gsap.set(item, { scale: 1, opacity: 1, y: 0, filter: 'blur(0px)', zIndex: totalItems });
-        } else {
-          gsap.set(item, {
-            scale: 0.85 - (i * 0.05),
-            opacity: Math.max(0, 1 - (i * 0.25)), // Fades further back
-            y: -(i * 60),  // Pushes up vertically
-            filter: `blur(${i * 3}px)`,
-            zIndex: totalItems - i
-          });
-        }
+        gsap.set(item, {
+          scale:   slotScale(i),
+          opacity: slotOpacity(i),
+          y:       slotY(i),
+          filter:  `blur(${slotBlur(i)}px)`,
+          zIndex:  totalItems - i,
+        });
       });
 
       // 2. Timeline Mapping (Scroll Logic)
@@ -62,35 +64,36 @@ export default function ServicesSection() {
         scrollTrigger: {
           trigger: sectionRef.current,
           pin: true,
-          scrub: 1.5,
+          scrub: 1,
           start: 'top top',
-          end: '+=4500',
+          end: '+=3000',
         }
       });
 
       for (let i = 0; i < totalItems - 1; i++) {
         const currentItem = wrappers[i];
 
-        // Push the active item towards camera, scale it heavily, blur and fade it out
+        // Exit: active card scales up slightly, blurs, and fades out upward
         tl.to(currentItem, {
-          scale: 1.3,
+          scale: 1.15,
           opacity: 0,
-          y: 100, // drops downwards as it passes the camera
-          filter: 'blur(15px)',
+          y: -80,
+          filter: 'blur(20px)',
           duration: 1,
           ease: 'power2.inOut',
         }, i * 1);
 
-        // Bring all subsequent backing items entirely forward one slot in depth
+        // Advance all backing cards one slot forward
         for (let j = i + 1; j < totalItems; j++) {
           const nextItem = wrappers[j];
           const slot = j - i - 1;
 
           tl.to(nextItem, {
-            scale: slot === 0 ? 1 : 0.85 - (slot * 0.05),
-            opacity: slot === 0 ? 1 : Math.max(0, 1 - (slot * 0.25)),
-            y: slot === 0 ? 0 : -(slot * 60),
-            filter: slot === 0 ? 'blur(0px)' : `blur(${slot * 3}px)`,
+            scale:   slotScale(slot),
+            opacity: slotOpacity(slot),
+            y:       slotY(slot),
+            filter:  `blur(${slotBlur(slot)}px)`,
+            zIndex:  totalItems - slot,
             duration: 1,
             ease: 'power2.inOut',
           }, i * 1);
@@ -141,23 +144,67 @@ export default function ServicesSection() {
       id="capabilities"
       ref={sectionRef}
       onMouseMove={handleMouseMove}
+      className="capabilities-section"
       style={{
         width: '100%',
         height: '100vh',
         backgroundColor: 'var(--bg)',
         position: 'relative',
         overflow: 'hidden',
-        perspective: '1200px', // Crucial for establishing 3D tilt effects
       }}
     >
-      <div style={{
-        position: 'absolute',
-        top: '12vh',
-        width: '100%',
-        textAlign: 'center',
-        zIndex: 50,
-        pointerEvents: 'none', // Don't block interactions behind title
-      }}>
+      <style dangerouslySetInnerHTML={{ __html: `
+        .capabilities-header {
+          position: absolute;
+          top: 12vh;
+          width: 100%;
+          text-align: center;
+          z-index: 50;
+          pointer-events: none;
+          padding: 0 24px;
+        }
+        .service-card {
+          width: clamp(320px, 60vw, 750px);
+          height: clamp(380px, 55vh, 550px);
+          padding: 64px;
+          background-color: var(--surface);
+          border: 1px solid var(--border-color);
+          border-radius: 32px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          box-shadow: 0px 20px 60px rgba(0,0,0,0.35);
+          cursor: crosshair;
+          backdrop-filter: blur(10px);
+        }
+        
+        @media (max-width: 900px) {
+          .capabilities-header {
+            top: 10vh;
+          }
+          .service-card {
+            width: clamp(280px, 85vw, 600px);
+            height: clamp(350px, 60vh, 500px);
+            padding: 40px 24px;
+            border-radius: 24px;
+          }
+          .service-card h2 {
+            font-size: clamp(32px, 8vw, 48px) !important;
+            margin-bottom: 20px !important;
+          }
+          .service-card p {
+            font-size: 15px !important;
+            line-height: 1.5 !important;
+          }
+          .service-card .tag-group {
+            margin-bottom: 24px !important;
+            gap: 10px !important;
+          }
+        }
+      `}} />
+
+      <div className="capabilities-header">
         <h2 style={{
           fontFamily: "'Syne', sans-serif",
           fontSize: 'clamp(24px, 3vw, 40px)',
@@ -183,7 +230,15 @@ export default function ServicesSection() {
         </p>
       </div>
 
-      <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      {/* Perspective wrapper so 3D tilt works correctly and is isolated per card */}
+      <div style={{
+        position: 'absolute',
+        inset: 0,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        perspective: '1200px',
+      }}>
         {services.map((svc, i) => (
           <div
             key={i}
@@ -191,33 +246,20 @@ export default function ServicesSection() {
             style={{
               position: 'absolute',
               willChange: 'transform, opacity, filter',
+              // Isolate each card so blur doesn't bleed inner translateZ content
+              isolation: 'isolate',
             }}
           >
             <div ref={el => { idleRefs.current[i] = el; }}>
               <div
                 ref={el => { tiltRefs.current[i] = el; }}
-                style={{
-                  width: 'clamp(320px, 60vw, 750px)',
-                  height: 'clamp(380px, 55vh, 550px)',
-                  backgroundColor: 'var(--surface)',
-                  border: '1px solid var(--border-color)',
-                  borderRadius: '32px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  padding: '64px',
-                  boxShadow: '0px 40px 100px rgba(0,0,0,0.85)', // Deep shadowing for realism
-                  transformStyle: 'preserve-3d', // Necessary for children to pop along Z-axis
-                  cursor: 'crosshair',
-                  backdropFilter: 'blur(10px)',
-                }}
+                className="service-card"
+                style={{ transformStyle: 'preserve-3d' }}
               >
 
-                {/* 3D Pop Layer 1: Tags */}
-                <div style={{
+                {/* Tags */}
+                <div className="tag-group" style={{
                   display: 'flex', gap: '16px', marginBottom: '40px', justifyContent: 'center', flexWrap: 'wrap',
-                  transform: 'translateZ(30px)' // Pushes away from card background
                 }}>
                   {svc.tags.map(tag => (
                     <span key={tag} style={{
@@ -233,8 +275,8 @@ export default function ServicesSection() {
                   ))}
                 </div>
 
-                {/* 3D Pop Layer 2: Title */}
-                <div style={{ transform: 'translateZ(60px)', transition: 'transform 0.2s', }}>
+                {/* Title */}
+                <div>
                   <h2 style={{
                     fontFamily: "'Syne', sans-serif",
                     fontSize: 'clamp(40px, 6vw, 85px)',
@@ -249,8 +291,8 @@ export default function ServicesSection() {
                   </h2>
                 </div>
 
-                {/* 3D Pop Layer 3: Description */}
-                <div style={{ transform: 'translateZ(20px)' }}>
+                {/* Description */}
+                <div>
                   <p style={{
                     fontFamily: "'Space Grotesk', sans-serif",
                     fontSize: 'clamp(16px, 2vw, 20px)',

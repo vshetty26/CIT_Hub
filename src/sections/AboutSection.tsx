@@ -85,7 +85,6 @@ export default function AboutSection() {
     const dx = e.changedTouches[0].clientX - touchStartX.current;
     const dy = e.changedTouches[0].clientY - touchStartY.current;
     if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
-      // horizontal swipe
       if (dx < 0) switchTo(Math.min(active + 1, TEAM.length - 1));
       else switchTo(Math.max(active - 1, 0));
     }
@@ -98,16 +97,16 @@ export default function AboutSection() {
       id="about"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
+      className="about-section-wrap"
       style={{
         position: 'relative',
         width: '100%',
-        minHeight: '100vh',
         backgroundColor: 'var(--bg)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         overflow: 'hidden',
-        padding: '80px 0',
+        padding: '60px 0 80px',
       }}
     >
       {/* ── Ambient background glow ─────────────────────────────────────── */}
@@ -118,7 +117,7 @@ export default function AboutSection() {
           position: 'absolute',
           inset: 0,
           background: `radial-gradient(ellipse 60% 60% at 30% 50%, 
-            ${active === 0 ? 'rgba(79,70,229,0.06)' : active === 1 ? 'rgba(16,185,129,0.05)' : 'rgba(245,158,11,0.05)'} 0%, 
+            ${active === 0 ? 'rgba(79,70,229,0.06)' : active === 1 ? 'rgba(16,185,129,0.05)' : 'rgba(245,158,11,0.05)'} 0%,
             transparent 70%)`,
           transition: 'background 0.6s ease',
           pointerEvents: 'none',
@@ -128,6 +127,7 @@ export default function AboutSection() {
       {/* ── Section label ───────────────────────────────────────────────── */}
       <div
         aria-hidden="true"
+        className="about-section-label"
         style={{
           position: 'absolute',
           top: '48px',
@@ -191,8 +191,7 @@ export default function AboutSection() {
             maxHeight: 'clamp(380px, 60vh, 620px)',
             borderRadius: '24px',
             overflow: 'hidden',
-            boxShadow:
-              '0 8px 32px rgba(0,0,0,0.14), 0 32px 80px rgba(0,0,0,0.12)',
+            boxShadow: '0 8px 32px rgba(0,0,0,0.14), 0 32px 80px rgba(0,0,0,0.12)',
           }}
         >
           {/* Outgoing image fade */}
@@ -229,7 +228,7 @@ export default function AboutSection() {
             priority
           />
 
-          {/* Fallback placeholder (shown while no image exists) */}
+          {/* Fallback placeholder */}
           <div
             aria-hidden="true"
             style={{
@@ -249,7 +248,6 @@ export default function AboutSection() {
               zIndex: 0,
             }}
           >
-            {/* Initials monogram */}
             <span
               style={{
                 fontFamily: "'Syne', sans-serif",
@@ -290,8 +288,7 @@ export default function AboutSection() {
               left: 0,
               right: 0,
               height: '40%',
-              background:
-                'linear-gradient(to top, rgba(0,0,0,0.35) 0%, transparent 100%)',
+              background: 'linear-gradient(to top, rgba(0,0,0,0.35) 0%, transparent 100%)',
               zIndex: 3,
               borderRadius: '0 0 24px 24px',
             }}
@@ -373,7 +370,7 @@ export default function AboutSection() {
             {member.description}
           </p>
 
-          {/* Member index counter */}
+          {/* Step indicator */}
           <div
             style={{
               marginTop: '52px',
@@ -434,12 +431,11 @@ export default function AboutSection() {
             }}
           />
 
-          {TEAM.map((member, i) => {
+          {TEAM.map((tm, i) => {
             const isActive = i === active;
             return (
               <button
-                key={member.id}
-                id={`about-nav-${member.id}`}
+                key={tm.id}
                 aria-current={isActive ? 'true' : undefined}
                 onClick={() => switchTo(i)}
                 style={{
@@ -455,13 +451,11 @@ export default function AboutSection() {
                 }}
                 onMouseEnter={(e) => {
                   if (!isActive) {
-                    (e.currentTarget as HTMLButtonElement).style.transform =
-                      'translateX(4px)';
+                    (e.currentTarget as HTMLButtonElement).style.transform = 'translateX(4px)';
                   }
                 }}
                 onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLButtonElement).style.transform =
-                    'translateX(0)';
+                  (e.currentTarget as HTMLButtonElement).style.transform = 'translateX(0)';
                 }}
               >
                 {/* Dot */}
@@ -474,17 +468,10 @@ export default function AboutSection() {
                     height: isActive ? '13px' : '9px',
                     borderRadius: '50%',
                     backgroundColor: isActive ? 'var(--accent)' : 'transparent',
-                    border: isActive
-                      ? '2px solid var(--accent)'
-                      : '1.5px solid var(--secondary)',
-                    transform: isActive
-                      ? 'translate(-2px, -6.5px)'
-                      : 'translate(0px, -4.5px)',
-                    transition:
-                      'all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                    boxShadow: isActive
-                      ? '0 0 12px rgba(79,70,229,0.45)'
-                      : 'none',
+                    border: isActive ? '2px solid var(--accent)' : '1.5px solid var(--secondary)',
+                    transform: isActive ? 'translate(-2px, -6.5px)' : 'translate(0px, -4.5px)',
+                    transition: 'all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                    boxShadow: isActive ? '0 0 12px rgba(79,70,229,0.45)' : 'none',
                     zIndex: 1,
                   }}
                 />
@@ -503,7 +490,7 @@ export default function AboutSection() {
                     whiteSpace: 'nowrap',
                   }}
                 >
-                  {member.navLabel}
+                  {tm.navLabel}
                 </span>
               </button>
             );
@@ -528,7 +515,6 @@ export default function AboutSection() {
         {TEAM.map((_, i) => (
           <button
             key={i}
-            id={`about-dot-mobile-${i}`}
             aria-label={`View ${TEAM[i].name}`}
             onClick={() => switchTo(i)}
             style={{
@@ -546,8 +532,7 @@ export default function AboutSection() {
                 width: i === active ? '24px' : '8px',
                 height: '8px',
                 borderRadius: i === active ? '4px' : '50%',
-                backgroundColor:
-                  i === active ? 'var(--accent)' : 'var(--secondary)',
+                backgroundColor: i === active ? 'var(--accent)' : 'var(--secondary)',
                 opacity: i === active ? 1 : 0.35,
                 transition: 'all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)',
               }}
@@ -576,18 +561,44 @@ export default function AboutSection() {
         }
 
         /* ── Responsive ── */
-        @media (max-width: 860px) {
+        @media (max-width: 768px) {
+          .about-panel-grid {
+            grid-template-columns: 1fr !important;
+            grid-template-rows: auto auto auto !important;
+            gap: 28px !important;
+            min-height: unset !important;
+            padding: 0 20px !important;
+          }
+          .about-panel-grid > nav {
+            display: none !important;
+          }
+          .about-mobile-dots {
+            display: flex !important;
+          }
+          .about-section-label {
+            position: relative !important;
+            top: 0 !important;
+            left: 0 !important;
+            transform: none !important;
+            margin-bottom: 32px;
+          }
+          .about-section-wrap {
+            padding: 60px 0 100px !important;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+          }
+        }
+        @media (min-width: 769px) and (max-width: 860px) {
           .about-panel-grid {
             grid-template-columns: 1fr !important;
             grid-template-rows: auto auto auto !important;
             gap: 32px !important;
             min-height: unset !important;
           }
-          /* On mobile, hide the right vertical nav */
           .about-panel-grid > nav {
             display: none !important;
           }
-          /* Show horizontal dots */
           .about-mobile-dots {
             display: flex !important;
           }

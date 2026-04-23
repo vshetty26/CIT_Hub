@@ -59,35 +59,105 @@ export default function VisualImpactSection() {
   return (
     <section
       ref={sectionRef}
+      className="visual-impact-section"
       style={{
         width: '100%',
-        minHeight: '250vh', // Forces a massive section height to ensure plenty of scrolling
         backgroundColor: 'var(--bg)',
-        padding: '160px 48px',
       }}
     >
-      <div style={{
-        maxWidth: '1400px',
-        width: '100%',
-        margin: '0 auto',
-        display: 'flex',       // Pure 2-column flex layout guarantees parent-height stretching
-        justifyContent: 'space-between',
-        alignItems: 'flex-start', // Critical: align-start lets the inner text block not stretch, enabling sticky!
-        gap: '100px',
-      }}>
+      <style dangerouslySetInnerHTML={{ __html: `
+        .visual-impact-section {
+          padding: 80px 48px;
+        }
+        .visual-grid {
+          max-width: 1400px;
+          width: 100%;
+          margin: 0 auto;
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          gap: 64px;
+        }
+        .visual-left {
+          width: 40%;
+          position: sticky;
+          top: 20vh;
+          height: fit-content;
+          z-index: 10;
+        }
+        .visual-right {
+          width: 60%;
+          display: flex;
+          flex-direction: column;
+          gap: 64px;
+        }
+        .visual-img-container {
+          width: 100%;
+          height: 70vh;
+          background-color: var(--surface);
+          border: 1px solid var(--border-color);
+          overflow: hidden;
+          position: relative;
+        }
 
-        {/* LEFT COLUMN (TEXT) - ~40% width */}
-        <div
-          style={{
-            width: '40%',
-            position: 'sticky',
-            top: '25vh',       // Sticks elegantly at exactly 25% of viewport
-            height: 'fit-content', // Height tightly hugs the text
-            zIndex: 10,
-          }}
-        >
+        @media (max-width: 768px) {
+          .visual-impact-section {
+            padding: 60px 20px !important;
+          }
+          .visual-grid {
+            flex-direction: column;
+            gap: 40px;
+          }
+          .visual-left {
+            width: 100%;
+            position: relative !important;
+            top: 0 !important;
+            text-align: center;
+          }
+          .visual-right {
+            width: 100%;
+            gap: 40px;
+          }
+          .visual-img-container {
+            height: 55vw !important;
+            min-height: 220px;
+          }
+          .visual-left-label {
+            justify-content: center;
+          }
+        }
+        @media (min-width: 769px) and (max-width: 900px) {
+          .visual-impact-section {
+            padding: 60px 24px;
+          }
+          .visual-grid {
+            flex-direction: column;
+            gap: 48px;
+          }
+          .visual-left {
+            width: 100%;
+            position: relative;
+            top: 0;
+            text-align: center;
+          }
+          .visual-right {
+            width: 100%;
+            gap: 48px;
+          }
+          .visual-img-container {
+            height: 55vh;
+          }
+          .visual-left-label {
+            justify-content: center;
+          }
+        }
+      `}} />
+
+      <div className="visual-grid">
+        {/* LEFT COLUMN (TEXT) */}
+        <div className="visual-left">
           <div ref={leftContentRef} style={{ opacity: 0 }}>
-            <div style={{
+            <div className="visual-left-label" style={{
               fontFamily: "'Space Grotesk', sans-serif",
               fontSize: '11px',
               fontWeight: 600,
@@ -116,30 +186,15 @@ export default function VisualImpactSection() {
           </div>
         </div>
 
-        {/* RIGHT COLUMN (IMAGES) - ~60% width */}
-        <div
-          ref={rightContentRef}
-          style={{
-            width: '60%',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '140px' // Expansive breathable spacing between images
-          }}
-        >
+        {/* RIGHT COLUMN (IMAGES) */}
+        <div ref={rightContentRef} className="visual-right">
           {images.map((item, idx) => (
             <div
               key={idx}
               ref={el => { imageRefs.current[idx] = el; }}
               style={{ opacity: 0 }}
             >
-              <div style={{
-                width: '100%',
-                height: '85vh', // High 85vh scale as requested
-                backgroundColor: 'var(--surface)',
-                border: '1px solid var(--border-color)',
-                overflow: 'hidden',
-                position: 'relative'
-              }}>
+              <div className="visual-img-container">
                 <Image
                   src={item.src}
                   alt={item.label}
@@ -149,7 +204,7 @@ export default function VisualImpactSection() {
                   style={{
                     objectFit: 'cover',
                     objectPosition: 'center',
-                    filter: 'contrast(1.05) brightness(0.95)' // Cinematic grading
+                    filter: 'contrast(1.05) brightness(0.95)'
                   }}
                 />
               </div>

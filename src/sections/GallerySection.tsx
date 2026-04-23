@@ -64,6 +64,23 @@ export default function GallerySection() {
   const itemsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
+    // Skip GSAP animations on mobile — elements are visible by default via CSS
+    const isMobile = window.innerWidth <= 768;
+
+    if (isMobile) {
+      // Ensure everything is visible immediately on mobile
+      if (headerRef.current) {
+        headerRef.current.style.opacity = '1';
+        headerRef.current.style.transform = 'none';
+      }
+      itemsRef.current.forEach(item => {
+        if (!item) return;
+        item.style.opacity = '1';
+        item.style.transform = 'none';
+      });
+      return;
+    }
+
     // Header fade-in
     gsap.fromTo(
       headerRef.current,
@@ -81,8 +98,10 @@ export default function GallerySection() {
     );
 
     // Staggered items appearance with upward motion
-    itemsRef.current.forEach((item, index) => {
+    itemsRef.current.forEach((item) => {
       if (!item) return;
+      // Set initial hidden state for desktop animation
+      gsap.set(item, { opacity: 0, y: 80 });
       gsap.fromTo(
         item,
         { opacity: 0, y: 80 },
@@ -104,12 +123,13 @@ export default function GallerySection() {
 
   return (
     <section
-      id="work"
+      id="gallery"
       ref={sectionRef}
+      className="gallery-section-wrap"
       style={{
         width: '100%',
         backgroundColor: 'var(--bg)',
-        padding: '160px 48px',
+        padding: '80px 48px',
         position: 'relative'
       }}
     >
@@ -122,8 +142,8 @@ export default function GallerySection() {
 
         .gallery-grid {
           display: flex;
-          gap: 32px;
-          margin-top: 100px;
+          gap: 24px;
+          margin-top: 48px;
           align-items: flex-start;
         }
 
@@ -171,7 +191,7 @@ export default function GallerySection() {
         }
 
         .gallery-item:hover .gallery-overlay {
-          background: rgba(0, 0, 0, 0.5); /* subtle dark overlay on hover */
+          background: rgba(0, 0, 0, 0.5);
         }
 
         .gallery-content {
@@ -184,8 +204,6 @@ export default function GallerySection() {
           flex-direction: column;
           gap: 6px;
           z-index: 10;
-          
-          /* initially hidden & translated down */
           opacity: 0;
           transform: translateY(15px);
           transition: opacity 0.6s cubic-bezier(0.25, 1, 0.3, 1), transform 0.6s cubic-bezier(0.25, 1, 0.3, 1);
@@ -201,7 +219,7 @@ export default function GallerySection() {
           font-size: 10px;
           font-weight: 600;
           letter-spacing: 0.15em;
-          color: #a1a1aa; /* soft gray */
+          color: #a1a1aa;
           text-transform: uppercase;
         }
 
@@ -213,13 +231,54 @@ export default function GallerySection() {
           letter-spacing: -0.01em;
         }
 
-        /* Responsive override */
-        @media (max-width: 900px) {
+        /* Mobile: single column, natural image heights, no offsets */
+        @media (max-width: 768px) {
+          .gallery-section-wrap {
+            padding: 80px 20px !important;
+          }
+          .gallery-container {
+            padding: 0;
+          }
           .gallery-grid {
             flex-direction: column;
+            gap: 16px;
+            margin-top: 40px;
+          }
+          .gallery-col {
+            gap: 16px;
+            width: 100%;
           }
           .gallery-item {
-            margin-top: 0 !important; /* clear offsets on mobile */
+            margin-top: 0 !important;
+            aspect-ratio: unset !important;
+            width: 100%;
+          }
+          .gallery-img-wrapper {
+            position: relative !important;
+            height: auto !important;
+          }
+          /* On mobile, images use natural responsive height */
+          .gallery-item .gallery-img-wrapper img {
+            position: relative !important;
+            width: 100% !important;
+            height: auto !important;
+            min-height: 220px;
+            object-fit: cover;
+          }
+        }
+
+        /* Tablet */
+        @media (min-width: 769px) and (max-width: 900px) {
+          .gallery-section-wrap {
+            padding: 60px 32px !important;
+          }
+          .gallery-grid {
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 40px;
+          }
+          .gallery-item {
+            margin-top: 0 !important;
           }
         }
       ` }} />
@@ -227,7 +286,7 @@ export default function GallerySection() {
       <div className="gallery-container">
 
         {/* HEADER */}
-        <div ref={headerRef} style={{ maxWidth: '800px', opacity: 0 }}>
+        <div ref={headerRef} style={{ maxWidth: '800px' }}>
           <div style={{
             fontFamily: "'Space Grotesk', sans-serif",
             fontSize: '11px',
@@ -281,7 +340,6 @@ export default function GallerySection() {
                     style={{
                       aspectRatio: item.aspectRatio,
                       marginTop: item.marginTop,
-                      opacity: 0
                     }}
                   >
                     <div className="gallery-img-wrapper">

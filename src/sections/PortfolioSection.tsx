@@ -128,7 +128,7 @@ export default function PortfolioSection() {
       id="work"
       style={{
         backgroundColor: 'var(--bg)',
-        padding: '120px 0',
+        padding: '80px 0',
         position: 'relative',
         overflow: 'hidden'
       }}
@@ -261,7 +261,60 @@ export default function PortfolioSection() {
 
         @media (max-width: 768px) {
           .port-card {
+            width: 88vw;
+          }
+          .port-track {
+            padding: 32px 6vw 64px !important;
+          }
+          .cat-tabs-container {
+            justify-content: flex-start !important;
+            overflow-x: auto;
+            padding: 0 20px 16px !important;
+            margin: 0 -20px !important;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+          }
+          .cat-tabs-container::-webkit-scrollbar {
+            display: none;
+          }
+          .cat-btn {
+            white-space: nowrap;
+            padding: 10px 18px;
+            font-size: 13px;
+          }
+          .port-img-wrap {
+            border-radius: 16px !important;
+          }
+          /* Show overlay CTA on mobile tap (always visible) */
+          .port-card .port-overlay {
+            opacity: 1 !important;
+            background: rgba(0,0,0,0.2) !important;
+          }
+          .port-card .port-btn {
+            transform: translateY(0) !important;
+          }
+        }
+        @media (min-width: 769px) and (max-width: 900px) {
+          .port-card {
             width: 85vw;
+          }
+          .port-track {
+            padding: 40px 7.5vw 80px !important;
+          }
+          .cat-tabs-container {
+            justify-content: flex-start !important;
+            overflow-x: auto;
+            padding: 0 24px 20px !important;
+            margin: 0 -24px !important;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+          }
+          .cat-tabs-container::-webkit-scrollbar {
+            display: none;
+          }
+          .cat-btn {
+            white-space: nowrap;
+            padding: 10px 20px;
           }
         }
         `
@@ -304,11 +357,12 @@ export default function PortfolioSection() {
         </p>
 
         {/* CATEGORY TABS */}
-        <div style={{
+        <div className="cat-tabs-container" style={{
           display: 'flex',
           gap: '12px',
           justifyContent: 'center',
-          flexWrap: 'wrap'
+          flexWrap: 'nowrap',
+          width: '100%'
         }}>
           {categories.map((cat) => (
             <button
@@ -328,19 +382,19 @@ export default function PortfolioSection() {
       </div>
 
       {/* CAROUSEL WRAPPER WITH ARROWS */}
-      <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+      <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 
         {/* CAROUSEL TRACK */}
         <div
           ref={carouselRef}
-          className="hide-scrollbar"
+          className="hide-scrollbar port-track"
           style={{
             display: 'flex',
             overflowX: 'auto',
             scrollSnapType: 'x mandatory',
             scrollBehavior: 'smooth',
             width: '100%',
-            padding: '40px 50vw 80px', // Pushes the first and last card into the center comfortably
+            padding: '40px 50vw 80px', // Desktop padding
             boxSizing: 'border-box'
           }}
         >
@@ -430,7 +484,7 @@ export default function PortfolioSection() {
       </div>
 
       {/* ─── BRANDING ─────────────────────────────────────────────────────── */}
-      <div style={{ maxWidth: '1200px', margin: '120px auto 0', padding: '0 24px' }}>
+      <div style={{ maxWidth: '1200px', margin: '64px auto 0', padding: '0 24px' }}>
         {/* Sub-heading */}
         <div style={{ marginBottom: '48px' }}>
           <div style={{
@@ -549,7 +603,7 @@ export default function PortfolioSection() {
       </div>
 
       {/* ─── MARKETING & SOCIAL MEDIA ─────────────────────────────────────── */}
-      <div style={{ maxWidth: '1200px', margin: '120px auto 0', padding: '0 24px' }}>
+      <div style={{ maxWidth: '1200px', margin: '64px auto 0', padding: '0 24px' }}>
         <div style={{ marginBottom: '48px' }}>
           <div style={{
             fontFamily: "'Space Grotesk', sans-serif",

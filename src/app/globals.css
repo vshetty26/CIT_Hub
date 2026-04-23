@@ -12,6 +12,7 @@
   --border-dark-color: rgba(0, 0, 0, 0.15);
   --nav-bg: rgba(255, 255, 255, 0.85);
   --highlight-gradient: radial-gradient(circle, rgba(0,0,0,0.06) 0%, rgba(255,255,255,0) 60%);
+  --logo-filter: none;
 }
 
 .dark {
@@ -26,6 +27,7 @@
   --border-dark-color: rgba(255, 255, 255, 0.15);
   --nav-bg: rgba(0, 0, 0, 0.75);
   --highlight-gradient: radial-gradient(circle, rgba(255,255,255,0.06) 0%, rgba(0,0,0,0) 60%);
+  --logo-filter: invert(1);
 }
 
 *, *::before, *::after {
@@ -39,6 +41,7 @@ html, body {
   overflow-x: clip;
   background-color: var(--bg);
   color: var(--text);
+  scroll-behavior: auto; /* prevent conflict with Lenis smooth scroll */
 }
 
 html.theme-transition,

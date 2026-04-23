@@ -9,40 +9,57 @@ import Loader from '@/components/Loader';
 import HeroSection from '@/sections/HeroSection';
 import IntroductionSection from '@/sections/IntroductionSection';
 import VisualImpactSection from '@/sections/VisualImpactSection';
+import AboutSection from '@/sections/AboutSection';
 import PortfolioSection from '@/sections/PortfolioSection';
 import GallerySection from '@/sections/GallerySection';
 import ServicesSection from '@/sections/ServicesSection';
+import TestimonialsSection from '@/sections/TestimonialsSection';
 import FinalActionSection from '@/sections/FinalActionSection';
-import AboutSection from '@/sections/AboutSection';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 export default function Home() {
+  // null   → not yet determined (waiting for useEffect / sessionStorage check)
+  // true   → first visit this session → show loader
+  // false  → return visit → skip loader
+  const [showLoader, setShowLoader] = useState<boolean | null>(null);
   const [loaderDone, setLoaderDone] = useState(false);
 
-  // 1. Initial Scroll Lock & Top Reset
+  // ── Check sessionStorage on mount to decide loader visibility ────────────
   useEffect(() => {
-    if ('scrollRestoration' in window.history) {
-      window.history.scrollRestoration = 'manual';
+    const alreadyLoaded = sessionStorage.getItem('cithub_loaded');
+
+    if (alreadyLoaded) {
+      // Return visit (logo click, back button, etc.) — skip loader immediately
+      setShowLoader(false);
+      setLoaderDone(true);
+    } else {
+      // Genuine first visit this session — show loader
+      sessionStorage.setItem('cithub_loaded', '1');
+      setShowLoader(true);
+
+      // Lock scroll while loader plays
+      if ('scrollRestoration' in window.history) {
+        window.history.scrollRestoration = 'manual';
+      }
+      window.scrollTo(0, 0);
+      document.body.style.overflow = 'hidden';
     }
-    // Prevent scrolling or bleeding while loader operates
-    window.scrollTo(0, 0);
-    document.body.style.overflow = 'hidden';
   }, []);
 
-  // 2. Unlock & Initialize Lenis Post-Loader
+  // ── Unlock scroll + boot Lenis once loader finishes ──────────────────────
   useEffect(() => {
     if (!loaderDone) return;
 
-    // Safety reset to exact top right before smooth-scroll hijack
     document.body.style.overflow = '';
     window.scrollTo(0, 0);
 
     const lenis = new Lenis({
-      duration: 1.3,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      duration: 0.75,
+      easing: (t: number) => 1 - Math.pow(1 - t, 3),
       smoothWheel: true,
-      touchMultiplier: 1.5,
+      wheelMultiplier: 1.2,
+      touchMultiplier: 1.8,
     });
 
     gsap.ticker.add((time) => lenis.raf(time * 1000));
@@ -57,17 +74,28 @@ export default function Home() {
 
   return (
     <>
-      {!loaderDone && <Loader onComplete={() => setLoaderDone(true)} />}
+      {/*
+        Loader logic:
+        - showLoader === null  → still checking sessionStorage, render loader as
+          a cover so there's no flash of page content (it will be dismissed
+          instantly if it turns out to be a return visit)
+        - showLoader === true  → first visit, play full animation
+        - showLoader === false → return visit, loader already dismissed above
+      */}
+      {(showLoader === null || (showLoader === true && !loaderDone)) && (
+        <Loader onComplete={() => setLoaderDone(true)} />
+      )}
 
       <div style={{ position: 'relative', zIndex: 1 }}>
         <Navbar />
         <HeroSection />
         <IntroductionSection />
         <VisualImpactSection />
+        <AboutSection />
         <PortfolioSection />
         <GallerySection />
         <ServicesSection />
-        <AboutSection />
+        <TestimonialsSection />
         <FinalActionSection />
         <Footer />
       </div>

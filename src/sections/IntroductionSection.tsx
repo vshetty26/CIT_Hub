@@ -24,9 +24,9 @@ export default function IntroductionSection() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top 65%',     // Starts animating nicely when text is coming into view
-          end: 'bottom 75%',    // Finishes before text leaves view
-          scrub: 1,             // Smooth scrub tied precisely to user scroll
+          start: 'top 70%',
+          end: 'bottom 60%',
+          scrub: 0.4,
         }
       });
 
@@ -55,16 +55,16 @@ export default function IntroductionSection() {
 
   return (
     <section
-      id="about"
+      id="intro"
       ref={sectionRef}
       style={{
         width: '100%',
-        minHeight: '100vh',
+        minHeight: '60vh',
         backgroundColor: 'var(--bg)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '0 24px',
+        padding: '80px 24px',
       }}
     >
       <p

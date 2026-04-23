@@ -1,29 +1,77 @@
 'use client';
 
+import Image from 'next/image';
+
 export default function Footer() {
   return (
-    <footer style={{
-      width: '100%',
-      backgroundColor: 'var(--bg)',
-      borderTop: '1px solid var(--border-color)',
-      padding: '64px 48px',
-      display: 'flex',
-      flexDirection: 'column',
-      gap: '40px',
-      marginTop: 'auto',
-      position: 'relative',
-      zIndex: 10,
-    }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '32px' }}>
+    <footer
+      className="footer-section"
+      style={{
+        width: '100%',
+        backgroundColor: 'var(--bg)',
+        borderTop: '1px solid var(--border-color)',
+        marginTop: 'auto',
+        position: 'relative',
+        zIndex: 10,
+      }}
+    >
+      <style dangerouslySetInnerHTML={{ __html: `
+        .footer-section {
+          padding: 64px 48px;
+        }
+        .footer-top {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          flex-wrap: wrap;
+          gap: 64px;
+        }
+        .footer-bottom {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding-top: 32px;
+          border-top: 1px solid var(--border-color);
+          flex-wrap: wrap;
+          gap: 24px;
+        }
+
+        @media (max-width: 900px) {
+          .footer-section {
+            padding: 64px 24px 40px;
+          }
+          .footer-top {
+            flex-direction: column;
+            gap: 48px;
+          }
+          .footer-bottom {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 32px;
+          }
+          .footer-links-group {
+            width: 100%;
+            justify-content: space-between !important;
+            gap: 32px !important;
+          }
+        }
+      `}} />
+
+      <div className="footer-top">
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          <div style={{
-              fontFamily: "'Syne', sans-serif",
-              fontSize: '28px',
-              fontWeight: 700,
-              color: 'var(--text)',
-              letterSpacing: '-0.02em'
-          }}>
-            CIT HUB
+          <div>
+            <Image
+              src="/cithublogo.png"
+              alt="CIT Hub"
+              width={140}
+              height={48}
+              style={{
+                objectFit: 'contain',
+                height: '44px',
+                width: 'auto',
+                filter: 'var(--logo-filter)',
+              }}
+            />
           </div>
           <div style={{
               fontFamily: "'Space Grotesk', sans-serif",
@@ -36,7 +84,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div style={{ display: 'flex', gap: '64px', flexWrap: 'wrap' }}>
+        <div className="footer-links-group" style={{ display: 'flex', gap: '80px', flexWrap: 'wrap' }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: '13px', fontWeight: 600, color: 'var(--text)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>Navigation</span>
             {['Home', 'About', 'Work', 'Capabilities', 'Contact'].map(item => (
@@ -60,7 +108,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '32px', borderTop: '1px solid var(--border-color)', flexWrap: 'wrap', gap: '16px' }}>
+      <div className="footer-bottom">
         <div style={{
             fontFamily: "'Space Grotesk', sans-serif",
             fontSize: '13px',
@@ -69,7 +117,7 @@ export default function Footer() {
         }}>
           © {new Date().getFullYear()} Creative IT Hub. All Rights Reserved.
         </div>
-        <div style={{ display: 'flex', gap: '24px' }}>
+        <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
           {['Privacy Policy', 'Terms of Service'].map(item => (
             <a key={item} href="#" style={{
               fontFamily: "'Space Grotesk', sans-serif",
@@ -78,7 +126,7 @@ export default function Footer() {
               textDecoration: 'none',
               transition: 'color 0.2s'
             }}
-            onMouseEnter={e => e.currentTarget.style.color = 'var(--secondary)'}
+            onMouseEnter={e => e.currentTarget.style.color = 'var(--text)'}
             onMouseLeave={e => e.currentTarget.style.color = 'var(--secondary)'}>
               {item}
             </a>

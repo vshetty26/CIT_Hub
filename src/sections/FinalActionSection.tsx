@@ -8,60 +8,59 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function FinalActionSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const testimonialRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const isMobile = window.innerWidth <= 768;
+
     let ctx = gsap.context(() => {
 
-      // Initialize centered glow position manually to offset standard 800x800 dimensions
+      // Initialize centered glow position
       gsap.set(glowRef.current, {
         x: window.innerWidth / 2 - 400,
         y: window.innerHeight / 2 - 400
       });
 
+      // On mobile: skip pin + scrub, just fade in on scroll
+      if (isMobile) {
+        gsap.fromTo(ctaRef.current,
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out',
+            scrollTrigger: { trigger: ctaRef.current, start: 'top 85%' }
+          }
+        );
+        return;
+      }
+
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           pin: true,
-          scrub: 1.5,
+          scrub: 1,
           start: 'top top',
-          end: '+=3500',
+          end: '+=1800',
         }
       });
 
-      // 1. Enter Testimonial (Slow cinematic fade up)
-      tl.fromTo(testimonialRef.current,
-        { opacity: 0, y: 50, filter: 'blur(6px)' },
-        { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.2, ease: 'power2.out' },
-        0
-      );
-
-      // 2. Exit Testimonial (Starts at 1.8 to afford the user adequate reading time)
-      tl.to(testimonialRef.current,
-        { opacity: 0, y: -40, filter: 'blur(10px)', duration: 1.2, ease: 'power2.inOut' },
-        2.2
-      );
-
-      // 3. Enter CTA Sequence (Overlaps the exit for continuity)
+      // Enter CTA
       tl.fromTo(ctaRef.current,
         { opacity: 0, scale: 0.92, y: 60, filter: 'blur(12px)' },
         { opacity: 1, scale: 1, y: 0, filter: 'blur(0px)', duration: 1.4, ease: 'power2.out' },
-        2.8
+        0
       );
 
-      // Fade in the ambient cursor light behind the CTA specifically
+      // Fade in glow
       tl.fromTo(glowRef.current,
         { opacity: 0 },
         { opacity: 1, duration: 1.4, ease: 'power2.inOut' },
-        2.8
+        0
       );
 
-      // 4. Power Scale (Active subtle zoom extending to the end of the scroll bounds)
+      // Subtle scale
       tl.to(ctaRef.current,
         { scale: 1.05, duration: 2.0, ease: 'none' },
-        4.2
+        1.8
       );
 
     }, sectionRef);
@@ -87,6 +86,7 @@ export default function FinalActionSection() {
       id="contact"
       ref={sectionRef}
       onMouseMove={handleMouseMove}
+      className="final-action-section"
       style={{
         width: '100%',
         height: '100vh',
@@ -98,6 +98,98 @@ export default function FinalActionSection() {
         justifyContent: 'center',
       }}
     >
+      <style dangerouslySetInnerHTML={{ __html: `
+        .final-cta-group {
+          display: flex;
+          gap: 24px;
+          align-items: center;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+        .btn-primary {
+          font-family: 'Space Grotesk', sans-serif;
+          font-size: 14px;
+          font-weight: 600;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: var(--bg);
+          background-color: var(--text);
+          padding: 24px 56px;
+          border-radius: 100px;
+          text-decoration: none;
+          transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+        }
+        .btn-secondary {
+          font-family: 'Space Grotesk', sans-serif;
+          font-size: 14px;
+          font-weight: 600;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: var(--text);
+          background-color: transparent;
+          border: 1px solid var(--border-dark-color);
+          padding: 24px 56px;
+          border-radius: 100px;
+          text-decoration: none;
+          transition: transform 0.3s ease, border-color 0.3s ease;
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+        }
+
+        @media (max-width: 768px) {
+          .final-action-section {
+            height: auto !important;
+            min-height: 100vh;
+            padding: 100px 20px 80px !important;
+            flex-direction: column;
+            justify-content: center;
+          }
+          .final-action-section .cta-block {
+            position: relative !important;
+            opacity: 1 !important;
+          }
+          .final-cta-group {
+            gap: 16px;
+            width: 100%;
+            flex-direction: column;
+            align-items: center;
+          }
+          .btn-primary, .btn-secondary {
+            padding: 16px 32px;
+            font-size: 13px;
+            width: 100%;
+            max-width: 300px;
+            justify-content: center;
+          }
+          .cta-title {
+            gap: 40px !important;
+          }
+        }
+        @media (min-width: 769px) and (max-width: 900px) {
+          .final-action-section {
+            padding: 0 24px;
+          }
+          .final-cta-group {
+            gap: 16px;
+            width: 100%;
+          }
+          .btn-primary, .btn-secondary {
+            padding: 18px 32px;
+            font-size: 13px;
+            width: 100%;
+            max-width: 320px;
+            text-align: center;
+          }
+          .cta-title {
+            gap: 40px !important;
+          }
+        }
+      `}} />
+
       {/* Absolute Cinematic Glow Orb */}
       <div
         ref={glowRef}
@@ -109,61 +201,16 @@ export default function FinalActionSection() {
           height: '800px',
           background: 'var(--highlight-gradient)',
           borderRadius: '50%',
-          pointerEvents: 'none', // Prevents interfering with hover hits on buttons
+          pointerEvents: 'none',
           opacity: 0,
           willChange: 'transform, opacity',
         }}
       />
 
-      {/* Part 1: Emotional Quote */}
-      <div
-        ref={testimonialRef}
-        style={{
-          position: 'absolute',
-          maxWidth: '860px',
-          padding: '0 24px',
-          textAlign: 'center',
-          opacity: 0,
-          pointerEvents: 'none', // Don't block background while rendering
-        }}
-      >
-        <p style={{
-          fontFamily: "'Syne', sans-serif",
-          fontSize: 'clamp(28px, 4.5vw, 56px)',
-          fontWeight: 600,
-          color: 'var(--text)',
-          lineHeight: 1.3,
-          letterSpacing: '-0.02em',
-          marginBottom: '40px'
-        }}>
-          "CIT Hub transformed our brand into something that truly stands out. The attention to detail and execution was exceptional."
-        </p>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-          <span style={{
-            fontFamily: "'Space Grotesk', sans-serif",
-            fontSize: '18px',
-            color: 'var(--secondary)',
-            fontWeight: 500,
-            letterSpacing: '0.04em'
-          }}>
-            — Sarah Jenkins
-          </span>
-          <span style={{
-            fontFamily: "'Space Grotesk', sans-serif",
-            fontSize: '14px',
-            color: 'var(--secondary)', // Subtle gray
-            fontWeight: 500,
-            letterSpacing: '0.08em',
-            textTransform: 'uppercase'
-          }}>
-            Director of Vision, Nexus
-          </span>
-        </div>
-      </div>
-
-      {/* Part 2: Power CTA */}
+      {/* Power CTA */}
       <div
         ref={ctaRef}
+        className="cta-title cta-block"
         style={{
           position: 'absolute',
           display: 'flex',
@@ -177,7 +224,7 @@ export default function FinalActionSection() {
       >
         <h2 style={{
           fontFamily: "'Syne', sans-serif",
-          fontSize: 'clamp(48px, 8vw, 120px)',
+          fontSize: 'clamp(36px, 8vw, 120px)',
           fontWeight: 800,
           color: 'var(--text)',
           letterSpacing: '-0.04em',
@@ -188,24 +235,12 @@ export default function FinalActionSection() {
           Let’s Build Something That Matters.
         </h2>
 
-        <div style={{ display: 'flex', gap: '24px', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
-          <a href="#contact" style={{
-            fontFamily: "'Space Grotesk', sans-serif",
-            fontSize: '14px',
-            fontWeight: 600,
-            letterSpacing: '0.12em',
-            textTransform: 'uppercase',
-            color: 'var(--bg)',
-            backgroundColor: 'var(--text)',
-            padding: '24px 56px',
-            borderRadius: '100px',
-            textDecoration: 'none',
-            transition: 'transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease',
-          }}
+        <div className="final-cta-group">
+          <a href="#contact" className="btn-primary"
             onMouseEnter={e => {
               e.currentTarget.style.transform = 'translateY(-2px)';
               e.currentTarget.style.backgroundColor = 'var(--secondary)';
-              e.currentTarget.style.boxShadow = '0 10px 30px rgba(255,255,255,0.15)';
+              e.currentTarget.style.boxShadow = '0 10px 30px rgba(0,0,0,0.15)';
             }}
             onMouseLeave={e => {
               e.currentTarget.style.transform = 'translateY(0)';
@@ -214,32 +249,26 @@ export default function FinalActionSection() {
             }}
           >
             Start a Project
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
 
-          <a href="#work" style={{
-            fontFamily: "'Space Grotesk', sans-serif",
-            fontSize: '14px',
-            fontWeight: 600,
-            letterSpacing: '0.12em',
-            textTransform: 'uppercase',
-            color: 'var(--text)',
-            backgroundColor: 'transparent',
-            border: '1px solid var(--border-dark-color)',
-            padding: '24px 56px',
-            borderRadius: '100px',
-            textDecoration: 'none',
-            transition: 'transform 0.3s ease, border-color 0.3s ease',
-          }}
+          <a href="#work" className="btn-secondary"
+            onClick={(e) => {
+              e.preventDefault();
+              const el = document.getElementById('work');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }}
             onMouseEnter={e => {
               e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.borderColor = 'rgba(255,255,255,0.8)';
+              e.currentTarget.style.borderColor = 'var(--text)';
             }}
             onMouseLeave={e => {
               e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)';
+              e.currentTarget.style.borderColor = 'var(--border-dark-color)';
             }}
           >
             View Work
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
       </div>

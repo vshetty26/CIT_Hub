@@ -59,6 +59,7 @@ export default function HeroSection() {
   return (
     <section
       ref={sectionRef}
+      className="hero-section"
       style={{
         position: 'relative',
         width: '100%',
@@ -70,27 +71,69 @@ export default function HeroSection() {
         backgroundColor: 'var(--bg)',
         overflow: 'hidden',
         textAlign: 'center',
-        padding: '0 24px',
       }}
     >
-      {/* Background Gradient & Glow */}
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          background: 'none',
-          pointerEvents: 'none',
-        }}
-      />
+      <style dangerouslySetInnerHTML={{ __html: `
+        .hero-section {
+          padding: 0 48px;
+        }
+        .hero-content {
+          position: relative;
+          z-index: 10;
+          display: flex;
+          flex-direction: column;
+          gap: 32px;
+          align-items: center;
+          width: 100%;
+        }
+        .hero-title-group {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          width: 100%;
+        }
+        @media (max-width: 768px) {
+          .hero-section {
+            padding: 0 20px;
+          }
+          .hero-content {
+            gap: 20px;
+          }
+          .hero-title-group {
+            gap: 6px;
+          }
+          .hero-cta-btn {
+            padding: 14px 28px !important;
+            font-size: 13px !important;
+            width: 100%;
+            max-width: 280px;
+            justify-content: center;
+          }
+          .hero-scroll-indicator {
+            bottom: 24px !important;
+          }
+        }
+        @media (min-width: 769px) and (max-width: 900px) {
+          .hero-section {
+            padding: 0 24px;
+          }
+          .hero-content {
+            gap: 24px;
+          }
+          .hero-title-group {
+            gap: 8px;
+          }
+        }
+      `}} />
 
       {/* Content */}
-      <div ref={contentRef} style={{ position: 'relative', zIndex: 10, display: 'flex', flexDirection: 'column', gap: '24px', alignItems: 'center' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+      <div ref={contentRef} className="hero-content">
+        <div className="hero-title-group">
           <h1
             ref={title1Ref}
             style={{
               fontFamily: "'Syne', sans-serif",
-              fontSize: 'clamp(40px, 6vw, 84px)',
+              fontSize: 'clamp(36px, 8vw, 84px)',
               fontWeight: 800,
               letterSpacing: '-0.02em',
               lineHeight: 1.1,
@@ -104,7 +147,7 @@ export default function HeroSection() {
             ref={title2Ref}
             style={{
               fontFamily: "'Syne', sans-serif",
-              fontSize: 'clamp(40px, 6vw, 84px)',
+              fontSize: 'clamp(36px, 8vw, 84px)',
               fontWeight: 800,
               letterSpacing: '-0.02em',
               lineHeight: 1.1,
@@ -141,12 +184,13 @@ export default function HeroSection() {
           ref={subtextRef}
           style={{
             fontFamily: "'Space Grotesk', sans-serif",
-            fontSize: 'clamp(14px, 1.5vw, 18px)',
+            fontSize: 'clamp(12px, 2vw, 18px)',
             fontWeight: 400,
             letterSpacing: '0.15em',
             textTransform: 'uppercase',
             color: 'var(--secondary)',
             opacity: 0,
+            maxWidth: '600px'
           }}
         >
           Branding. Marketing. Web.
@@ -154,9 +198,14 @@ export default function HeroSection() {
 
         <a
           ref={ctaRef}
-          href="#explore"
+          href="#work"
+          onClick={(e) => {
+            e.preventDefault();
+            const el = document.getElementById('work');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }}
           style={{
-            marginTop: '16px',
+            marginTop: '8px',
             fontFamily: "'Space Grotesk', sans-serif",
             fontSize: '14px',
             fontWeight: 500,
@@ -169,10 +218,9 @@ export default function HeroSection() {
             textDecoration: 'none',
             display: 'inline-flex',
             alignItems: 'center',
-            gap: '8px',
+            gap: '10px',
             opacity: 0,
             transition: 'all 0.3s ease',
-            boxShadow: '0 0 0px rgba(0, 0, 0, 0)',
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.transform = 'translateY(-2px)';
@@ -185,12 +233,15 @@ export default function HeroSection() {
             e.currentTarget.style.boxShadow = '0 0 0px rgba(0, 0, 0, 0)';
           }}
         >
-          Explore →
+          Explore Our Work
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
         </a>
       </div>
 
       {/* ── Scroll indicator ── */}
-      <div style={{
+      <div className="hero-scroll-indicator" style={{
         position: 'absolute',
         bottom: '40px',
         left: '50%',

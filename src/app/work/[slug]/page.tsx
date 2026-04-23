@@ -1,7 +1,8 @@
 'use client';
 
-import { useEffect, use, useState } from 'react';
+import { useEffect, use } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { projectsData } from '@/data/projects';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -21,7 +22,9 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
         <Navbar />
         <h1>Project Not Found</h1>
         <p>The project you are looking for does not exist.</p>
-        <a href="/" style={{ color: 'var(--accent)', marginTop: '24px', display: 'inline-block' }}>Return Home</a>
+        <Link href="/" style={{ color: 'var(--accent)', marginTop: '24px', display: 'inline-block' }}>
+          Return Home
+        </Link>
       </div>
     );
   }
@@ -93,6 +96,30 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
           flexDirection: 'column',
           gap: '32px'
         }}>
+          {/* Back link */}
+          <Link
+            href="/#work"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              fontFamily: "'Space Grotesk', sans-serif",
+              fontSize: '13px',
+              fontWeight: 600,
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+              color: 'var(--secondary)',
+              textDecoration: 'none',
+              transition: 'color 0.2s',
+            }}
+            onMouseEnter={e => (e.currentTarget as HTMLAnchorElement).style.color = 'var(--text)'}
+            onMouseLeave={e => (e.currentTarget as HTMLAnchorElement).style.color = 'var(--secondary)'}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M19 12H5M12 5l-7 7 7 7"/>
+            </svg>
+            Back to Work
+          </Link>
           {/* Title Area */}
           <div>
             <h1 style={{
