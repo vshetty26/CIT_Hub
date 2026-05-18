@@ -52,54 +52,23 @@ const TESTIMONIALS = [
   },
 ];
 
-const SLIDE_INTERVAL = 5000; // ms between auto-advances
+const SLIDE_INTERVAL = 4000; // ms between auto-advances
+const CARDS_PER_VIEW = 3;
 
 export default function TestimonialsSection() {
   const [active, setActive] = useState(0);
-  const [animating, setAnimating] = useState(false);
-  const [direction, setDirection] = useState<'next' | 'prev'>('next');
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const touchStartX = useRef(0);
 
   const total = TESTIMONIALS.length;
 
-  // ── Navigate ──────────────────────────────────────────────────────────────
-  const goTo = useCallback(
-    (index: number, dir: 'next' | 'prev' = 'next') => {
-      if (animating) return;
-      setDirection(dir);
-      setAnimating(true);
-      setActive(index);
-      setTimeout(() => setAnimating(false), 480);
-    },
-    [animating]
-  );
-
-  const next = useCallback(() => goTo((active + 1) % total, 'next'), [active, goTo, total]);
-  const prev = useCallback(() => goTo((active - 1 + total) % total, 'prev'), [active, goTo, total]);
-
-  // ── Auto-slide ────────────────────────────────────────────────────────────
-  const resetTimer = useCallback(() => {
-    if (timerRef.current) clearTimeout(timerRef.current);
-    timerRef.current = setTimeout(next, SLIDE_INTERVAL);
-  }, [next]);
-
+  // ── Auto-slide continuously ────────────────────────────────────────────────
   useEffect(() => {
-    resetTimer();
-    return () => { if (timerRef.current) clearTimeout(timerRef.current); };
-  }, [active, resetTimer]);
+    const interval = setInterval(() => {
+      setActive((prev) => (prev + 1) % total);
+    }, SLIDE_INTERVAL);
 
-  // ── Touch swipe ───────────────────────────────────────────────────────────
-  const onTouchStart = (e: React.TouchEvent) => { touchStartX.current = e.touches[0].clientX; };
-  const onTouchEnd = (e: React.TouchEvent) => {
-    const dx = e.changedTouches[0].clientX - touchStartX.current;
-    if (Math.abs(dx) > 44) {
-      if (dx < 0) next(); else prev();
-    }
-  };
-
-  const t = TESTIMONIALS[active];
+    return () => clearInterval(interval);
+  }, [total]);
 
   return (
     <section
@@ -107,61 +76,35 @@ export default function TestimonialsSection() {
       style={{ width: '100%', backgroundColor: 'var(--bg)', padding: '80px 0', position: 'relative', overflow: 'hidden' }}
     >
       <style>{`
-        /* ── Slide animation ── */
-        @keyframes t-slide-in-next {
-          from { opacity: 0; transform: translateX(48px); }
+        /* ── Smooth slide animation ── */
+        @keyframes t-slide-in {
+          from { opacity: 0; transform: translateX(24px); }
           to   { opacity: 1; transform: translateX(0); }
         }
-        @keyframes t-slide-in-prev {
-          from { opacity: 0; transform: translateX(-48px); }
-          to   { opacity: 1; transform: translateX(0); }
+        @keyframes t-slide-out {
+          from { opacity: 1; transform: translateX(0); }
+          to   { opacity: 0; transform: translateX(-24px); }
         }
-        .t-card-next { animation: t-slide-in-next 0.48s cubic-bezier(0.25,1,0.3,1) both; }
-        .t-card-prev { animation: t-slide-in-prev 0.48s cubic-bezier(0.25,1,0.3,1) both; }
-
-        /* ── Arrow buttons ── */
-        .t-arrow {
-          width: 48px; height: 48px; border-radius: 50%;
-          border: 1px solid var(--border-dark-color);
-          background: transparent;
-          color: var(--text);
-          display: flex; align-items: center; justify-content: center;
-          cursor: pointer;
-          transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
-          flex-shrink: 0;
-        }
-        .t-arrow:hover {
-          background: var(--text);
-          color: var(--bg);
-          transform: scale(1.08);
-        }
-
-        /* ── Dot ── */
-        .t-dot {
-          width: 6px; height: 6px; border-radius: 50%;
-          background: var(--border-dark-color);
-          border: none; padding: 0; cursor: pointer;
-          transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
-          flex-shrink: 0;
-        }
-        .t-dot.active {
-          width: 24px; border-radius: 3px;
-          background: var(--text);
-        }
+        .t-card-enter { animation: t-slide-in 0.6s cubic-bezier(0.25,1,0.3,1) both; }
+        .t-card-exit { animation: t-slide-out 0.6s cubic-bezier(0.25,1,0.3,1) both; }
 
         /* ── Mobile ── */
+        @media (max-width: 1024px) {
+          .t-cards-grid { grid-template-columns: 1fr 1fr !important; }
+        }
         @media (max-width: 768px) {
           .t-section-inner { padding: 0 20px !important; }
-          .t-card-body { padding: 40px 28px 36px !important; }
-          .t-quote-text { font-size: clamp(16px, 4.5vw, 20px) !important; }
-          .t-controls { padding: 0 20px !important; }
+          .t-cards-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+          .t-card-body { padding: 24px 20px 20px !important; }
+          .t-quote-text { font-size: clamp(12px, 4.5vw, 14px) !important; }
+          .t-quote-mark { font-size: 48px !important; }
         }
       `}</style>
 
       {/* ── Header ── */}
       <div
         className="t-section-inner"
-        style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 48px', marginBottom: '40px' }}
+        style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 48px', marginBottom: '60px' }}
       >
         <div style={{
           fontFamily: "'Space Grotesk', sans-serif",
@@ -172,148 +115,297 @@ export default function TestimonialsSection() {
           marginBottom: '20px',
         }}>
           <span style={{ width: '24px', height: '1px', backgroundColor: 'var(--secondary)' }} />
-          Client Stories
+          Trusted by Clients
         </div>
         <h2 style={{
           fontFamily: "'Syne', sans-serif",
           fontSize: 'clamp(32px, 5vw, 64px)',
           fontWeight: 700, color: 'var(--text)',
           letterSpacing: '-0.02em', lineHeight: 1.1,
+          marginBottom: '16px',
         }}>
           What Our Clients Say
         </h2>
-      </div>
-
-      {/* ── Card ── */}
-      <div
-        ref={trackRef}
-        className="t-section-inner"
-        style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 48px' }}
-        onTouchStart={onTouchStart}
-        onTouchEnd={onTouchEnd}
-      >
-        <div
-          key={active}
-          className={`t-card-body ${direction === 'next' ? 't-card-next' : 't-card-prev'}`}
-          style={{
-            backgroundColor: 'var(--surface)',
-            border: '1px solid var(--border-color)',
-            borderRadius: '28px',
-            padding: '64px 72px 56px',
-            position: 'relative',
-            overflow: 'hidden',
-          }}
-        >
-          {/* Large decorative quote mark */}
-          <div aria-hidden="true" style={{
-            position: 'absolute',
-            top: '32px', left: '56px',
-            fontFamily: "'Syne', sans-serif",
-            fontSize: '120px', lineHeight: 1,
-            color: 'var(--text)', opacity: 0.04,
-            fontWeight: 800, userSelect: 'none',
-            pointerEvents: 'none',
+        <p style={{
+          fontFamily: "'Space Grotesk', sans-serif",
+          fontSize: '14px', fontWeight: 400,
+          color: 'var(--secondary)', opacity: 0.7,
+          letterSpacing: '0.02em',
+        }}>
+          Hear from those who've experienced our work
+        </p>
+        
+        {/* Trust indicators */}
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '24px',
+          flexWrap: 'wrap',
+          marginTop: '24px',
+        }}>
+          {/* Google Rating */}
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '12px',
+            padding: '12px 20px',
+            background: 'rgba(59, 130, 246, 0.08)',
+            border: '1px solid rgba(59, 130, 246, 0.2)',
+            borderRadius: '100px',
           }}>
-            "
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <text x="2" y="18" fontSize="16" fontWeight="bold" fill="#3b82f6">G</text>
+            </svg>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+            }}>
+              <span style={{
+                fontFamily: "'Space Grotesk', sans-serif",
+                fontSize: '13px',
+                fontWeight: 600,
+                color: 'var(--text)',
+              }}>
+                4.9/5
+              </span>
+              <div style={{
+                display: 'flex',
+                gap: '2px',
+              }}>
+                {[...Array(5)].map((_, i) => (
+                  <span key={i} style={{
+                    color: '#fbbf24',
+                    fontSize: '12px',
+                  }}>
+                    ★
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
 
-          {/* Quote text */}
-          <p
-            className="t-quote-text"
-            style={{
-              fontFamily: "'Syne', sans-serif",
-              fontSize: 'clamp(18px, 2.2vw, 26px)',
-              fontWeight: 500,
-              color: 'var(--text)',
-              lineHeight: 1.65,
-              letterSpacing: '-0.01em',
-              maxWidth: '900px',
-              marginBottom: '48px',
-              position: 'relative',
-              zIndex: 1,
-            }}
-          >
-            "{t.quote}"
-          </p>
-
-          {/* Divider */}
+          {/* Client Count */}
           <div style={{
-            width: '48px', height: '2px',
-            backgroundColor: 'var(--accent)',
-            opacity: 0.5,
-            marginBottom: '28px',
-          }} />
-
-          {/* Attribution */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-            <span style={{
-              fontFamily: "'Syne', sans-serif",
-              fontSize: '16px', fontWeight: 700,
-              color: 'var(--text)',
-              letterSpacing: '0.06em', textTransform: 'uppercase',
-            }}>
-              {t.name}
-            </span>
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            padding: '12px 20px',
+            background: 'rgba(34, 197, 94, 0.08)',
+            border: '1px solid rgba(34, 197, 94, 0.2)',
+            borderRadius: '100px',
+          }}>
             <span style={{
               fontFamily: "'Space Grotesk', sans-serif",
-              fontSize: '13px', fontWeight: 400,
-              color: 'var(--secondary)',
-              letterSpacing: '0.04em',
-              fontStyle: 'italic',
+              fontSize: '13px',
+              fontWeight: 600,
+              color: 'var(--text)',
             }}>
-              {t.company}
+              ✓ 50+ Happy Clients
             </span>
           </div>
 
-          {/* Counter */}
+          {/* Verified Badge */}
           <div style={{
-            position: 'absolute', bottom: '40px', right: '56px',
-            fontFamily: "'Syne', sans-serif",
-            fontSize: '13px', fontWeight: 700,
-            color: 'var(--text)', opacity: 0.12,
-            letterSpacing: '0.08em',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            padding: '12px 20px',
+            background: 'rgba(168, 85, 247, 0.08)',
+            border: '1px solid rgba(168, 85, 247, 0.2)',
+            borderRadius: '100px',
           }}>
-            {String(active + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
+            <span style={{
+              fontFamily: "'Space Grotesk', sans-serif",
+              fontSize: '13px',
+              fontWeight: 600,
+              color: 'var(--text)',
+            }}>
+              ✓ Verified Reviews
+            </span>
           </div>
         </div>
       </div>
 
-      {/* ── Controls: arrows + dots ── */}
+      {/* ── Cards Grid ── */}
       <div
-        className="t-controls"
+        className="t-section-inner"
+        style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 48px' }}
+      >
+        <div
+          className="t-cards-grid"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: '16px',
+          }}
+        >
+          {[...Array(CARDS_PER_VIEW)].map((_, i) => {
+            const idx = (active + i) % total;
+            const t = TESTIMONIALS[idx];
+            return (
+              <div
+                key={`${active}-${i}`}
+                className="t-card t-card-enter"
+                style={{
+                  backgroundColor: 'var(--surface)',
+                  border: '1px solid var(--border-color)',
+                  borderRadius: '20px',
+                  padding: '28px 24px 24px',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  minHeight: '240px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                }}
+              >
+                {/* Google Review Badge */}
+                <div style={{
+                  position: 'absolute',
+                  top: '16px',
+                  right: '20px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '4px',
+                  padding: '4px 10px',
+                  background: 'rgba(59, 130, 246, 0.1)',
+                  border: '1px solid rgba(59, 130, 246, 0.2)',
+                  borderRadius: '100px',
+                  zIndex: 10,
+                }}>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                    <text x="1" y="14" fontSize="10" fontWeight="bold" fill="#3b82f6">G</text>
+                  </svg>
+                  <span style={{
+                    fontFamily: "'Space Grotesk', sans-serif",
+                    fontSize: '9px',
+                    fontWeight: 600,
+                    color: '#3b82f6',
+                    letterSpacing: '0.05em',
+                  }}>
+                    Verified
+                  </span>
+                </div>
+
+                {/* Large decorative quote mark */}
+                <div className="t-quote-mark" aria-hidden="true" style={{
+                  position: 'absolute',
+                  top: '8px', left: '20px',
+                  fontFamily: "'Syne', sans-serif",
+                  fontSize: '60px', lineHeight: 1,
+                  color: 'var(--text)', opacity: 0.04,
+                  fontWeight: 800, userSelect: 'none',
+                  pointerEvents: 'none',
+                }}>
+                  "
+                </div>
+
+                {/* Quote text */}
+                <p
+                  className="t-quote-text"
+                  style={{
+                    fontFamily: "'Syne', sans-serif",
+                    fontSize: 'clamp(13px, 1.2vw, 16px)',
+                    fontWeight: 500,
+                    color: 'var(--text)',
+                    lineHeight: 1.4,
+                    letterSpacing: '-0.01em',
+                    marginBottom: '16px',
+                    position: 'relative',
+                    zIndex: 1,
+                    flex: 1,
+                  }}
+                >
+                  "{t.quote}"
+                </p>
+
+                {/* Divider */}
+                <div style={{
+                  width: '28px', height: '1.5px',
+                  backgroundColor: 'var(--accent)',
+                  opacity: 0.5,
+                  marginBottom: '12px',
+                }} />
+
+                {/* Attribution */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+                  <span style={{
+                    fontFamily: "'Syne', sans-serif",
+                    fontSize: '12px', fontWeight: 700,
+                    color: 'var(--text)',
+                    letterSpacing: '0.06em', textTransform: 'uppercase',
+                  }}>
+                    {t.name}
+                  </span>
+                  <span style={{
+                    fontFamily: "'Space Grotesk', sans-serif",
+                    fontSize: '10px', fontWeight: 400,
+                    color: 'var(--secondary)',
+                    letterSpacing: '0.04em',
+                    fontStyle: 'italic',
+                  }}>
+                    {t.company}
+                  </span>
+                </div>
+
+                {/* Star rating */}
+                <div style={{
+                  display: 'flex',
+                  gap: '2px',
+                  marginTop: '8px',
+                }}>
+                  {[...Array(5)].map((_, i) => (
+                    <span key={i} style={{
+                      color: '#fbbf24',
+                      fontSize: '12px',
+                    }}>
+                      ★
+                    </span>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* ── CTA Button ── */}
+      <div
         style={{
-          maxWidth: '1200px', margin: '40px auto 0',
+          maxWidth: '1200px', margin: '48px auto 0',
           padding: '0 48px',
           display: 'flex', alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: '24px',
+          justifyContent: 'center',
         }}
       >
-        {/* Dots */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
-          {TESTIMONIALS.map((_, i) => (
-            <button
-              key={i}
-              className={`t-dot ${i === active ? 'active' : ''}`}
-              onClick={() => goTo(i, i > active ? 'next' : 'prev')}
-              aria-label={`Go to testimonial ${i + 1}`}
-            />
-          ))}
-        </div>
-
-        {/* Arrows */}
-        <div style={{ display: 'flex', gap: '12px', flexShrink: 0 }}>
-          <button className="t-arrow" onClick={prev} aria-label="Previous testimonial">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M15 18l-6-6 6-6" />
-            </svg>
-          </button>
-          <button className="t-arrow" onClick={next} aria-label="Next testimonial">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M9 18l6-6-6-6" />
-            </svg>
-          </button>
-        </div>
+        <button
+          style={{
+            padding: '12px 28px',
+            background: 'rgba(59, 130, 246, 0.1)',
+            border: '1px solid rgba(59, 130, 246, 0.3)',
+            borderRadius: '100px',
+            fontFamily: "'Space Grotesk', sans-serif",
+            fontSize: '13px',
+            fontWeight: 600,
+            color: '#3b82f6',
+            cursor: 'pointer',
+            transition: 'all 0.3s ease',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            letterSpacing: '0.05em',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = 'rgba(59, 130, 246, 0.15)';
+            e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.5)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = 'rgba(59, 130, 246, 0.1)';
+            e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.3)';
+          }}
+        >
+          ⭐ Leave a Google Review
+        </button>
       </div>
     </section>
   );

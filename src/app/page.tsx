@@ -6,6 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
 
 import Loader from '@/components/Loader';
+import ContactFormModal from '@/components/ContactFormModal';
 import HeroSection from '@/sections/HeroSection';
 import IntroductionSection from '@/sections/IntroductionSection';
 import VisualImpactSection from '@/sections/VisualImpactSection';
@@ -24,6 +25,8 @@ export default function Home() {
   // false  → return visit → skip loader
   const [showLoader, setShowLoader] = useState<boolean | null>(null);
   const [loaderDone, setLoaderDone] = useState(false);
+  const [contactModalOpen, setContactModalOpen] = useState(false);
+  const [contactModalTab, setContactModalTab] = useState<'project' | 'contact'>('contact');
 
   // ── Check sessionStorage on mount to decide loader visibility ────────────
   useEffect(() => {
@@ -87,7 +90,11 @@ export default function Home() {
       )}
 
       <div style={{ position: 'relative', zIndex: 1 }}>
-        <Navbar />
+        <Navbar onContactClick={() => {
+          console.log('Contact clicked from Navbar');
+          setContactModalTab('contact');
+          setContactModalOpen(true);
+        }} />
         <HeroSection />
         <IntroductionSection />
         <VisualImpactSection />
@@ -96,9 +103,28 @@ export default function Home() {
         <GallerySection />
         <ServicesSection />
         <TestimonialsSection />
-        <FinalActionSection />
-        <Footer />
+        <FinalActionSection onStartProject={() => {
+          console.log('Start Project clicked');
+          setContactModalTab('project');
+          setContactModalOpen(true);
+        }} />
+        <Footer onContactClick={() => {
+          console.log('Contact clicked from Footer');
+          setContactModalTab('contact');
+          setContactModalOpen(true);
+        }} />
       </div>
+
+      {contactModalOpen && (
+        <ContactFormModal 
+          isOpen={contactModalOpen}
+          onClose={() => {
+            console.log('Modal closed');
+            setContactModalOpen(false);
+          }}
+          initialTab={contactModalTab}
+        />
+      )}
     </>
   );
 }

@@ -394,7 +394,7 @@ export default function PortfolioSection() {
             scrollSnapType: 'x mandatory',
             scrollBehavior: 'smooth',
             width: '100%',
-            padding: '40px 50vw 80px', // Desktop padding
+            padding: '40px 20vw 80px', // Reduced left padding
             boxSizing: 'border-box'
           }}
         >
@@ -716,12 +716,20 @@ export default function PortfolioSection() {
             @keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
             @keyframes slideUp { from { opacity:0; transform:translateY(28px) } to { opacity:1; transform:translateY(0) } }
             .brand-modal-inner { animation: slideUp 0.32s cubic-bezier(0.25,1,0.3,1); }
-            .brand-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
-            @media(max-width:900px){ .brand-grid{ grid-template-columns:repeat(2,1fr); } }
-            @media(max-width:560px){ .brand-grid{ grid-template-columns:1fr; } }
-            .brand-img-wrap { border-radius:16px; overflow:hidden; aspect-ratio:4/3; background:var(--surface); border:1px solid rgba(255,255,255,0.06); transition:transform 0.35s cubic-bezier(0.25,1,0.3,1); cursor:zoom-in; }
+            .brand-grid { display:flex; gap:24px; align-items:flex-start; }
+            .brand-col { display:flex; flex-direction:column; gap:32px; flex:1; }
+            .brand-img-wrap { position:relative; overflow:hidden; background:var(--surface); border:1px solid rgba(255,255,255,0.06); border-radius:16px; cursor:pointer; transition:transform 0.35s cubic-bezier(0.25,1,0.3,1); width:100%; }
             .brand-img-wrap:hover { transform:scale(1.03); }
-            .brand-img-wrap img { width:100%; height:100%; object-fit:cover; display:block; }
+            .brand-img-wrap:hover .brand-overlay { background:rgba(0,0,0,0.5); }
+            .brand-img-wrap:hover .brand-content { opacity:1; transform:translateY(0); }
+            .brand-img-wrap img { width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(20%) contrast(1.1); transition:transform 0.9s cubic-bezier(0.25,1,0.3,1); }
+            .brand-img-wrap:hover img { transform:scale(1.06); }
+            .brand-overlay { position:absolute; inset:0; background:rgba(0,0,0,0); transition:background 0.6s ease; pointer-events:none; }
+            .brand-content { position:absolute; bottom:0; left:0; width:100%; padding:32px; display:flex; flex-direction:column; gap:6px; z-index:10; opacity:0; transform:translateY(15px); transition:opacity 0.6s cubic-bezier(0.25,1,0.3,1), transform 0.6s cubic-bezier(0.25,1,0.3,1); }
+            .brand-category { font-family:'Space Grotesk',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.15em; color:#a1a1aa; text-transform:uppercase; }
+            .brand-title { font-family:'Syne',sans-serif; font-size:24px; font-weight:600; color:#ffffff; letter-spacing:-0.01em; }
+            @media(max-width:900px){ .brand-grid{ flex-direction:column; gap:20px; } .brand-col{ gap:16px; } }
+            @media(max-width:560px){ .brand-grid{ flex-direction:column; gap:16px; } .brand-col{ gap:16px; } }
           ` }} />
 
           {/* Modal content — stop clicks from bubbling to backdrop */}
@@ -761,7 +769,7 @@ export default function PortfolioSection() {
               </button>
             </div>
 
-            {/* Image grid */}
+            {/* Image grid - Masonry layout like Hall of Fame */}
             {brandingLoading ? (
               <div style={{ textAlign: 'center', padding: '80px 0', fontFamily: "'Space Grotesk', sans-serif", fontSize: '14px', color: 'rgba(255,255,255,0.4)' }}>
                 Loading gallery…
@@ -772,23 +780,87 @@ export default function PortfolioSection() {
               </div>
             ) : (
               <div className="brand-grid">
-                {brandingImages.map((src, i) => (
-                  <div
-                    key={i}
-                    className="brand-img-wrap"
-                    onClick={() => setLightboxSrc(src)}
-                    style={{ position: 'relative' }}
-                  >
-                    <Image
-                      src={src}
-                      alt={`${brandingModal.title} ${i + 1}`}
-                      fill
-                      sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
-                      quality={75}
-                      style={{ objectFit: 'cover' }}
-                    />
+                {/* Column 1 */}
+                <div className="brand-col">
+                  {brandingImages.slice(0, Math.ceil(brandingImages.length / 3)).map((src, i) => (
+                    <div
+                      key={i}
+                      className="brand-img-wrap"
+                      onClick={() => setLightboxSrc(src)}
+                      style={{ position: 'relative', aspectRatio: i % 2 === 0 ? '4/5' : '1/1' }}
+                    >
+                      <Image
+                        src={src}
+                        alt={`${brandingModal.title} ${i + 1}`}
+                        fill
+                        sizes="(max-width: 560px) 100vw, (max-width: 900px) 100vw, 33vw"
+                        quality={75}
+                        style={{ objectFit: 'cover' }}
+                      />
+                      <div className="brand-overlay" />
+                      <div className="brand-content">
+                        <div className="brand-category">{brandingModal.title}</div>
+                        <div className="brand-title">Design {i + 1}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Column 2 */}
+                {brandingImages.length > Math.ceil(brandingImages.length / 3) && (
+                  <div className="brand-col" style={{ marginTop: '120px' }}>
+                    {brandingImages.slice(Math.ceil(brandingImages.length / 3), Math.ceil(brandingImages.length * 2 / 3)).map((src, i) => (
+                      <div
+                        key={i}
+                        className="brand-img-wrap"
+                        onClick={() => setLightboxSrc(src)}
+                        style={{ position: 'relative', aspectRatio: i % 2 === 0 ? '3/4' : '4/5' }}
+                      >
+                        <Image
+                          src={src}
+                          alt={`${brandingModal.title} ${Math.ceil(brandingImages.length / 3) + i + 1}`}
+                          fill
+                          sizes="(max-width: 560px) 100vw, (max-width: 900px) 100vw, 33vw"
+                          quality={75}
+                          style={{ objectFit: 'cover' }}
+                        />
+                        <div className="brand-overlay" />
+                        <div className="brand-content">
+                          <div className="brand-category">{brandingModal.title}</div>
+                          <div className="brand-title">Design {Math.ceil(brandingImages.length / 3) + i + 1}</div>
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                ))}
+                )}
+
+                {/* Column 3 */}
+                {brandingImages.length > Math.ceil(brandingImages.length * 2 / 3) && (
+                  <div className="brand-col" style={{ marginTop: '40px' }}>
+                    {brandingImages.slice(Math.ceil(brandingImages.length * 2 / 3)).map((src, i) => (
+                      <div
+                        key={i}
+                        className="brand-img-wrap"
+                        onClick={() => setLightboxSrc(src)}
+                        style={{ position: 'relative', aspectRatio: i % 2 === 0 ? '1/1' : '3/4' }}
+                      >
+                        <Image
+                          src={src}
+                          alt={`${brandingModal.title} ${Math.ceil(brandingImages.length * 2 / 3) + i + 1}`}
+                          fill
+                          sizes="(max-width: 560px) 100vw, (max-width: 900px) 100vw, 33vw"
+                          quality={75}
+                          style={{ objectFit: 'cover' }}
+                        />
+                        <div className="brand-overlay" />
+                        <div className="brand-content">
+                          <div className="brand-category">{brandingModal.title}</div>
+                          <div className="brand-title">Design {Math.ceil(brandingImages.length * 2 / 3) + i + 1}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             )}
           </div>

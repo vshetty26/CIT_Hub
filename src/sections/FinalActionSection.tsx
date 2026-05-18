@@ -6,7 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function FinalActionSection() {
+export default function FinalActionSection({ onStartProject }: { onStartProject?: () => void }) {
   const sectionRef = useRef<HTMLElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
@@ -39,7 +39,7 @@ export default function FinalActionSection() {
           pin: true,
           scrub: 1,
           start: 'top top',
-          end: '+=1800',
+          end: '+=800',
         }
       });
 
@@ -236,7 +236,13 @@ export default function FinalActionSection() {
         </h2>
 
         <div className="final-cta-group">
-          <a href="#contact" className="btn-primary"
+          <a 
+            href="#" 
+            className="btn-primary"
+            onClick={(e) => {
+              e.preventDefault();
+              onStartProject?.();
+            }}
             onMouseEnter={e => {
               e.currentTarget.style.transform = 'translateY(-2px)';
               e.currentTarget.style.backgroundColor = 'var(--secondary)';

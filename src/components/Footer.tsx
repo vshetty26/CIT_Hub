@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 
-export default function Footer() {
+export default function Footer({ onContactClick }: { onContactClick?: () => void }) {
   return (
     <footer
       className="footer-section"
@@ -67,7 +67,7 @@ export default function Footer() {
               height={48}
               style={{
                 objectFit: 'contain',
-                height: '44px',
+                height: '56px',
                 width: 'auto',
                 filter: 'var(--logo-filter)',
               }}
@@ -87,23 +87,48 @@ export default function Footer() {
         <div className="footer-links-group" style={{ display: 'flex', gap: '80px', flexWrap: 'wrap' }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: '13px', fontWeight: 600, color: 'var(--text)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>Navigation</span>
-            {['Home', 'About', 'Work', 'Capabilities', 'Contact'].map(item => (
+            {['Home', 'About', 'Work', 'Capabilities'].map(item => (
               <a key={item} href={`#${item.toLowerCase()}`} style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: '14px', color: 'var(--secondary)', textDecoration: 'none', transition: 'color 0.2s' }}
                  onMouseEnter={e => e.currentTarget.style.color = 'var(--text)'}
                  onMouseLeave={e => e.currentTarget.style.color = 'var(--secondary)'}>
                 {item}
               </a>
             ))}
+            <button 
+              onClick={(e) => {
+                e.preventDefault();
+                onContactClick?.();
+              }}
+              style={{ 
+                fontFamily: "'Space Grotesk', sans-serif", 
+                fontSize: '14px', 
+                color: 'var(--secondary)', 
+                textDecoration: 'none', 
+                transition: 'color 0.2s',
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                padding: 0,
+                textAlign: 'left'
+              }}
+              onMouseEnter={e => e.currentTarget.style.color = 'var(--text)'}
+              onMouseLeave={e => e.currentTarget.style.color = 'var(--secondary)'}
+            >
+              Contact
+            </button>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: '13px', fontWeight: 600, color: 'var(--text)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>Social</span>
-            {['Twitter', 'Instagram', 'LinkedIn', 'Dribbble'].map(item => (
-              <a key={item} href="#" style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: '14px', color: 'var(--secondary)', textDecoration: 'none', transition: 'color 0.2s' }}
-                 onMouseEnter={e => e.currentTarget.style.color = 'var(--text)'}
-                 onMouseLeave={e => e.currentTarget.style.color = 'var(--secondary)'}>
-                {item}
-              </a>
-            ))}
+            <a href="https://www.instagram.com/creativeit.melbourne/" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: '14px', color: 'var(--secondary)', textDecoration: 'none', transition: 'color 0.2s' }}
+               onMouseEnter={e => e.currentTarget.style.color = 'var(--text)'}
+               onMouseLeave={e => e.currentTarget.style.color = 'var(--secondary)'}>
+              Instagram
+            </a>
+            <a href="#" style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: '14px', color: 'var(--secondary)', textDecoration: 'none', transition: 'color 0.2s' }}
+               onMouseEnter={e => e.currentTarget.style.color = 'var(--text)'}
+               onMouseLeave={e => e.currentTarget.style.color = 'var(--secondary)'}>
+              Facebook
+            </a>
           </div>
         </div>
       </div>

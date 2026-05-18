@@ -12,7 +12,7 @@ const NAV_ITEMS = [
   { name: 'Contact',      id: 'contact' },
 ];
 
-export default function Navbar() {
+export default function Navbar({ onContactClick }: { onContactClick?: () => void }) {
   const [scrolled,        setScrolled]        = useState(false);
   const [theme,           setTheme]           = useState<'light' | 'dark'>('light');
   const [mobileMenuOpen,  setMobileMenuOpen]  = useState(false);
@@ -233,7 +233,7 @@ export default function Navbar() {
             priority
             style={{
               objectFit: 'contain',
-              height: '52px',
+              height: '64px',
               width: 'auto',
               filter: theme === 'dark' ? 'invert(1)' : 'none',
               transition: 'filter 0.3s ease',
@@ -254,15 +254,58 @@ export default function Navbar() {
                 {item.name}
               </a>
             ))}
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                onContactClick?.();
+              }}
+              className="nav-link"
+              style={{
+                background: 'none',
+                border: 'none',
+                padding: 0,
+                cursor: 'pointer',
+              }}
+            >
+              Contact
+            </button>
           </div>
 
-          <a
-            href={isHome ? '#contact' : '/#contact'}
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              onContactClick?.();
+            }}
             className="nav-cta"
-            onClick={(e) => handleNavClick(e, 'contact')}
+            style={{
+              fontFamily: "'Space Grotesk', sans-serif",
+              fontSize: '12px',
+              fontWeight: 600,
+              color: 'var(--bg)',
+              backgroundColor: 'var(--text)',
+              padding: '12px 24px',
+              borderRadius: '100px',
+              textDecoration: 'none',
+              letterSpacing: '0.05em',
+              textTransform: 'uppercase',
+              transition: 'transform 0.2s, background-color 0.2s',
+              flexShrink: 0,
+              cursor: 'pointer',
+              border: 'none',
+              display: 'inline-flex',
+              alignItems: 'center',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.backgroundColor = 'var(--secondary)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.backgroundColor = 'var(--text)';
+            }}
           >
             Let's Talk
-          </a>
+          </button>
 
           <button onClick={toggleTheme} className="nav-theme-btn" aria-label="Toggle theme">
             <ThemeIcon theme={theme} />
@@ -308,9 +351,33 @@ export default function Navbar() {
           </a>
         ))}
 
-        <a
-          href={isHome ? '#contact' : '/#contact'}
-          onClick={(e) => handleNavClick(e, 'contact')}
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            setMobileMenuOpen(false);
+            onContactClick?.();
+          }}
+          className="mobile-link"
+          style={{
+            opacity:   mobileMenuOpen ? 1 : 0,
+            transform: mobileMenuOpen ? 'translateY(0)' : 'translateY(20px)',
+            transition: `all 0.5s cubic-bezier(0.16, 1, 0.3, 1)`,
+            transitionDelay: `${NAV_ITEMS.length * 0.05}s`,
+            background: 'none',
+            border: 'none',
+            padding: 0,
+            cursor: 'pointer',
+          }}
+        >
+          Contact
+        </button>
+
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            setMobileMenuOpen(false);
+            onContactClick?.();
+          }}
           style={{
             fontFamily: "'Space Grotesk', sans-serif",
             fontSize: '16px',
@@ -327,10 +394,12 @@ export default function Navbar() {
             transform: mobileMenuOpen ? 'translateY(0)' : 'translateY(20px)',
             transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
             transitionDelay: '0.2s',
+            border: 'none',
+            cursor: 'pointer',
           }}
         >
           Let's Talk
-        </a>
+        </button>
       </div>
     </>
   );
