@@ -13,9 +13,7 @@ export default function PortfolioSection() {
   const carouselRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
-  const filteredProjects = projectsData.filter(p =>
-    activeCategory === 'All' ? true : p.category === activeCategory
-  );
+  const filteredProjects = projectsData; // Show all projects
 
   // Update scaling dynamics natively based on continuous scroll position
   useEffect(() => {
@@ -356,29 +354,7 @@ export default function PortfolioSection() {
           A curated collection of branding, web, and digital experiences.
         </p>
 
-        {/* CATEGORY TABS */}
-        <div className="cat-tabs-container" style={{
-          display: 'flex',
-          gap: '12px',
-          justifyContent: 'center',
-          flexWrap: 'nowrap',
-          width: '100%'
-        }}>
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              className={`cat-btn ${activeCategory === cat ? 'active' : ''}`}
-              onClick={() => {
-                setActiveCategory(cat);
-                if (carouselRef.current) {
-                  carouselRef.current.scrollTo({ left: 0, behavior: 'smooth' });
-                }
-              }}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
+        {/* CATEGORY TABS - REMOVED */}
       </div>
 
       {/* CAROUSEL WRAPPER WITH ARROWS */}
