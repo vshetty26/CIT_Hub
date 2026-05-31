@@ -267,6 +267,11 @@ export default function PortfolioSection() {
         @media (max-width: 768px) {
           .port-card {
             width: 88vw;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 0 !important;
+            transform: scale(1) !important;
+            opacity: 1 !important;
           }
           .port-track {
             padding: 32px 6vw 64px !important;
@@ -289,11 +294,14 @@ export default function PortfolioSection() {
           }
           .port-img-wrap {
             border-radius: 16px !important;
-            aspect-ratio: 4/3 !important;
-            min-height: 350px !important;
+            aspect-ratio: 16/9 !important;
+            min-height: 280px !important;
+            width: 100% !important;
           }
           .port-content {
-            gap: 6px !important;
+            gap: 12px !important;
+            padding: 16px !important;
+            text-align: left !important;
           }
           .port-content h3 {
             font-size: 18px !important;
