@@ -656,9 +656,66 @@ export const projectsData: ProjectData[] = [
       "Fitness Tadka Mantra – we believe in healthy diet for a healthy body, mind and soul. The meals are designed keeping in mind your required Calorie intake according to daily routine and the goals you want to achieve. Meals provided to you will not only satisfy your taste buds but also make you feel lighter. All artworks are under copyright © Cithub. Here's to your continued success!"
     ],
     images: [
-      '/Fitness%20Tadka/logo.png',
-      '/Fitness%20Tadka/image%20copy.png',
-      '/Fitness%20Tadka/image%20copy%202.png'
+      '/projects/Fitness%20Tadka/logo.png',
+      '/projects/Fitness%20Tadka/image%20copy.png',
+      '/projects/Fitness%20Tadka/image%20copy%202.png'
+    ]
+  },
+  {
+    id: 'wizwealth-finance',
+    slug: 'wizwealth-finance',
+    title: 'WizWealth Finance',
+    category: 'Branding',
+    tag: 'Logo & Identity',
+    thumbnail: '/projects/WizWealth%20Finance/logo.png',
+    client: 'Ripan Sethi & Gagan Sethi',
+    description: [
+      "CIT HUB design team have been extremely creative in putting up an elegant branding for a new finance company WizWealth Finance. An inspiring Logo, Business Card and a refreshing website that offers a professional look and feel with easy information access for the customers. Congratulation and Best of luck to the whole team for their new venture.",
+      "All artworks are under copyright © cithub. Here's to your continued success and prosperity in the financial services industry!"
+    ],
+    images: [
+      '/projects/WizWealth%20Finance/logo.png',
+      '/projects/WizWealth%20Finance/image%20copy.png',
+      '/projects/WizWealth%20Finance/image%20copy%202.png',
+      '/projects/WizWealth%20Finance/image%20copy%203.png'
+    ]
+  },
+  {
+    id: 'my-help',
+    slug: 'my-help',
+    title: 'My Help',
+    category: 'Branding',
+    tag: 'Logo & Identity',
+    thumbnail: '/projects/My%20Help/logo.png',
+    client: 'Nikhil',
+    description: [
+      "My Help Services hired CIT Hub to rebrand their existing brand. The team designed an inspiring Logo and an elegant showcasing website. The rebrand successfully captures the essence of their service-oriented business with a modern and professional aesthetic.",
+      "Please visit their website at www.myhelpservices.com.au. All images are under copyright © CIT Hub. Here's to your continued success!"
+    ],
+    images: [
+      '/projects/My%20Help/logo.png',
+      '/projects/My%20Help/image%20copy.png'
+    ]
+  },
+  {
+    id: 'tasty-junction',
+    slug: 'tasty-junction',
+    title: 'Tasty Junction',
+    category: 'Branding',
+    tag: 'Logo & Identity',
+    thumbnail: '/projects/Tasty%20Junction/logo.png',
+    client: 'Daljit Singh',
+    description: [
+      "Tasty Junction hired CIT Hub for putting up the branding for their new Indian Restaurant. The team at CIT Hub captured the client requirements at the detail level and was successful in delivering extremely creative branding. The team put together an inspiring Logo, Takeaway Menu, Light box design, Window displays and a refreshing website.",
+      "Website: www.tastyjunction.com.au. Client Testimonial: 'Fantastic Work with great attention to detail.' All images are under copyright © cithub. Here's to your continued success!"
+    ],
+    images: [
+      '/projects/Tasty%20Junction/logo.png',
+      '/projects/Tasty%20Junction/image.png',
+      '/projects/Tasty%20Junction/image%20copy.png',
+      '/projects/Tasty%20Junction/image%20copy%202.png',
+      '/projects/Tasty%20Junction/image%20copy%204.png',
+      '/projects/Tasty%20Junction/image%20copy%205.png'
     ]
   }
 ];

@@ -309,7 +309,11 @@ export default function PortfolioSection() {
             padding: 10px 24px;
           }
           .arrow-btn {
-            display: none !important;
+            display: flex !important;
+            width: 40px !important;
+            height: 40px !important;
+            font-size: 18px !important;
+            margin-top: -80px !important;
           }
         }
         @media (min-width: 769px) and (max-width: 900px) {
@@ -776,8 +780,8 @@ export default function PortfolioSection() {
             .brand-content { position:absolute; bottom:0; left:0; width:100%; padding:32px; display:flex; flex-direction:column; gap:6px; z-index:10; opacity:0; transform:translateY(15px); transition:opacity 0.6s cubic-bezier(0.25,1,0.3,1), transform 0.6s cubic-bezier(0.25,1,0.3,1); }
             .brand-category { font-family:'Space Grotesk',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.15em; color:#a1a1aa; text-transform:uppercase; }
             .brand-title { font-family:'Syne',sans-serif; font-size:24px; font-weight:600; color:#ffffff; letter-spacing:-0.01em; }
-            @media(max-width:900px){ .brand-grid{ flex-direction:column; gap:20px; } .brand-col{ gap:16px; } }
-            @media(max-width:560px){ .brand-grid{ flex-direction:column; gap:16px; } .brand-col{ gap:16px; } }
+            @media(max-width:900px){ .brand-grid{ flex-direction:column; gap:20px; } .brand-col{ gap:16px; margin-top:0 !important; } .brand-img-wrap { min-height:250px; } }
+            @media(max-width:560px){ .brand-grid{ flex-direction:column; gap:16px; } .brand-col{ gap:16px; margin-top:0 !important; } .brand-img-wrap { min-height:280px; } }
           ` }} />
 
           {/* Modal content — stop clicks from bubbling to backdrop */}
@@ -837,13 +841,10 @@ export default function PortfolioSection() {
                       onClick={() => setLightboxSrc(src)}
                       style={{ position: 'relative' }}
                     >
-                      <Image
+                      <img
                         src={src}
                         alt={`${brandingModal.title} ${i + 1}`}
-                        fill
-                        sizes="(max-width: 560px) 100vw, (max-width: 900px) 100vw, 33vw"
-                        quality={75}
-                        style={{ objectFit: 'cover' }}
+                        style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block', filter: 'grayscale(20%) contrast(1.1)', padding: '12px' }}
                       />
                       <div className="brand-overlay" />
                       <div className="brand-content">
@@ -864,13 +865,10 @@ export default function PortfolioSection() {
                         onClick={() => setLightboxSrc(src)}
                         style={{ position: 'relative' }}
                       >
-                        <Image
+                        <img
                           src={src}
                           alt={`${brandingModal.title} ${Math.ceil(brandingImages.length / 3) + i + 1}`}
-                          fill
-                          sizes="(max-width: 560px) 100vw, (max-width: 900px) 100vw, 33vw"
-                          quality={75}
-                          style={{ objectFit: 'cover' }}
+                          style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block', filter: 'grayscale(20%) contrast(1.1)', padding: '12px' }}
                         />
                         <div className="brand-overlay" />
                         <div className="brand-content">
@@ -892,13 +890,10 @@ export default function PortfolioSection() {
                         onClick={() => setLightboxSrc(src)}
                         style={{ position: 'relative' }}
                       >
-                        <Image
+                        <img
                           src={src}
                           alt={`${brandingModal.title} ${Math.ceil(brandingImages.length * 2 / 3) + i + 1}`}
-                          fill
-                          sizes="(max-width: 560px) 100vw, (max-width: 900px) 100vw, 33vw"
-                          quality={75}
-                          style={{ objectFit: 'cover' }}
+                          style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block', filter: 'grayscale(20%) contrast(1.1)', padding: '12px' }}
                         />
                         <div className="brand-overlay" />
                         <div className="brand-content">
