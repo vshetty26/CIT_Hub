@@ -8,9 +8,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const images = [
-  { src: '/branding_dark.png', label: 'Branding — Identity Systems' },
-  { src: '/marketing_dark.png', label: 'Marketing — Campaigns & Growth' },
-  { src: '/web_dark.png', label: 'Web — Digital Experiences' },
+  { src: '/SELECTED WORK/branding.jpg', label: 'Branding — Identity Systems' },
+  { src: '/SELECTED WORK/marketing.png', label: 'Marketing — Campaigns & Growth' },
+  { src: '/SELECTED WORK/web.jpg', label: 'Web — Digital Experiences' },
 ];
 
 export default function VisualImpactSection() {
