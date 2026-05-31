@@ -10,6 +10,8 @@ const nextConfig: NextConfig = {
     formats: ['image/avif', 'image/webp'],
     // Cache optimized images for 31 days to avoid re-encoding on every visit
     minimumCacheTTL: 2678400,
+    // Allow unoptimized images in development
+    unoptimized: process.env.NODE_ENV === 'development',
   },
 };
 

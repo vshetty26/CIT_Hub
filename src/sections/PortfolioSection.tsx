@@ -187,6 +187,13 @@ export default function PortfolioSection() {
           box-shadow: 0 20px 40px rgba(0,0,0,0.08);
           border: 1px solid var(--border-color);
         }
+        
+        @media (max-width: 768px) {
+          .port-card {
+            transform: scale(1) !important;
+            opacity: 1 !important;
+          }
+        }
 
         .port-img {
           width: 100%;
@@ -282,6 +289,14 @@ export default function PortfolioSection() {
           }
           .port-img-wrap {
             border-radius: 16px !important;
+            aspect-ratio: 4/3 !important;
+            min-height: 350px !important;
+          }
+          .port-content {
+            gap: 6px !important;
+          }
+          .port-content h3 {
+            font-size: 18px !important;
           }
           /* Show overlay CTA on mobile tap (always visible) */
           .port-card .port-overlay {
@@ -290,6 +305,11 @@ export default function PortfolioSection() {
           }
           .port-card .port-btn {
             transform: translateY(0) !important;
+            font-size: 12px;
+            padding: 10px 24px;
+          }
+          .arrow-btn {
+            display: none !important;
           }
         }
         @media (min-width: 769px) and (max-width: 900px) {
@@ -370,8 +390,9 @@ export default function PortfolioSection() {
             scrollSnapType: 'x mandatory',
             scrollBehavior: 'smooth',
             width: '100%',
-            padding: '40px 20vw 80px', // Reduced left padding
-            boxSizing: 'border-box'
+            padding: 'clamp(24px, 5vw, 40px) clamp(5vw, 10vw, 20vw) clamp(48px, 10vw, 80px)',
+            boxSizing: 'border-box',
+            gap: '24px'
           }}
         >
           {filteredProjects.map((project, i) => (
@@ -384,10 +405,11 @@ export default function PortfolioSection() {
                 <Image
                   src={project.thumbnail}
                   alt={project.title}
-                  fill
+                  width={600}
+                  height={450}
                   sizes="(max-width: 768px) 85vw, 600px"
                   quality={75}
-                  style={{ objectFit: 'cover', transition: 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)' }}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)' }}
                   className="port-img"
                 />
                 <div className="port-overlay">
@@ -614,62 +636,112 @@ export default function PortfolioSection() {
           alignItems: 'stretch',
         }}>
           {[
-            { label: 'Social Media Creatives', icon: '⬡', desc: 'Thumb-stopping content for every platform' },
-            { label: 'Campaign Designs',        icon: '◈', desc: 'End-to-end campaign visuals' },
-            { label: 'Ads / Promotions',        icon: '▲', desc: 'High-conversion ad creatives' },
-            { label: 'Content Design',           icon: '▭', desc: 'Consistent, on-brand content systems' },
-          ].map((item) => (
-            <a
-              key={item.label}
-              href="https://www.instagram.com/creativeit.melbourne/"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', height: '100%' }}
-            >
-              <div style={{
-                border: '1px solid var(--border-color)',
-                borderRadius: '20px',
-                padding: '40px 32px',
-                backgroundColor: 'var(--surface)',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '16px',
-                transition: 'border-color 0.3s ease, transform 0.3s ease',
-                cursor: 'pointer',
-                flex: 1,
-              }}
-                onMouseEnter={e => {
-                  (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(59,130,246,0.4)';
-                  (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-4px)';
-                }}
-                onMouseLeave={e => {
-                  (e.currentTarget as HTMLDivElement).style.borderColor = 'var(--border-color)';
-                  (e.currentTarget as HTMLDivElement).style.transform = 'translateY(0)';
-                }}
-              >
-                <span style={{ fontSize: '28px', color: 'var(--text)' }}>{item.icon}</span>
-                <div>
-                  <div style={{
-                    fontFamily: "'Syne', sans-serif",
-                    fontSize: '18px',
-                    fontWeight: 700,
-                    color: 'var(--text)',
-                    marginBottom: '8px',
-                  }}>
-                    {item.label}
-                  </div>
-                  <div style={{
-                    fontFamily: "'Space Grotesk', sans-serif",
-                    fontSize: '14px',
-                    color: 'var(--secondary)',
-                    lineHeight: 1.5,
-                  }}>
-                    {item.desc}
+            { label: 'Social Media Creatives', icon: '⬡', desc: 'Thumb-stopping content for every platform', slug: 'socialmediacreatives', isClickable: true },
+            { label: 'Content Design',           icon: '▭', desc: 'Consistent, on-brand content systems', slug: '', isClickable: false, href: 'https://mcubemedia.com.au/' },
+          ].map((item) => {
+            if (item.isClickable) {
+              return (
+                <div
+                  key={item.label}
+                  onClick={() => openBrandingGallery(item.label, item.slug)}
+                  style={{
+                    border: '1px solid var(--border-color)',
+                    borderRadius: '20px',
+                    padding: '40px 32px',
+                    backgroundColor: 'var(--surface)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '16px',
+                    transition: 'border-color 0.3s ease, transform 0.3s ease',
+                    cursor: 'pointer',
+                    flex: 1,
+                  }}
+                  onMouseEnter={e => {
+                    (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(59,130,246,0.4)';
+                    (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-4px)';
+                  }}
+                  onMouseLeave={e => {
+                    (e.currentTarget as HTMLDivElement).style.borderColor = 'var(--border-color)';
+                    (e.currentTarget as HTMLDivElement).style.transform = 'translateY(0)';
+                  }}
+                >
+                  <span style={{ fontSize: '28px', color: 'var(--text)' }}>{item.icon}</span>
+                  <div>
+                    <div style={{
+                      fontFamily: "'Syne', sans-serif",
+                      fontSize: '18px',
+                      fontWeight: 700,
+                      color: 'var(--text)',
+                      marginBottom: '8px',
+                    }}>
+                      {item.label}
+                    </div>
+                    <div style={{
+                      fontFamily: "'Space Grotesk', sans-serif",
+                      fontSize: '14px',
+                      color: 'var(--secondary)',
+                      lineHeight: 1.5,
+                    }}>
+                      {item.desc}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </a>
-          ))}
+              );
+            } else {
+              return (
+                <a
+                  key={item.label}
+                  href={item.href || "https://www.instagram.com/creativeit.melbourne/"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', height: '100%' }}
+                >
+                  <div style={{
+                    border: '1px solid var(--border-color)',
+                    borderRadius: '20px',
+                    padding: '40px 32px',
+                    backgroundColor: 'var(--surface)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '16px',
+                    transition: 'border-color 0.3s ease, transform 0.3s ease',
+                    cursor: 'pointer',
+                    flex: 1,
+                  }}
+                    onMouseEnter={e => {
+                      (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(59,130,246,0.4)';
+                      (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-4px)';
+                    }}
+                    onMouseLeave={e => {
+                      (e.currentTarget as HTMLDivElement).style.borderColor = 'var(--border-color)';
+                      (e.currentTarget as HTMLDivElement).style.transform = 'translateY(0)';
+                    }}
+                  >
+                    <span style={{ fontSize: '28px', color: 'var(--text)' }}>{item.icon}</span>
+                    <div>
+                      <div style={{
+                        fontFamily: "'Syne', sans-serif",
+                        fontSize: '18px',
+                        fontWeight: 700,
+                        color: 'var(--text)',
+                        marginBottom: '8px',
+                      }}>
+                        {item.label}
+                      </div>
+                      <div style={{
+                        fontFamily: "'Space Grotesk', sans-serif",
+                        fontSize: '14px',
+                        color: 'var(--secondary)',
+                        lineHeight: 1.5,
+                      }}>
+                        {item.desc}
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              );
+            }
+          })}
         </div>
       </div>
       {/* ─── BRANDING GALLERY MODAL ────────────────────────────────────────── */}
@@ -694,11 +766,11 @@ export default function PortfolioSection() {
             .brand-modal-inner { animation: slideUp 0.32s cubic-bezier(0.25,1,0.3,1); }
             .brand-grid { display:flex; gap:24px; align-items:flex-start; }
             .brand-col { display:flex; flex-direction:column; gap:32px; flex:1; }
-            .brand-img-wrap { position:relative; overflow:hidden; background:var(--surface); border:1px solid rgba(255,255,255,0.06); border-radius:16px; cursor:pointer; transition:transform 0.35s cubic-bezier(0.25,1,0.3,1); width:100%; }
+            .brand-img-wrap { position:relative; overflow:hidden; background:var(--surface); border:1px solid rgba(255,255,255,0.06); border-radius:16px; cursor:pointer; transition:transform 0.35s cubic-bezier(0.25,1,0.3,1); width:100%; min-height:300px; }
             .brand-img-wrap:hover { transform:scale(1.03); }
             .brand-img-wrap:hover .brand-overlay { background:rgba(0,0,0,0.5); }
             .brand-img-wrap:hover .brand-content { opacity:1; transform:translateY(0); }
-            .brand-img-wrap img { width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(20%) contrast(1.1); transition:transform 0.9s cubic-bezier(0.25,1,0.3,1); }
+            .brand-img-wrap img { width:100%; height:100%; object-fit:contain; display:block; filter:grayscale(20%) contrast(1.1); transition:transform 0.9s cubic-bezier(0.25,1,0.3,1); padding:12px; }
             .brand-img-wrap:hover img { transform:scale(1.06); }
             .brand-overlay { position:absolute; inset:0; background:rgba(0,0,0,0); transition:background 0.6s ease; pointer-events:none; }
             .brand-content { position:absolute; bottom:0; left:0; width:100%; padding:32px; display:flex; flex-direction:column; gap:6px; z-index:10; opacity:0; transform:translateY(15px); transition:opacity 0.6s cubic-bezier(0.25,1,0.3,1), transform 0.6s cubic-bezier(0.25,1,0.3,1); }
@@ -763,7 +835,7 @@ export default function PortfolioSection() {
                       key={i}
                       className="brand-img-wrap"
                       onClick={() => setLightboxSrc(src)}
-                      style={{ position: 'relative', aspectRatio: i % 2 === 0 ? '4/5' : '1/1' }}
+                      style={{ position: 'relative' }}
                     >
                       <Image
                         src={src}
@@ -790,7 +862,7 @@ export default function PortfolioSection() {
                         key={i}
                         className="brand-img-wrap"
                         onClick={() => setLightboxSrc(src)}
-                        style={{ position: 'relative', aspectRatio: i % 2 === 0 ? '3/4' : '4/5' }}
+                        style={{ position: 'relative' }}
                       >
                         <Image
                           src={src}
@@ -818,7 +890,7 @@ export default function PortfolioSection() {
                         key={i}
                         className="brand-img-wrap"
                         onClick={() => setLightboxSrc(src)}
-                        style={{ position: 'relative', aspectRatio: i % 2 === 0 ? '1/1' : '3/4' }}
+                        style={{ position: 'relative' }}
                       >
                         <Image
                           src={src}

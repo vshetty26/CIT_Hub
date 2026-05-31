@@ -7,7 +7,7 @@ import Image from 'next/image';
 // TEAM DATA
 // Place portrait images in:  /public/team/manraj.jpg
 //                            /public/team/rajiv.jpg
-//                            /public/team/sourabh.jpg
+//                            /public/team/keshav.png
 // ─────────────────────────────────────────────────────────────────────────────
 const TEAM = [
   {
@@ -32,13 +32,13 @@ const TEAM = [
   },
   {
     id: 'sourabh',
-    name: 'Sourabh Arora',
+    name: 'Keshav',
     role: 'Designer',
     roleLabel: 'Graphic Designer',
     navLabel: 'Designer',
-    image: '/team/sourabh.jpg',
+    image: '/team/keshav.png',
     description:
-      'With over 9+ years of experience in multimedia, graphic design, and visual effects, Sourabh brings creative excellence to every project. He has worked with leading production houses including Red Chillies, Prime Focus, and NY VFX.',
+      'With over 9+ years of experience in multimedia, graphic design, and visual effects, Keshav brings creative excellence to every project. He has worked with leading production houses including Red Chillies, Prime Focus, and NY VFX.',
   },
 ];
 

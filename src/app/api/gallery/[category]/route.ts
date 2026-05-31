@@ -8,6 +8,7 @@ const FOLDER_MAP: Record<string, string> = {
   businesscard: 'businesscard',
   brochures:    'brochures',
   signages:     'signages',
+  socialmediacreatives: 'socialmediacreatives',
 };
 
 const IMAGE_EXTS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.avif', '.gif']);

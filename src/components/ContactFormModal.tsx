@@ -53,13 +53,17 @@ export default function ContactFormModal({ isOpen, onClose, initialTab = 'contac
     setLoading(true);
 
     try {
+      // For project form, use projectType as subject if subject is empty
+      const submitData = {
+        type: activeTab,
+        ...formData,
+        subject: formData.subject || formData.projectType || 'Project Inquiry',
+      };
+
       const response = await fetch('/api/send-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          type: activeTab,
-          ...formData,
-        }),
+        body: JSON.stringify(submitData),
       });
 
       if (response.ok) {
@@ -69,9 +73,14 @@ export default function ContactFormModal({ isOpen, onClose, initialTab = 'contac
           setSubmitted(false);
           onClose();
         }, 2000);
+      } else {
+        const error = await response.json();
+        console.error('Form submission error:', error);
+        alert('Error submitting form. Please try again.');
       }
     } catch (error) {
       console.error('Error submitting form:', error);
+      alert('Error submitting form. Please try again.');
     } finally {
       setLoading(false);
     }

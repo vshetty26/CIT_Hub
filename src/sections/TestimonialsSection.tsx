@@ -378,7 +378,10 @@ export default function TestimonialsSection() {
           justifyContent: 'center',
         }}
       >
-        <button
+        <a
+          href="https://g.page/r/CTHzbKXAszrSEAE/review"
+          target="_blank"
+          rel="noopener noreferrer"
           style={{
             padding: '12px 28px',
             background: 'rgba(59, 130, 246, 0.1)',
@@ -394,6 +397,7 @@ export default function TestimonialsSection() {
             alignItems: 'center',
             gap: '8px',
             letterSpacing: '0.05em',
+            textDecoration: 'none',
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.background = 'rgba(59, 130, 246, 0.15)';
@@ -405,7 +409,7 @@ export default function TestimonialsSection() {
           }}
         >
           ⭐ Leave a Google Review
-        </button>
+        </a>
       </div>
     </section>
   );
