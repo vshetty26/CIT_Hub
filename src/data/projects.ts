@@ -187,7 +187,7 @@ export const projectsData: ProjectData[] = [
     title: 'Omaraa Aged Care',
     category: 'Development',
     tag: 'Full Stack',
-    thumbnail: '/projects/Omaraagedcare/Omaraagedcare1.jpg',
+    thumbnail: '/projects/Omaraagedcare/logo.jpg',
     client: 'Omaraa Aged Care',
     likes: 42,
     description: [
@@ -197,8 +197,7 @@ export const projectsData: ProjectData[] = [
     images: [
       '/projects/Omaraagedcare/Omaraagedcare1.jpg',
       '/projects/Omaraagedcare/Omaraagedcare2.jpg',
-      '/projects/Omaraagedcare/Omaraagedcare3.jpg',
-      '/projects/Omaraagedcare/Omaraagedcare4.jpg'
+      '/projects/Omaraagedcare/Omaraagedcare3.jpg'
     ]
   },
   {
@@ -307,7 +306,7 @@ export const projectsData: ProjectData[] = [
     title: 'Luxel Developers',
     category: 'Development',
     tag: 'Full Stack',
-    thumbnail: '/projects/Luxeldevlopers/Luxeldevlopers1.jpg',
+    thumbnail: '/projects/Luxeldevlopers/logo.jpg',
     client: 'Luxel Developers',
     likes: 31,
     description: [
@@ -318,7 +317,7 @@ export const projectsData: ProjectData[] = [
       '/projects/Luxeldevlopers/Luxeldevlopers1.jpg',
       '/projects/Luxeldevlopers/Luxeldevlopers2.jpg',
       '/projects/Luxeldevlopers/Luxeldevlopers3.jpg',
-      '/projects/Luxeldevlopers/Luxeldevlopers4.jpg'
+      '/projects/Luxeldevlopers/logo.jpg'
     ]
   },
   {
