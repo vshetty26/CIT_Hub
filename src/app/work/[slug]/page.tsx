@@ -34,7 +34,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
       <Navbar />
       
       {/* Detail Wrapper layout matching mockups (Left: Images stack, Right: Sticky info) */}
-      <main style={{
+      <main className="project-grid" style={{
         flex: 1,
         maxWidth: '1400px',
         margin: '0 auto',
@@ -59,11 +59,33 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
                 order: -1; /* Puts right sidebar above images on mobile */
               }
             }
+            @media (max-width: 768px) {
+              .project-grid {
+                grid-template-columns: 1fr !important;
+                gap: 0 !important;
+                padding: 80px 24px 60px !important;
+              }
+              .project-images {
+                order: 1 !important;
+                gap: 16px !important;
+              }
+              .project-images > div {
+                border-radius: 12px !important;
+                margin-bottom: 0 !important;
+              }
+              .sticky-sidebar {
+                position: relative !important;
+                top: 0 !important;
+                order: 2 !important;
+                padding: 32px 0 !important;
+                gap: 24px !important;
+              }
+            }
           `
         }} />
 
         {/* LEFT COLUMN: Stacked Photos */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+        <div className="project-images" style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
           {project.images.map((imgSrc, i) => (
             <div key={i} style={{
               width: '100%',
@@ -188,7 +210,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
                fontFamily: "'Space Grotesk', sans-serif",
                fontWeight: 600
              }}>
-               <span style={{ fontSize: '18px' }}>♡</span> 0 LIKES
+               <span style={{ fontSize: '18px' }}>♡</span> {project.likes || 0} LIKES
              </button>
              
              <div style={{ display: 'flex', gap: '16px' }}>
