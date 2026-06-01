@@ -225,10 +225,21 @@ export default function PortfolioSection() {
           transform: translateY(20px);
           transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
           border: none;
-          pointer-events: auto; /* MUST BE CLICKABLE */
+          pointer-events: auto;
+          cursor: pointer;
         }
 
-        /* Hover only functions effectively when card is centrally active */
+        /* Show button always on center card (desktop) */
+        .port-card.is-center .port-overlay {
+          opacity: 1 !important;
+          pointer-events: auto !important;
+        }
+        .port-card.is-center .port-btn {
+          transform: translateY(0) !important;
+          pointer-events: auto !important;
+        }
+
+        /* Hover effects on center card */
         .port-card.is-center .port-img-wrap:hover .port-img {
           transform: scale(1.05);
         }
