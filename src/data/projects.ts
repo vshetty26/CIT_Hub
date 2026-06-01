@@ -246,7 +246,7 @@ export const projectsData: ProjectData[] = [
     title: 'ARN Haulage',
     category: 'Development',
     tag: 'Full Stack',
-    thumbnail: '/projects/Arnhaulage/Arnhaulage1.png',
+    thumbnail: '/projects/Arnhaulage/logo.jpg',
     client: 'ARN Haulage',
     likes: 33,
     description: [
