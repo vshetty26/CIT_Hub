@@ -1105,7 +1105,7 @@ export const projectsData: ProjectData[] = [
     title: 'MP Money Transfer Exchange',
     category: 'Branding',
     tag: 'Brand Design',
-    thumbnail: '/projects/MP%20Money%20Transfer%20Exchange/lofo.png',
+    thumbnail: '/projects/MP%20Money%20Transfer%20Exchange/logo.png',
     client: 'Sam Gillean',
     likes: 30,
     description: [
@@ -1113,7 +1113,7 @@ export const projectsData: ProjectData[] = [
       "All images are under copyright © CITHub"
     ],
     images: [
-      '/projects/MP%20Money%20Transfer%20Exchange/lofo.png'
+      '/projects/MP%20Money%20Transfer%20Exchange/logo.png'
     ]
   },
   {
