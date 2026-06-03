@@ -19,7 +19,7 @@ export const projectsData: ProjectData[] = [
     title: 'Learning Ladder',
     category: 'Development',
     tag: 'Web Design',
-    thumbnail: '/Learningladder/logo.png',
+    thumbnail: '/projects/Learningladder/logo.png',
     client: 'Learning Ladder',
     likes: 40,
     description: [
@@ -27,9 +27,10 @@ export const projectsData: ProjectData[] = [
       "The CIT HUB team is proud to have delivered a complete web design and development solution for Learning Ladder. Your commitment to providing a nurturing environment for children's growth and development is truly commendable. May this digital platform help families discover the exceptional care and learning experiences you provide!"
     ],
     images: [
-      '/Learningladder/logo.png',
-      '/Learningladder/image.png',
-      '/Learningladder/image%20copy.png'
+      '/projects/Learningladder/logo.png',
+      '/projects/Learningladder/image.png',
+      '/projects/Learningladder/image%20copy.png',
+      '/projects/Learningladder/image2.png'
     ]
   },
   {
