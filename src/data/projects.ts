@@ -1030,5 +1030,107 @@ export const projectsData: ProjectData[] = [
     images: [
       '/projects/Spicy%20By%20Nature/logo.png'
     ]
+  },
+  {
+    id: 'professional-mortgage-managers',
+    slug: 'professional-mortgage-managers',
+    title: 'Professional Mortgage Managers',
+    category: 'Branding',
+    tag: 'Brand Design',
+    thumbnail: '/projects/Professional%20Mortgage%20Managers/logo.png',
+    client: 'Seuj Barua',
+    likes: 29,
+    description: [
+      "Working with the team at Professional Mortgage Managers has been a wonderful experience for our staff at CIT Hub. CIT Hub design team have been extremely creative in putting up an elegant branding for Professional Mortgage Managers (PMM).",
+      "An inspiring banner that offers a professional look and feel with easy information access for the customers. Congratulation and Best of luck to the whole team for their new venture. We strive to provide our clients with the best quality services. All artworks are under copyright © cithub"
+    ],
+    images: [
+      '/projects/Professional%20Mortgage%20Managers/logo.png'
+    ]
+  },
+  {
+    id: 'lauria-exclusive-foods',
+    slug: 'lauria-exclusive-foods',
+    title: 'Lauria Exclusive Foods',
+    category: 'Branding',
+    tag: 'Website & Branding',
+    thumbnail: '/projects/Lauria%20Exclusive%20Foods/logo.png',
+    client: 'Letizia and Arian',
+    likes: 34,
+    description: [
+      "Working with the team at Lauria Exclusive Foods has been a wonderful experience for our staff at CIT Hub. The website and advertisements are all looking refreshingly fine.",
+      "The design team at CIT Hub have been extremely creative and open to collaboration with Lauria to create a masterpiece website www.lauriaexclusivefoods.com.au. Big shout out to M CUBE MEDIA for their beautiful product photography to make Lauria's products stand out. We strive to provide our clients with the best quality services. All artworks are under copyright © cithub"
+    ],
+    images: [
+      '/projects/Lauria%20Exclusive%20Foods/logo.png'
+    ]
+  },
+  {
+    id: 'enk',
+    slug: 'enk',
+    title: 'ENK',
+    category: 'Branding',
+    tag: 'Packaging Design',
+    thumbnail: '/projects/ENK/logo.png',
+    client: 'ENK Team',
+    likes: 27,
+    description: [
+      "Working with the team at ENK has been a wonderful experience for our staff at CIT Hub. CIT Hub design team have been extremely creative in putting up an elegant packaging for the team.",
+      "An inspiring packaging that offers a professional look and feel with easy information access for the customers. We strive to provide our clients with the best quality services. All artworks are under copyright © cithub"
+    ],
+    images: [
+      '/projects/ENK/logo.png'
+    ]
+  },
+  {
+    id: 'east-connection',
+    slug: 'east-connection',
+    title: 'EastConnection',
+    category: 'Branding',
+    tag: 'Brand Design',
+    thumbnail: '/projects/EastConnection/logo.png',
+    client: 'EastConnection Team',
+    likes: 26,
+    description: [
+      "CIT Hub design team have been extremely creative in putting up an elegant branding for the Foundation team. A Retro stylish Logo, branding offers a professional look yet maintaining an elegant character.",
+      "We strive to provide our clients with the best quality services. All artworks are under copyright © cithub"
+    ],
+    images: [
+      '/projects/EastConnection/logo.png'
+    ]
+  },
+  {
+    id: 'mp-money-transfer',
+    slug: 'mp-money-transfer',
+    title: 'MP Money Transfer Exchange',
+    category: 'Branding',
+    tag: 'Brand Design',
+    thumbnail: '/projects/MP%20Money%20Transfer%20Exchange/logo.png',
+    client: 'Sam Gillean',
+    likes: 30,
+    description: [
+      "With MP Money Transfer you can transfer money overseas in 3 quick steps. Register with us and get 0% transaction fee on your first transfer.",
+      "All images are under copyright © CITHub"
+    ],
+    images: [
+      '/projects/MP%20Money%20Transfer%20Exchange/logo.png'
+    ]
+  },
+  {
+    id: 'bar-fresko-restaurant',
+    slug: 'bar-fresko-restaurant',
+    title: 'Bar Fresko Restaurant',
+    category: 'Branding',
+    tag: 'Restaurant Branding',
+    thumbnail: '/projects/Bar%20Fresko%20Restaurant/logo.png',
+    client: 'Mark Selleck',
+    likes: 32,
+    description: [
+      "Since the launch of our first blend in 2000, Espresso di Manfredi has been much inspired by the generous, casual authenticity of modern café culture.",
+      "Our distinctive blends are a meeting of minds between celebrated chef Stefano Manfredi and master blender Wayne Archer. They're equal parts fearless genius and shrewd judgement. So you'll discover intense flavour profiles, the upshot of beans sourced from the world's best coffee terrain. We call it sprezzatura – effortless mastery. All images are under copyright © CITHub"
+    ],
+    images: [
+      '/projects/Bar%20Fresko%20Restaurant/logo.png'
+    ]
   }
 ];
