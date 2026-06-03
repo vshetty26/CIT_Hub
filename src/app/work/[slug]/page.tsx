@@ -18,6 +18,23 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
     window.scrollTo(0, 0);
   }, [slug]);
 
+  // Handle scroll to work section when navigating back
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (window.location.hash === '#work') {
+        setTimeout(() => {
+          const workSection = document.getElementById('work');
+          if (workSection) {
+            workSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 100);
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
   if (!project) {
     return (
       <div style={{ padding: '20vh 24px', textAlign: 'center', backgroundColor: 'var(--bg)', color: 'var(--text)', minHeight: '100vh' }}>
