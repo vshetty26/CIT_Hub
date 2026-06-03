@@ -1132,5 +1132,158 @@ export const projectsData: ProjectData[] = [
     images: [
       '/projects/Bar%20Fresko%20Restaurant/logo.png'
     ]
+  },
+  {
+    id: 'glencoe-farms-australia',
+    slug: 'glencoe-farms-australia',
+    title: 'Glencoe Farms Australia',
+    category: 'Branding',
+    tag: 'Website & Branding',
+    thumbnail: '/projects/Glencoe%20Farms%20Australia/logo.png',
+    client: 'Andry Henry',
+    likes: 31,
+    description: [
+      "Excited to launch new branding project for Glencoe Farms Australia (GFA). Glencoe Farms Australia is owned and operated by the Henry family in North West Victoria. For more info, please visit www.glencoefarmsaustralia.com.au.",
+      "The team at CIT Hub designed a refreshing online portal that offers a professional look and feel with easy information access for the customers. Congratulation and Best of luck to the whole team. All artworks are under copyright © cithub"
+    ],
+    images: [
+      '/projects/Glencoe%20Farms%20Australia/logo.png'
+    ]
+  },
+  {
+    id: 'curry-point',
+    slug: 'curry-point',
+    title: 'Curry Point',
+    category: 'Branding',
+    tag: 'Restaurant Branding',
+    thumbnail: '/projects/Curry%20Point/logo.png',
+    client: 'Jatinder Bir Singh',
+    likes: 29,
+    description: [
+      "'Curry Point Dabba' will leave you licking your fingers. Enjoy the dhaba style food in the center of Melbourne CBD at the corner of Bourke and Elizabeth St.",
+      "CIT Hub team designed a stylish logo depicting the hot curry served in a vibrant kitchenware. Don't forget to check out the endless take away menu. All images are under copyright © CIT Hub"
+    ],
+    images: [
+      '/projects/Curry%20Point/logo.png'
+    ]
+  },
+  {
+    id: 'ck-workforce',
+    slug: 'ck-workforce',
+    title: 'CK Workforce',
+    category: 'Branding',
+    tag: 'Website & Branding',
+    thumbnail: '/projects/CK%20Workforce/logo.png',
+    client: 'CK Workforce',
+    likes: 28,
+    description: [
+      "CKWorkforce (CKW) wanted CIT Hub to create a Branding that stands out of the crowd. Considering the client requirements we utilised the latest web technology – Parallax Scrolling in designing the website and inspiring Business Stationary.",
+      "The team at CIT Hub captured the client requirements at the detailed level and was successful in delivering an extremely creative artwork. All images are under copyright © CIT Hub"
+    ],
+    images: [
+      '/projects/CK%20Workforce/logo.png'
+    ]
+  },
+  {
+    id: 'desi-junction',
+    slug: 'desi-junction',
+    title: 'Desi Junction',
+    category: 'Branding',
+    tag: 'Restaurant Branding',
+    thumbnail: '/projects/Desi%20Junction/logo.png',
+    client: 'Aman',
+    likes: 30,
+    description: [
+      "Branding including Logo, Website, Business Cards, Flyers and Menu for the new Indian Restaurant.",
+      "All images are under copyright © mcubemedia"
+    ],
+    images: [
+      '/projects/Desi%20Junction/logo.png'
+    ]
+  },
+  {
+    id: 'kap-components',
+    slug: 'kap-components',
+    title: 'KAP Components',
+    category: 'Branding',
+    tag: 'Website & Branding',
+    thumbnail: '/projects/KAP%20Components/logo.png',
+    client: 'KAP Components',
+    likes: 32,
+    description: [
+      "KAP required branding for their extended branch in Australia and they hired CIT Hub to craft their marketing artworks. The team at CIT Hub put together a very artistic logo depicting the hardware industry.",
+      "The website showcase the company product catalogue in a very interactive way. All images are under copyright © CIT Hub"
+    ],
+    images: [
+      '/projects/KAP%20Components/logo.png'
+    ]
+  },
+  {
+    id: 'accountant-smart',
+    slug: 'accountant-smart',
+    title: 'AccountantSmart',
+    category: 'Branding',
+    tag: 'Website & Branding',
+    thumbnail: '/projects/AccountantSmart/logo.png',
+    client: 'AccountantSmart',
+    likes: 27,
+    description: [
+      "The site offers a professional look and feel with easy information access for the customers. AccountantSMART offers Tax & Accounting Compliance, Business Strategy, Wealth Management and Superannuation services in Melbourne.",
+      "We invite you to visit www.accountantsmart.com.au to check out the beautifully crafted work that CIT Hub provides. All images are under copyright © CIT Hub"
+    ],
+    images: [
+      '/projects/AccountantSmart/logo.png'
+    ]
+  },
+  {
+    id: 'xcell-homes',
+    slug: 'xcell-homes',
+    title: 'XCELL Homes',
+    category: 'Branding',
+    tag: 'Website & Branding',
+    thumbnail: '/projects/XCELL%20Homes/logo.png',
+    client: 'Anil & Shane',
+    likes: 33,
+    description: [
+      "CIT HUB delighted to add another successful project in their portfolio. CIT Hub team designed an inspiring logo depicting Melbourne skyscrapers with the touch of home building. Elegant website showcasing the business portfolio, please visit www.xcellhomes.com.au",
+      "The project delivered Logo | Business Card | Website successfully. Thanks to McubeMedia for organising the photographs- Job well done. All images are under copyright © CIT Hub"
+    ],
+    images: [
+      '/projects/XCELL%20Homes/logo.png'
+    ]
+  },
+  {
+    id: 'amp-touchwood',
+    slug: 'amp-touchwood',
+    title: 'AMP Touchwood',
+    category: 'Branding',
+    tag: 'Website & Branding',
+    thumbnail: '/projects/AMP%20Touchwood/logo.png',
+    client: 'AMP Touchwood',
+    likes: 29,
+    description: [
+      "Branding including Logo Design, Business Card, Website and Corporate Stationary for AMP Touchwood - specialised in landscaping and gardening services in Melbourne.",
+      "All images are under copyright © CIT Hub"
+    ],
+    images: [
+      '/projects/AMP%20Touchwood/logo.png'
+    ]
+  },
+  {
+    id: 'natural-stone-importers',
+    slug: 'natural-stone-importers',
+    title: 'Natural Stone Importers',
+    category: 'Branding',
+    tag: 'Brand Design',
+    thumbnail: '/projects/Natural%20Stone%20Importers/logo.png',
+    client: 'Manpreet Singh',
+    likes: 31,
+    description: [
+      "Natural Stone Importers hired CIT Hub for putting up the marketing campaign. The team at CIT Hub captured the client requirements at the detail level and was successful in delivering the extremely creative branding.",
+      "The team put together an inspiring Logo, Banner, Billboard, Brochure. All images are under copyright © CIT Hub"
+    ],
+    images: [
+      '/projects/Natural%20Stone%20Importers/logo.png'
+    ]
   }
 ];
