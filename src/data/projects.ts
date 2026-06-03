@@ -832,7 +832,7 @@ export const projectsData: ProjectData[] = [
     title: 'Werribee Indoor Sports Centre',
     category: 'Branding',
     tag: 'Website & Branding',
-    thumbnail: '/projects/MoviePoster/logo.png',
+    thumbnail: '/projects/Werribee%20Indoor%20Sports%20Centre/logo.png',
     client: 'Rohit, Gaurav and Manraj',
     likes: 34,
     description: [
@@ -841,7 +841,7 @@ export const projectsData: ProjectData[] = [
       "The Website and advertisement are all looking refreshingly fine. We urge all fans to go check out their great atmospheric indoor facilities and enjoy your time. An inspiring banner offers a professional look and feel with easy information access for customers."
     ],
     images: [
-      '/projects/MoviePoster/logo.png'
+      '/projects/Werribee%20Indoor%20Sports%20Centre/logo.png'
     ]
   },
   {
