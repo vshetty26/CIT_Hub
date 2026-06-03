@@ -860,5 +860,175 @@ export const projectsData: ProjectData[] = [
     images: [
       '/projects/German%20Club%20Tivoli/logo.png'
     ]
+  },
+  {
+    id: 'movie-poster',
+    slug: 'movie-poster',
+    title: 'MoviePoster',
+    category: 'Branding',
+    tag: 'Brand Design',
+    thumbnail: '/projects/MoviePoster/logo.png',
+    client: 'Rehmat Sandhu',
+    likes: 26,
+    description: [
+      "Working with the team at MoviePoster has been a wonderful experience for our staff at CIT Hub. CIT Hub design team have been extremely creative in putting up an elegant branding for the Foundation team.",
+      "An inspiring banner that offers a professional look and feel with easy information access for the customers. We strive to provide our clients with the best quality services. All artworks are under copyright © cithub"
+    ],
+    images: [
+      '/projects/MoviePoster/logo.png'
+    ]
+  },
+  {
+    id: 'olive-pizza',
+    slug: 'olive-pizza',
+    title: 'Olive Pizza',
+    category: 'Branding',
+    tag: 'Restaurant Branding',
+    thumbnail: '/projects/Olive%20Pizza/logo.png',
+    client: 'Amit Pandya',
+    likes: 31,
+    description: [
+      "Working with the team at Olive Pizza has been a wonderful experience for our staff at CIT Hub. CIT Hub design team have been extremely creative in putting up an elegant branding for Olives Pizza Werribee.",
+      "An inspiring banner that offers a professional look and feel with easy information access for the customers. Congratulation and Best of luck to the whole team for their new venture. We strive to provide our clients with the best quality services. All artworks are under copyright © cithub"
+    ],
+    images: [
+      '/projects/Olive%20Pizza/logo.png'
+    ]
+  },
+  {
+    id: 'tandoori-times',
+    slug: 'tandoori-times',
+    title: 'Tandoori Times',
+    category: 'Branding',
+    tag: 'Restaurant Branding',
+    thumbnail: '/projects/TandooriTimes/logo.png',
+    client: 'Aseem Tuteja',
+    likes: 33,
+    description: [
+      "Tandoori Times hired CIT Hub for putting up the branding for their new Indian Restaurant. The Team at CIT Hub captured the client requirements at the detail level and was successful in delivering the extremely creative branding.",
+      "We urge all our fans to go check out their great atmospheric restaurant, the brilliant buffet deals, catering options and enjoy your time as you're cared for by the dedicated and always-smiling staff. We strive to provide our clients with the best quality services. All artworks are under copyright © cithub"
+    ],
+    images: [
+      '/projects/TandooriTimes/logo.png'
+    ]
+  },
+  {
+    id: 'msc',
+    slug: 'msc',
+    title: 'Melbourne Service Club',
+    category: 'Branding',
+    tag: 'Brand Design',
+    thumbnail: '/projects/MSC/logo.png',
+    client: 'MSC Team',
+    likes: 28,
+    description: [
+      "Working with the team at Melbourne Service Club has been a wonderful experience for our staff at CIT Hub. CIT Hub design team have been extremely creative in putting up an elegant branding for the Melbourne Service Club team.",
+      "An inspiring Logo and banner that offers a professional look and feel with easy information access for the customers. We strive to provide our clients with the best quality services. All artworks are under copyright © cithub"
+    ],
+    images: [
+      '/projects/MSC/logo.png'
+    ]
+  },
+  {
+    id: 'patiala-house',
+    slug: 'patiala-house',
+    title: 'Patiala House',
+    category: 'Branding',
+    tag: 'Brand Design',
+    thumbnail: '/projects/Patiala%20House/logo.png',
+    client: 'Jatinder Singh',
+    likes: 29,
+    description: [
+      "Working with the team at Patialahouse has been a wonderful experience for our staff at CIT Hub. CIT Hub design team have been extremely creative in putting up an elegant branding for the Foundation team.",
+      "An inspiring banner that offers a professional look and feel with easy information access for the customers. We strive to provide our clients with the best quality services. All artworks are under copyright © cithub"
+    ],
+    images: [
+      '/projects/Patiala%20House/logo.png'
+    ]
+  },
+  {
+    id: 'khalsa-shaouni',
+    slug: 'khalsa-shaouni',
+    title: 'Khalsa Shaouni',
+    category: 'Branding',
+    tag: 'Brand Design',
+    thumbnail: '/projects/KhalsaShaouni/logo.png',
+    client: 'Rehmat Sandhu',
+    likes: 27,
+    description: [
+      "Working with the team at KhalsaShaouni has been a wonderful experience for our staff at CIT Hub. CIT Hub design team have been extremely creative in putting up an elegant branding for the Foundation team.",
+      "An inspiring banner that offers a professional look and feel with easy information access for the customers. We strive to provide our clients with the best quality services. All artworks are under copyright © cithub"
+    ],
+    images: [
+      '/projects/KhalsaShaouni/logo.png'
+    ]
+  },
+  {
+    id: 'ehub',
+    slug: 'ehub',
+    title: 'Ehub',
+    category: 'Branding',
+    tag: 'Brand Design',
+    thumbnail: '/projects/Ehub/logo.png',
+    client: 'Sumit Katyal',
+    likes: 30,
+    description: [
+      "Working with the team at Ehub has been a wonderful experience for our staff at CIT Hub. CIT Hub design team have been extremely creative in putting up an elegant branding for the Foundation team.",
+      "An inspiring banner that offers a professional look and feel with easy information access for the customers. We strive to provide our clients with the best quality services. All artworks are under copyright © cithub"
+    ],
+    images: [
+      '/projects/Ehub/logo.png'
+    ]
+  },
+  {
+    id: 'dave',
+    slug: 'dave',
+    title: 'DAVE',
+    category: 'Branding',
+    tag: 'Brand Design',
+    thumbnail: '/projects/DAVE/logo.png',
+    client: 'Rehmat Sandhu',
+    likes: 25,
+    description: [
+      "Working with the team at Dave Foundation has been a wonderful experience for our staff at CIT Hub. CIT Hub design team have been extremely creative in putting up an elegant branding for the Foundation team.",
+      "An inspiring banner that offers a professional look and feel with easy information access for the customers. We strive to provide our clients with the best quality services. All artworks are under copyright © cithub"
+    ],
+    images: [
+      '/projects/DAVE/logo.png'
+    ]
+  },
+  {
+    id: 'raine-horne',
+    slug: 'raine-horne',
+    title: 'Raine & Horne',
+    category: 'Branding',
+    tag: 'Brand Design',
+    thumbnail: '/projects/Raine%20%26%20Horne/logo.png',
+    client: 'Randolph Clements',
+    likes: 32,
+    description: [
+      "Working with the team at Raine & Horne has been a wonderful experience for our staff at CIT Hub. CIT Hub design team have been extremely creative in putting up an elegant branding for Raine & Horne.",
+      "An inspiring banner that offers a professional look and feel. We strive to provide our clients with the best quality services. All artworks are under copyright © CIT HUB"
+    ],
+    images: [
+      '/projects/Raine%20%26%20Horne/logo.png'
+    ]
+  },
+  {
+    id: 'spicy-by-nature',
+    slug: 'spicy-by-nature',
+    title: 'Spicy By Nature',
+    category: 'Branding',
+    tag: 'Restaurant Branding',
+    thumbnail: '/projects/Spicy%20By%20Nature/logo.png',
+    client: 'Restaurant Owner',
+    likes: 28,
+    description: [
+      "Spicy By Nature hired CIT Hub for putting up the branding for their new Indian Restaurant. The team at CIT Hub captured the client requirements at the detail level and was successful in delivering the extremely creative branding.",
+      "We urge all our fans to go check out their great atmospheric restaurant, the brilliant buffet deals, catering options and enjoy your time as you're cared for by the dedicated and always-smiling staff. All artworks are under copyright © cithub"
+    ],
+    images: [
+      '/projects/Spicy%20By%20Nature/logo.png'
+    ]
   }
 ];
