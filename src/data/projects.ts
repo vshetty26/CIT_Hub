@@ -756,5 +756,109 @@ export const projectsData: ProjectData[] = [
       '/projects/Tasty%20Junction/image%20copy%204.png',
       '/projects/Tasty%20Junction/image%20copy%205.png'
     ]
+  },
+  {
+    id: 'ausikhs',
+    slug: 'ausikhs',
+    title: 'AuSikhs',
+    category: 'Branding',
+    tag: 'App Branding',
+    thumbnail: '/projects/Australian%20Sikh%20Awards/logo.png',
+    client: 'Davinder Singh & Harmeet Singh',
+    likes: 28,
+    description: [
+      "AuSikhs is the first and most comprehensive Sikh App for Sikhs living in Victoria! The app is available on both Android and iOS platform.",
+      "The team at CIT Hub worked closely with the AuSikh team to craft a logo with a 'Touch of Elegance.' Good Luck to the AuSikhs team. All images are under copyright ©CIT Hub"
+    ],
+    images: [
+      '/projects/Australian%20Sikh%20Awards/logo.png'
+    ]
+  },
+  {
+    id: 'azooba',
+    slug: 'azooba',
+    title: 'Azooba – The Food Wonderland',
+    category: 'Branding',
+    tag: 'Restaurant Branding',
+    thumbnail: '/projects/azooba/logo.png',
+    client: 'Azooba',
+    likes: 35,
+    description: [
+      "Working with the team at Azooba The Food Wonderland has been a wonderful experience for our staff at CIT Hub. The restaurant, website and advertisements are all looking refreshingly fine.",
+      "The design team at CIT Hub have been extremely creative and open to collaboration with Azooba to create a masterpiece website www.azooba.com.au. The imperial look of the website with its elegant layout, font and features duplicates the features of the restaurant, the atmosphere, the service and staff.",
+      "CIT Hub has skilfully crafted a successful project and are delighted to add this one to their gallery of accomplished works. We urge all fans to go check out their great atmospheric restaurant, the brilliant buffet deals, catering options and enjoy your time!"
+    ],
+    images: [
+      '/projects/azooba/logo.png'
+    ]
+  },
+  {
+    id: 'miq',
+    slug: 'miq',
+    title: 'MIQ',
+    category: 'Branding',
+    tag: 'Brand Refresh',
+    thumbnail: '/projects/MIQ/logo.png',
+    client: 'MIQ',
+    likes: 32,
+    description: [
+      "MIQ hired CIT Hub to rebrand their existing brand. The team designed an inspiring Logo, elegant showcasing website and various other marketing and outdoor signages.",
+      "All images are under copyright ©CIT Hub"
+    ],
+    images: [
+      '/projects/MIQ/logo.png'
+    ]
+  },
+  {
+    id: 'foresight',
+    slug: 'foresight',
+    title: 'FORESIGHT',
+    category: 'Branding',
+    tag: 'Brand Design',
+    thumbnail: '/projects/FORESIGHT/logo.png',
+    client: 'FORESIGHT',
+    likes: 29,
+    description: [
+      "Working with the team at FORESIGHT has been a wonderful experience for our staff at CIT Hub. CIT Hub has skilfully crafted a successful project and are delighted to add this one to their gallery of accomplished works.",
+      "Big shout out to M CUBE MEDIA for their beautiful product photography to make the FORESIGHT's products stand out. We strive to provide our clients with the best quality services. All artworks are under copyright © cithub"
+    ],
+    images: [
+      '/projects/FORESIGHT/logo.png'
+    ]
+  },
+  {
+    id: 'werribee-indoor-sports-centre',
+    slug: 'werribee-indoor-sports-centre',
+    title: 'Werribee Indoor Sports Centre',
+    category: 'Branding',
+    tag: 'Website & Branding',
+    thumbnail: '/projects/Werribee%20Indoor%20Sports%20Centre/logo.png',
+    client: 'Rohit, Gaurav and Manraj',
+    likes: 34,
+    description: [
+      "Working with the team at Werribee Indoor Sports Centre has been a wonderful experience for our staff at CIT Hub. The design team have been extremely creative and collaborative to create a masterpiece website www.werribeeindoorsports.com.au.",
+      "The imperial look of the website with its elegant layout, font and features duplicates the features of the indoor sports, the atmosphere, the service and staff. CIT Hub has skilfully crafted a successful project and are delighted to add this one to their gallery.",
+      "The Website and advertisement are all looking refreshingly fine. We urge all fans to go check out their great atmospheric indoor facilities and enjoy your time. An inspiring banner offers a professional look and feel with easy information access for customers."
+    ],
+    images: [
+      '/projects/Werribee%20Indoor%20Sports%20Centre/logo.png'
+    ]
+  },
+  {
+    id: 'german-club-tivoli',
+    slug: 'german-club-tivoli',
+    title: 'German Club Tivoli',
+    category: 'Branding',
+    tag: 'Website Rebranding',
+    thumbnail: '/projects/German%20Club%20Tivoli/logo.png',
+    client: 'Tony & David',
+    likes: 30,
+    description: [
+      "CIT Hub team was hired to re-brand the German Club Tivoli website. Maintaining the German theme, a very elegant fluid theme was designed to lay down the website.",
+      "All images are under copyright ©CIT Hub"
+    ],
+    images: [
+      '/projects/German%20Club%20Tivoli/logo.png'
+    ]
   }
 ];
