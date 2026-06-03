@@ -763,7 +763,7 @@ export const projectsData: ProjectData[] = [
     title: 'AuSikhs',
     category: 'Branding',
     tag: 'App Branding',
-    thumbnail: '/projects/Australian%20Sikh%20Awards/logo.png',
+    thumbnail: '/projects/AuSikhs/logo.png',
     client: 'Davinder Singh & Harmeet Singh',
     likes: 28,
     description: [
@@ -771,7 +771,7 @@ export const projectsData: ProjectData[] = [
       "The team at CIT Hub worked closely with the AuSikh team to craft a logo with a 'Touch of Elegance.' Good Luck to the AuSikhs team. All images are under copyright ©CIT Hub"
     ],
     images: [
-      '/projects/Australian%20Sikh%20Awards/logo.png'
+      '/projects/AuSikhs/logo.png'
     ]
   },
   {
@@ -780,7 +780,7 @@ export const projectsData: ProjectData[] = [
     title: 'Azooba – The Food Wonderland',
     category: 'Branding',
     tag: 'Restaurant Branding',
-    thumbnail: '/projects/azooba/logo.png',
+    thumbnail: '/projects/Azooba%20–%20The%20Food%20Wonderland/logo.png',
     client: 'Azooba',
     likes: 35,
     description: [
@@ -789,7 +789,7 @@ export const projectsData: ProjectData[] = [
       "CIT Hub has skilfully crafted a successful project and are delighted to add this one to their gallery of accomplished works. We urge all fans to go check out their great atmospheric restaurant, the brilliant buffet deals, catering options and enjoy your time!"
     ],
     images: [
-      '/projects/azooba/logo.png'
+      '/projects/Azooba%20–%20The%20Food%20Wonderland/logo.png'
     ]
   },
   {
@@ -798,7 +798,7 @@ export const projectsData: ProjectData[] = [
     title: 'MIQ',
     category: 'Branding',
     tag: 'Brand Refresh',
-    thumbnail: '/projects/MIQ/logo.png',
+    thumbnail: '/projects/MOR%20Events%20%26%20Mukka/logo.png',
     client: 'MIQ',
     likes: 32,
     description: [
@@ -806,7 +806,7 @@ export const projectsData: ProjectData[] = [
       "All images are under copyright ©CIT Hub"
     ],
     images: [
-      '/projects/MIQ/logo.png'
+      '/projects/MOR%20Events%20%26%20Mukka/logo.png'
     ]
   },
   {
@@ -815,7 +815,7 @@ export const projectsData: ProjectData[] = [
     title: 'FORESIGHT',
     category: 'Branding',
     tag: 'Brand Design',
-    thumbnail: '/projects/FORESIGHT/logo.png',
+    thumbnail: '/projects/Fitness%20Tadka/logo.png',
     client: 'FORESIGHT',
     likes: 29,
     description: [
@@ -823,7 +823,7 @@ export const projectsData: ProjectData[] = [
       "Big shout out to M CUBE MEDIA for their beautiful product photography to make the FORESIGHT's products stand out. We strive to provide our clients with the best quality services. All artworks are under copyright © cithub"
     ],
     images: [
-      '/projects/FORESIGHT/logo.png'
+      '/projects/Fitness%20Tadka/logo.png'
     ]
   },
   {
@@ -832,7 +832,7 @@ export const projectsData: ProjectData[] = [
     title: 'Werribee Indoor Sports Centre',
     category: 'Branding',
     tag: 'Website & Branding',
-    thumbnail: '/projects/Werribee%20Indoor%20Sports%20Centre/logo.png',
+    thumbnail: '/projects/MoviePoster/logo.png',
     client: 'Rohit, Gaurav and Manraj',
     likes: 34,
     description: [
@@ -841,7 +841,7 @@ export const projectsData: ProjectData[] = [
       "The Website and advertisement are all looking refreshingly fine. We urge all fans to go check out their great atmospheric indoor facilities and enjoy your time. An inspiring banner offers a professional look and feel with easy information access for customers."
     ],
     images: [
-      '/projects/Werribee%20Indoor%20Sports%20Centre/logo.png'
+      '/projects/MoviePoster/logo.png'
     ]
   },
   {
