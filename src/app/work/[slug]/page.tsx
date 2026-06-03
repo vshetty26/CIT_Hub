@@ -122,7 +122,10 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
         }}>
           {/* Back link */}
           <button
-            onClick={() => router.push('/#work')}
+            onClick={() => {
+              window.location.hash = 'work';
+              window.history.back();
+            }}
             style={{
               display: 'inline-flex',
               alignItems: 'center',
