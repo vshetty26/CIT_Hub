@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, use } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { projectsData } from '@/data/projects';
@@ -11,6 +12,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
   const resolvedParams = use(params);
   const slug = resolvedParams.slug;
   const project = projectsData.find(p => p.slug === slug);
+  const router = useRouter();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -119,8 +121,8 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
           gap: '32px'
         }}>
           {/* Back link */}
-          <Link
-            href="/#work"
+          <button
+            onClick={() => router.push('/#work')}
             style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -133,15 +135,19 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
               color: 'var(--secondary)',
               textDecoration: 'none',
               transition: 'color 0.2s',
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              padding: 0,
             }}
-            onMouseEnter={e => (e.currentTarget as HTMLAnchorElement).style.color = 'var(--text)'}
-            onMouseLeave={e => (e.currentTarget as HTMLAnchorElement).style.color = 'var(--secondary)'}
+            onMouseEnter={e => (e.currentTarget as HTMLButtonElement).style.color = 'var(--text)'}
+            onMouseLeave={e => (e.currentTarget as HTMLButtonElement).style.color = 'var(--secondary)'}
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M19 12H5M12 5l-7 7 7 7"/>
             </svg>
             Back to Work
-          </Link>
+          </button>
           {/* Title Area */}
           <div>
             <h1 style={{
