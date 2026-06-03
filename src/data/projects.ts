@@ -23,8 +23,8 @@ export const projectsData: ProjectData[] = [
     client: 'Learning Ladder',
     likes: 40,
     description: [
-      "Learning Ladder is an innovative educational platform designed to help students climb the ladder of success through personalized learning experiences. We crafted a comprehensive web solution that combines intuitive design with powerful functionality.",
-      "The CIT HUB team is proud to have delivered a complete web design and development solution for Learning Ladder. Your commitment to transforming education through technology is truly inspiring. May this digital platform empower countless learners on their journey to success!"
+      "A trusted Early Learning Centre for Growing Minds. At Learning Ladder, children learn and grow in a safe, welcoming environment where they feel valued and confident. Our play-based programs support each child's wellbeing, development, and love of learning.",
+      "The CIT HUB team is proud to have delivered a complete web design and development solution for Learning Ladder. Your commitment to providing a nurturing environment for children's growth and development is truly commendable. May this digital platform help families discover the exceptional care and learning experiences you provide!"
     ],
     images: [
       '/Learningladder/logo.png',
