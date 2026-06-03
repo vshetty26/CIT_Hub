@@ -123,8 +123,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
           {/* Back link */}
           <button
             onClick={() => {
-              window.location.hash = 'work';
-              window.history.back();
+              router.push('/#work');
             }}
             style={{
               display: 'inline-flex',
