@@ -1,22 +1,28 @@
 'use client'
 
-import dynamic from 'next/dynamic'
-import { useMemo } from 'react'
-
-const NextStudio = dynamic(() => import('next-sanity/studio').then(mod => mod.NextStudio), { ssr: false })
+import { useEffect } from 'react'
 
 export default function StudioPage() {
-  const config = useMemo(() => ({
-    name: 'cithub-projects',
-    title: 'CIT Hub Projects',
-    projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'tz810ks6',
-    dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
-    plugins: [],
-    schema: {
-      types: [],
-    },
-  }), [])
+  useEffect(() => {
+    // Redirect to Sanity management interface
+    window.location.href = `https://sanity.io/manage/projects/tz810ks6`
+  }, [])
 
-  return <NextStudio config={config} />
+  return (
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: '100vh',
+      backgroundColor: '#1a1a1a',
+      color: 'white',
+      fontFamily: 'sans-serif'
+    }}>
+      <h1>Redirecting to Sanity Studio...</h1>
+      <p>If not redirected, <a href="https://sanity.io/manage/projects/tz810ks6" style={{color: '#00d4ff'}}>click here</a></p>
+    </div>
+  )
 }
+
 
