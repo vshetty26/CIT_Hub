@@ -59,7 +59,18 @@ export default function Footer({ onContactClick }: { onContactClick?: () => void
 
       <div className="footer-top">
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          <div>
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            style={{
+              background: 'none',
+              border: 'none',
+              padding: 0,
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+            }}
+            aria-label="Scroll to top"
+          >
             <Image
               src="/cithublogo.png"
               alt="CIT Hub"
@@ -72,7 +83,7 @@ export default function Footer({ onContactClick }: { onContactClick?: () => void
                 filter: 'var(--logo-filter)',
               }}
             />
-          </div>
+          </button>
           <div style={{
               fontFamily: "'Space Grotesk', sans-serif",
               fontSize: '14px',

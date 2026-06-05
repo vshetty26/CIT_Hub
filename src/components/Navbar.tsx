@@ -244,68 +244,40 @@ export default function Navbar({ onContactClick }: { onContactClick?: () => void
         {/* RIGHT: Nav links + CTA + Theme (desktop) */}
         <div className="nav-right">
           <div className="nav-links">
-            {NAV_ITEMS.map(item => (
-              <a
-                key={item.id}
-                href={isHome ? `#${item.id}` : `/#${item.id}`}
-                className="nav-link"
-                onClick={(e) => handleNavClick(e, item.id)}
-              >
-                {item.name}
-              </a>
-            ))}
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                onContactClick?.();
-              }}
-              className="nav-link"
-              style={{
-                background: 'none',
-                border: 'none',
-                padding: 0,
-                cursor: 'pointer',
-              }}
-            >
-              Contact
-            </button>
+            {NAV_ITEMS.map(item => {
+              // Special handling for Contact - should open the form modal
+              if (item.id === 'contact') {
+                return (
+                  <button
+                    key={item.id}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onContactClick?.();
+                    }}
+                    className="nav-link"
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      padding: 0,
+                      cursor: 'pointer',
+                    }}
+                  >
+                    {item.name}
+                  </button>
+                );
+              }
+              return (
+                <a
+                  key={item.id}
+                  href={isHome ? `#${item.id}` : `/#${item.id}`}
+                  className="nav-link"
+                  onClick={(e) => handleNavClick(e, item.id)}
+                >
+                  {item.name}
+                </a>
+              );
+            })}
           </div>
-
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              onContactClick?.();
-            }}
-            className="nav-cta"
-            style={{
-              fontFamily: "'Space Grotesk', sans-serif",
-              fontSize: '12px',
-              fontWeight: 600,
-              color: 'var(--bg)',
-              backgroundColor: 'var(--text)',
-              padding: '12px 24px',
-              borderRadius: '100px',
-              textDecoration: 'none',
-              letterSpacing: '0.05em',
-              textTransform: 'uppercase',
-              transition: 'transform 0.2s, background-color 0.2s',
-              flexShrink: 0,
-              cursor: 'pointer',
-              border: 'none',
-              display: 'inline-flex',
-              alignItems: 'center',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.backgroundColor = 'var(--secondary)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.backgroundColor = 'var(--text)';
-            }}
-          >
-            Let's Talk
-          </button>
 
           <button onClick={toggleTheme} className="nav-theme-btn" aria-label="Toggle theme">
             <ThemeIcon theme={theme} />
@@ -334,72 +306,50 @@ export default function Navbar({ onContactClick }: { onContactClick?: () => void
 
       {/* ── Mobile full-screen overlay ── */}
       <div className={`mobile-menu${mobileMenuOpen ? ' mobile-menu-open' : ''}`} aria-hidden={!mobileMenuOpen}>
-        {NAV_ITEMS.map((item, i) => (
-          <a
-            key={item.id}
-            href={isHome ? `#${item.id}` : `/#${item.id}`}
-            className="mobile-link"
-            onClick={(e) => handleNavClick(e, item.id)}
-            style={{
-              opacity:   mobileMenuOpen ? 1 : 0,
-              transform: mobileMenuOpen ? 'translateY(0)' : 'translateY(20px)',
-              transition: `all 0.5s cubic-bezier(0.16, 1, 0.3, 1)`,
-              transitionDelay: `${i * 0.05}s`,
-            }}
-          >
-            {item.name}
-          </a>
-        ))}
-
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            setMobileMenuOpen(false);
-            onContactClick?.();
-          }}
-          className="mobile-link"
-          style={{
-            opacity:   mobileMenuOpen ? 1 : 0,
-            transform: mobileMenuOpen ? 'translateY(0)' : 'translateY(20px)',
-            transition: `all 0.5s cubic-bezier(0.16, 1, 0.3, 1)`,
-            transitionDelay: `${NAV_ITEMS.length * 0.05}s`,
-            background: 'none',
-            border: 'none',
-            padding: 0,
-            cursor: 'pointer',
-          }}
-        >
-          Contact
-        </button>
-
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            setMobileMenuOpen(false);
-            onContactClick?.();
-          }}
-          style={{
-            fontFamily: "'Space Grotesk', sans-serif",
-            fontSize: '16px',
-            fontWeight: 600,
-            color: 'var(--bg)',
-            backgroundColor: 'var(--text)',
-            padding: '16px 40px',
-            borderRadius: '100px',
-            textDecoration: 'none',
-            letterSpacing: '0.05em',
-            textTransform: 'uppercase',
-            marginTop: '24px',
-            opacity:   mobileMenuOpen ? 1 : 0,
-            transform: mobileMenuOpen ? 'translateY(0)' : 'translateY(20px)',
-            transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
-            transitionDelay: '0.2s',
-            border: 'none',
-            cursor: 'pointer',
-          }}
-        >
-          Let's Talk
-        </button>
+        {NAV_ITEMS.map((item, i) => {
+          // Special handling for Contact - should open the form modal
+          if (item.id === 'contact') {
+            return (
+              <button
+                key={item.id}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setMobileMenuOpen(false);
+                  onContactClick?.();
+                }}
+                className="mobile-link"
+                style={{
+                  opacity:   mobileMenuOpen ? 1 : 0,
+                  transform: mobileMenuOpen ? 'translateY(0)' : 'translateY(20px)',
+                  transition: `all 0.5s cubic-bezier(0.16, 1, 0.3, 1)`,
+                  transitionDelay: `${i * 0.05}s`,
+                  background: 'none',
+                  border: 'none',
+                  padding: 0,
+                  cursor: 'pointer',
+                }}
+              >
+                {item.name}
+              </button>
+            );
+          }
+          return (
+            <a
+              key={item.id}
+              href={isHome ? `#${item.id}` : `/#${item.id}`}
+              className="mobile-link"
+              onClick={(e) => handleNavClick(e, item.id)}
+              style={{
+                opacity:   mobileMenuOpen ? 1 : 0,
+                transform: mobileMenuOpen ? 'translateY(0)' : 'translateY(20px)',
+                transition: `all 0.5s cubic-bezier(0.16, 1, 0.3, 1)`,
+                transitionDelay: `${i * 0.05}s`,
+              }}
+            >
+              {item.name}
+            </a>
+          );
+        })}
       </div>
     </>
   );
