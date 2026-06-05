@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 export default function StudioPage() {
   useEffect(() => {
     // Redirect to Sanity management interface
-    window.location.href = `https://sanity.io/manage/projects/tz810ks6`
+    window.location.replace('https://sanity.io/manage')
   }, [])
 
   return (
@@ -19,8 +19,8 @@ export default function StudioPage() {
       color: 'white',
       fontFamily: 'sans-serif'
     }}>
-      <h1>Redirecting to Sanity Studio...</h1>
-      <p>If not redirected, <a href="https://sanity.io/manage/projects/tz810ks6" style={{color: '#00d4ff'}}>click here</a></p>
+      <h1>Opening Sanity Studio...</h1>
+      <p>If not redirected, <a href="https://sanity.io/manage" style={{color: '#00d4ff'}}>click here</a></p>
     </div>
   )
 }
